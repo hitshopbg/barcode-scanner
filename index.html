@@ -49,7 +49,7 @@
  margin: 0 auto; 
  }  
 
- /* ЕКРАН ЗА ВХОД C PIN / ЛИЦЕНЗ */
+ /* ЕКРАН ЗА ВХОД C PIN И GMAIL */
  #authModal {
  position: fixed;
  top: 0; left: 0; width: 100vw; height: 100vh;
@@ -71,17 +71,20 @@
  text-align: center;
  }
  .auth-card h2 { font-size: 20px; color: var(--primary); margin-bottom: 8px; }
- .auth-card p { font-size: 13px; color: var(--text-light); margin-bottom: 20px; }
+ .auth-card p { font-size: 13px; color: var(--text-light); margin-bottom: 15px; }
  .auth-input {
  width: 100%;
  padding: 12px;
- font-size: 18px;
- letter-spacing: 2px;
- text-align: center;
+ font-size: 15px;
  border: 2px solid var(--border);
  border-radius: 10px;
- margin-bottom: 15px;
+ margin-bottom: 12px;
  outline: none;
+ text-align: center;
+ }
+ .auth-input.pin-field {
+ font-size: 18px;
+ letter-spacing: 2px;
  }
  .auth-input:focus { border-color: var(--primary); }
  .auth-error { font-size: 13px; color: var(--danger); margin-top: 10px; display: none; font-weight: 600; }
@@ -333,7 +336,6 @@
      overflow: hidden !important;
    }
 
-   /* Скрива всичко на страницата освен контейнера за печат */
    body > * { 
      display: none !important; 
    }
@@ -376,7 +378,7 @@
      padding: 0 1mm !important;
      width: 100% !important;
      text-align: center !important;
-     white-space: normal !important; /* Пренасяне на втори/трети ред */
+     white-space: normal !important;
      word-break: break-word !important;
      line-height: 1.15 !important;
      max-height: 12mm !important;
@@ -407,12 +409,15 @@
 </head>  
 <body>  
 
- <!-- МОДАЛЕН ЕКРАН ЗА ВХОД C PIN -->
+ <!-- МОДАЛЕН ЕКРАН ЗА ВХОД C PIN И GMAIL -->
  <div id="authModal">
      <div class="auth-card">
          <h2><i class="fa-solid fa-lock"></i> Лицензен Вход</h2>
-         <p>Въведете вашия персонален PIN код за абонамент:</p>
-         <input type="password" id="pinInput" class="auth-input" placeholder="Въведете PIN..." autofocus maxlength="20">
+         <p>Въведете вашия PIN код и Gmail адрес:</p>
+         
+         <input type="password" id="pinInput" class="auth-input pin-field" placeholder="PIN Код..." autofocus maxlength="20">
+         <input type="email" id="emailInput" class="auth-input" placeholder="Вашият имейл (@gmail.com)...">
+         
          <button type="button" class="btn btn-primary" style="width: 100%; opacity: 1;" onclick="validatePin()">
              <i class="fa-solid fa-key"></i> Влез в системата
          </button>
@@ -446,7 +451,7 @@
  <img src="favicon.png" alt="Иконка">  
  <div>  
  <h1>БАРКОД-СКЕНЕР</h1>  
- <p style="font-size: 11px; opacity: 0.9;">&copy; HITSHOP BG LTD — Всички права запазени</p>  
+ <p style="font-size: 11px; opacity: 0.9;">HITSHOP BG LTD | hitshop.bg</p>  
  </div>  
  </div>  
  <div style="display: flex; gap: 6px;">
@@ -649,11 +654,18 @@
 
  async function validatePin() {
      const pin = document.getElementById('pinInput').value.trim();
+     const email = document.getElementById('emailInput').value.trim().toLowerCase();
      const errorDiv = document.getElementById('authError');
      errorDiv.style.display = 'none';
 
      if (!pin) {
          errorDiv.innerText = 'Моля, въведете PIN код!';
+         errorDiv.style.display = 'block';
+         return;
+     }
+
+     if (!email || !email.endsWith('@gmail.com')) {
+         errorDiv.innerText = 'Въведете валиден Gmail адрес (трябва да завършва на @gmail.com)!';
          errorDiv.style.display = 'block';
          return;
      }
@@ -685,6 +697,7 @@
          }
 
          localStorage.setItem('saved_pin', pin);
+         localStorage.setItem('saved_email', email);
          document.getElementById('authModal').style.display = 'none';
 
      } catch (err) {
@@ -696,8 +709,10 @@
 
  function checkSavedPin() {
      const savedPin = localStorage.getItem('saved_pin');
-     if (savedPin) {
+     const savedEmail = localStorage.getItem('saved_email');
+     if (savedPin && savedEmail) {
          document.getElementById('pinInput').value = savedPin;
+         document.getElementById('emailInput').value = savedEmail;
          validatePin();
      } else {
          document.getElementById('authModal').style.display = 'flex';
@@ -707,6 +722,7 @@
  function logoutPin() {
      if (confirm('Желаете ли да излезете от текущия лиценз?')) {
          localStorage.removeItem('saved_pin');
+         localStorage.removeItem('saved_email');
          location.reload();
      }
  }
@@ -765,7 +781,6 @@
  }
 
  function printBarcode() {
-     // Забавяне от 150ms за сигурно отпечатване на SVG баркода в прозореца за печат
      setTimeout(() => {
          window.print();
      }, 150);
@@ -801,7 +816,6 @@
                  
                  driveConnected = true;  
                  await fetchGoogleUserInfo();
-                 await syncOnAccountSwitch();
              }  
          });  
          gsisInited = true;  
@@ -812,8 +826,18 @@
      try {
          const res = await gapi.client.drive.about.get({ fields: 'user' });
          if (res.result && res.result.user) {
-             const userEmail = res.result.user.emailAddress;
-             updateDriveUI(`Свързано: ${userEmail}`, '#10b981');
+             const loggedEmail = res.result.user.emailAddress.toLowerCase();
+             const savedEmail = (localStorage.getItem('saved_email') || '').toLowerCase();
+
+             if (savedEmail && loggedEmail !== savedEmail) {
+                 alert(`ГРЕШКА В ЛИЦЕНЗА:\nВлезли сте в Google с "${loggedEmail}", но лицензът е регистриран за "${savedEmail}".\n\nМоля, влезте със съответния Google акаунт!`);
+                 driveConnected = false;
+                 updateDriveUI(`Грешен акаунт! Очаква се: ${savedEmail}`, '#ef4444');
+                 return;
+             }
+
+             updateDriveUI(`Свързано: ${loggedEmail}`, '#10b981');
+             await syncOnAccountSwitch();
          } else {
              updateDriveUI('Свързано с Google Drive', '#10b981');
          }
@@ -900,7 +924,7 @@
              btn.innerHTML = `<i class="fa-solid fa-cloud-check"></i> ${statusText.startsWith('Свързано:') ? statusText : 'Google Drive е свързан'}`;  
              if (dlBtn) dlBtn.style.display = 'block';  
          } else {  
-             btn.style.background = 'var(--primary)';  
+             btn.style.background = color === '#ef4444' ? color : 'var(--primary)';  
              btn.innerHTML = `<i class="fa-brands fa-google-drive"></i> Свържи с Google Drive`;  
              if (dlBtn) dlBtn.style.display = 'none';  
          }  
