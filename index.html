@@ -299,7 +299,7 @@
  border-style: solid;  
  }  
 
- /* МОДАЛЕН ЕКРАН */
+ /* МОДАЛЕН ЕКРАН ЗА БАРКОД */
  #qrModal {
  display: none;
  position: fixed;
@@ -319,6 +319,28 @@
  width: 100%;
  }
  #qrcode { margin: 15px auto; display: flex; justify-content: center; }
+
+ /* СТИЛ ЗА РЕДАКТИРУЕМОТО ЗАГЛАВИЕ В МОДАЛА */
+ .modal-name-input {
+ width: 100%;
+ font-size: 13px;
+ font-weight: 700;
+ color: var(--text);
+ text-align: center;
+ border: 1px dashed var(--primary);
+ border-radius: 6px;
+ padding: 6px;
+ margin-bottom: 8px;
+ outline: none;
+ resize: vertical;
+ background: #f9fafb;
+ font-family: inherit;
+ }
+ .modal-name-input:focus {
+ border-style: solid;
+ background: #ffffff;
+ box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+ }
 
  /* СТИЛОВЕ ЗА ПЕЧАТ НА БАРКОД ЕТИКЕТ 50x40 MM */
  @media print {
@@ -341,8 +363,8 @@
    }
    
    #qrModal {
-     display: flex !important;
-     position: fixed !important;
+     display: block !important;
+     position: absolute !important;
      top: 0 !important;
      left: 0 !important;
      width: 50mm !important;
@@ -350,8 +372,6 @@
      margin: 0 !important;
      padding: 0 !important;
      background: white !important;
-     align-items: center !important;
-     justify-content: center !important;
      box-shadow: none !important;
    }
 
@@ -360,47 +380,65 @@
      border: none !important;
      width: 50mm !important;
      height: 40mm !important;
-     padding: 1mm 2mm !important;
+     padding: 0 !important;
      margin: 0 !important;
-     display: flex !important;
-     flex-direction: column !important;
-     align-items: center !important;
-     justify-content: center !important;
-     text-align: center !important;
+     position: relative !important;
      background: white !important;
+     display: block !important;
    }
 
-   #qrModalName {
-     font-size: 10px !important;
+   /* ТЕКСТОВО ПОЛЕ – ПОЗИЦИОНИРАНО ТОЧНО ОТГОРЕ */
+   .modal-name-input {
+     position: absolute !important;
+     top: 2mm !important;
+     left: 2mm !important;
+     width: 46mm !important;
+     height: 18mm !important;
+     max-height: 18mm !important;
+     border: none !important;
+     background: transparent !important;
+     box-shadow: none !important;
+     outline: none !important;
+     font-size: 9pt !important;
      font-weight: 700 !important;
      color: #000 !important;
-     margin: 0 0 1mm 0 !important;
-     padding: 0 1mm !important;
-     width: 100% !important;
+     margin: 0 !important;
+     padding: 0 !important;
      text-align: center !important;
      white-space: normal !important;
      word-break: break-word !important;
      line-height: 1.15 !important;
-     max-height: 12mm !important;
      overflow: hidden !important;
+     resize: none !important;
+     display: block !important;
+   }
+
+   /* БАРКОД – ПОЗИЦИОНИРАН ТОЧНО НА 2MM ОТ ДОЛНИЯ РЪБ НА ЕТИКЕТА */
+   .qr-card > div:first-of-type {
+     position: absolute !important;
+     bottom: 2mm !important;
+     left: 2mm !important;
+     width: 46mm !important;
+     height: 17mm !important;
+     padding: 0 !important;
+     margin: 0 !important;
+     background: transparent !important;
+     display: flex !important;
+     justify-content: center !important;
+     align-items: center !important;
    }
 
    #barcodeSvg {
      width: 46mm !important;
-     height: auto !important;
-     max-height: 24mm !important;
+     height: 17mm !important;
+     max-height: 17mm !important;
      display: block !important;
      margin: 0 auto !important;
    }
 
-   #qrModal button, #qrcode, .qr-card > div:first-of-type { 
-     border: none !important;
-     padding: 0 !important;
-     margin: 0 !important;
-     background: transparent !important;
-   }
-
-   #qrModal button {
+   /* СКРИВАНЕ НА ВСИЧКИ БУТОНИ ПРИ ПЕЧАТ */
+   #qrModal .modal-btn-group,
+   #qrModal button { 
      display: none !important;
    }
  }
@@ -425,17 +463,17 @@
      </div>
  </div>  
 
- <!-- МОДАЛЕН ЕКРАН ЗА БАРКОД И ПЕЧАТ -->
+ <!-- МОДАЛЕН ЕКРАН ЗА БАРКОД И ПЕЧАТ (С РЕДАКТИРУЕМО ИМЕ) -->
  <div id="qrModal" onclick="closeQrModal(event)">
      <div class="qr-card" onclick="event.stopPropagation()">
-         <p id="qrModalName" style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; text-align: center;"></p>
+         <textarea id="qrModalName" class="modal-name-input" rows="2" title="Щракнете тук, за да редактирате текста за етикета"></textarea>
          
          <div style="background: white; padding: 5px; border-radius: 6px; display: flex; justify-content: center; align-items: center;">
              <svg id="barcodeSvg"></svg>
              <div id="qrcode"></div>
          </div>
 
-         <div style="display: flex; gap: 8px; margin-top: 12px; width: 100%;">
+         <div class="modal-btn-group" style="display: flex; gap: 8px; margin-top: 12px; width: 100%;">
              <button type="button" id="btnPrintModal" class="btn btn-primary" onclick="printBarcode()" style="flex: 1;">
                  <i class="fa-solid fa-print"></i> Печат
              </button>
@@ -451,7 +489,7 @@
  <img src="favicon.png" alt="Иконка">  
  <div>  
  <h1>БАРКОД-СКЕНЕР</h1>  
- <p style="font-size: 11px; opacity: 0.9;"> &copy; HITSHOP BG LTD — Всички права запазени.</p>  
+ <p style="font-size: 11px; opacity: 0.9;"> HITSHOP BG LTD — Всички права запазени</p>  
  </div>  
  </div>  
  <div style="display: flex; gap: 6px;">
@@ -728,7 +766,7 @@
  }
 
  function showAppQrCode() {
-     document.getElementById('qrModalName').innerText = 'Сканирайте за бърз достъп';
+     document.getElementById('qrModalName').value = 'Сканирайте за бърз достъп';
      document.getElementById('barcodeSvg').style.display = 'none';
      document.getElementById('btnPrintModal').style.display = 'none';
      
@@ -748,7 +786,7 @@
  }
 
  function showBarcodeModal(code, name) {
-     document.getElementById('qrModalName').innerText = name || `Артикул ${code}`;
+     document.getElementById('qrModalName').value = name || `Артикул ${code}`;
      document.getElementById('qrcode').style.display = 'none';
      document.getElementById('btnPrintModal').style.display = 'inline-flex';
      
