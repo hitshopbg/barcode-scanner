@@ -299,7 +299,7 @@
  border-style: solid;  
  }  
 
- /* МОДАЛЕН ЕКРАН */
+ /* МОДАЛЕН ЕКРАН ЗА БАРКОД */
  #qrModal {
  display: none;
  position: fixed;
@@ -319,6 +319,28 @@
  width: 100%;
  }
  #qrcode { margin: 15px auto; display: flex; justify-content: center; }
+
+ /* СТИЛ ЗА РЕДАКТИРУЕМОТО ЗАГЛАВИЕ В МОДАЛА */
+ .modal-name-input {
+ width: 100%;
+ font-size: 13px;
+ font-weight: 700;
+ color: var(--text);
+ text-align: center;
+ border: 1px dashed var(--primary);
+ border-radius: 6px;
+ padding: 6px;
+ margin-bottom: 8px;
+ outline: none;
+ resize: vertical;
+ background: #f9fafb;
+ font-family: inherit;
+ }
+ .modal-name-input:focus {
+ border-style: solid;
+ background: #ffffff;
+ box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+ }
 
  /* СТИЛОВЕ ЗА ПЕЧАТ НА БАРКОД ЕТИКЕТ 50x40 MM */
  @media print {
@@ -370,7 +392,11 @@
      background: white !important;
    }
 
-   #qrModalName {
+   /* ТЕКСТОВОТО ПОЛЕ СЕ ПЕЧАТА КАТО ЧИСТ ТЕКСТ БЕЗ РАМКИ */
+   .modal-name-input {
+     border: none !important;
+     background: transparent !important;
+     box-shadow: none !important;
      font-size: 10px !important;
      font-weight: 700 !important;
      color: #000 !important;
@@ -383,6 +409,7 @@
      line-height: 1.15 !important;
      max-height: 12mm !important;
      overflow: hidden !important;
+     resize: none !important;
    }
 
    #barcodeSvg {
@@ -425,10 +452,10 @@
      </div>
  </div>  
 
- <!-- МОДАЛЕН ЕКРАН ЗА БАРКОД И ПЕЧАТ -->
+ <!-- МОДАЛЕН ЕКРАН ЗА БАРКОД И ПЕЧАТ (С РЕДАКТИРУЕМО ИМЕ) -->
  <div id="qrModal" onclick="closeQrModal(event)">
      <div class="qr-card" onclick="event.stopPropagation()">
-         <p id="qrModalName" style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; text-align: center;"></p>
+         <textarea id="qrModalName" class="modal-name-input" rows="2" title="Щракнете тук, за да редактирате текста за етикета"></textarea>
          
          <div style="background: white; padding: 5px; border-radius: 6px; display: flex; justify-content: center; align-items: center;">
              <svg id="barcodeSvg"></svg>
@@ -451,7 +478,7 @@
  <img src="favicon.png" alt="Иконка">  
  <div>  
  <h1>БАРКОД-СКЕНЕР</h1>  
- <p style="font-size: 11px; opacity: 0.9;"> &copy; HITSHOP BG LTD — Всички права запазени.</p>  
+ <p style="font-size: 11px; opacity: 0.9;">HITSHOP BG LTD | hitshop.bg</p>  
  </div>  
  </div>  
  <div style="display: flex; gap: 6px;">
@@ -728,7 +755,7 @@
  }
 
  function showAppQrCode() {
-     document.getElementById('qrModalName').innerText = 'Сканирайте за бърз достъп';
+     document.getElementById('qrModalName').value = 'Сканирайте за бърз достъп';
      document.getElementById('barcodeSvg').style.display = 'none';
      document.getElementById('btnPrintModal').style.display = 'none';
      
@@ -748,7 +775,8 @@
  }
 
  function showBarcodeModal(code, name) {
-     document.getElementById('qrModalName').innerText = name || `Артикул ${code}`;
+     // Автоматично нанася името от базата данни в редактируемото поле
+     document.getElementById('qrModalName').value = name || `Артикул ${code}`;
      document.getElementById('qrcode').style.display = 'none';
      document.getElementById('btnPrintModal').style.display = 'inline-flex';
      
