@@ -489,7 +489,7 @@
  <img src="favicon.png" alt="Иконка">  
  <div>  
  <h1>БАРКОД-СКЕНЕР</h1>  
- <p style="font-size: 11px; opacity: 0.9;"> HITSHOP BG LTD — Всички права запазени</p>  
+ <p style="font-size: 11px; opacity: 0.9;">HITSHOP BG LTD | hitshop.bg</p>  
  </div>  
  </div>  
  <div style="display: flex; gap: 6px;">
@@ -575,6 +575,11 @@
  <i class="fa-solid fa-file-excel"></i> Експорт в Excel (.csv)  
  </button>  
   
+ <button type="button" class="btn btn-outline" onclick="importFromCSV()" style="width: 100%; margin-bottom: 10px; border-color: var(--success); color: var(--success);">  
+ <i class="fa-solid fa-file-csv"></i> Импорт от CSV  
+ </button>  
+ <input type="file" id="csvFileInput" accept=".csv, .txt" style="display:none;" onchange="handleCSVFileSelect(event)">  
+
  <div class="btn-group" style="margin-top:0;">  
  <button type="button" class="btn btn-outline" onclick="exportBackupJSON()">  
  <i class="fa-solid fa-download"></i> Ръчен Архив  
@@ -1213,7 +1218,7 @@
   
      historyLogs.forEach(h => {  
          const tr = document.createElement('tr');  
-         const isAdd = h.action === 'Прибавено';  
+         const isAdd = h.action.includes('Прибавено') || h.action.includes('Импортирано');  
          tr.innerHTML = `  
              <td style="font-size: 10px; color: var(--text-light);">${h.time}</td>  
              <td><strong>${h.code}</strong></td>  
@@ -1241,6 +1246,66 @@
      link.download = `inventory_${new Date().toISOString().slice(0,10)}.csv`;  
      link.click();  
  }  
+
+ function importFromCSV() {
+     document.getElementById('csvFileInput').click();
+ }
+
+ function handleCSVFileSelect(evt) {
+     const file = evt.target.files[0];
+     if (!file) return;
+
+     const reader = new FileReader();
+     reader.onload = function(e) {
+         try {
+             const text = e.target.result;
+             const lines = text.split(/\r\n|\n/);
+             let importedCount = 0;
+             const nowStr = getFormattedDateTime();
+
+             for (let i = 0; i < lines.length; i++) {
+                 let line = lines[i].trim();
+                 if (!line) continue;
+
+                 let cols = line.includes(';') ? line.split(';') : line.split(',');
+                 cols = cols.map(c => c.replace(/^"|"$/g, '').trim());
+
+                 if (i === 0 && (cols[0].toLowerCase().includes('код') || cols[0].toLowerCase().includes('code'))) {
+                     continue;
+                 }
+
+                 const code = cols[0];
+                 const name = cols[1] || `Артикул ${code}`;
+                 const qty = parseInt(cols[2]) || 1;
+
+                 if (code) {
+                     let prodIndex = products.findIndex(p => p.code === code);
+                     if (prodIndex > -1) {
+                         products[prodIndex].qty += qty;
+                         if (cols[1]) products[prodIndex].name = name;
+                         products[prodIndex].lastUpdated = nowStr;
+                     } else {
+                         products.push({ code: code, name: name, qty: qty, lastUpdated: nowStr });
+                     }
+                     logAction(code, 'Импортирано (CSV)', qty, nowStr);
+                     importedCount++;
+                 }
+             }
+
+             if (importedCount > 0) {
+                 saveAndRender();
+                 alert(`Успешно импортирани/обновени ${importedCount} артикула от CSV файла!`);
+             } else {
+                 alert('Не бяха намерени валидни данни в CSV файла.');
+             }
+         } catch (err) {
+             console.error(err);
+             alert('Грешка при обработка на CSV файла!');
+         }
+         evt.target.value = '';
+     };
+     reader.readAsText(file, 'UTF-8');
+ }
   
  function exportBackupJSON() {  
      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ products: products, history: historyLogs }));  
