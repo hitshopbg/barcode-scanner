@@ -372,7 +372,7 @@
      margin: 0 !important;
      padding: 0 !important;
      background: white !important;
-     align-items: center !important;
+     align-items: flex-start !important; /* Подравняване от горния ръб */
      justify-content: center !important;
      box-shadow: none !important;
    }
@@ -382,35 +382,35 @@
      border: none !important;
      width: 50mm !important;
      height: 40mm !important;
-     padding: 1mm 2mm !important;
+     padding: 0 1mm !important;
      margin: 0 !important;
      display: flex !important;
      flex-direction: column !important;
      align-items: center !important;
-     justify-content: center !important;
+     justify-content: flex-start !important;
      text-align: center !important;
      background: white !important;
    }
 
-   /* ТЕКСТОВОТО ПОЛЕ СЕ ПЕЧАТА С ПЪЛНА ВИСОЧИНА БЕЗ СКРОЛ И РАМКИ */
+   /* ТЕКСТЪТ ЗАПОЧВА ТОЧНО НА 3MM ОТ ГОРНИЯ РЪБ */
    .modal-name-input {
      border: none !important;
      background: transparent !important;
      box-shadow: none !important;
      outline: none !important;
-     font-size: 10px !important;
+     font-size: 9.5pt !important;
      font-weight: 700 !important;
      color: #000 !important;
-     margin: 0 0 1mm 0 !important;
-     padding: 0 1mm !important;
-     width: 100% !important;
+     margin: 3mm auto 1mm auto !important; /* 3mm отгоре */
+     padding: 0 !important;
+     width: 46mm !important; /* Използва пълната ширина */
      height: auto !important;
-     max-height: none !important;
+     max-height: 14mm !important;
      text-align: center !important;
      white-space: normal !important;
      word-break: break-word !important;
-     line-height: 1.15 !important;
-     overflow: visible !important;
+     line-height: 1.1 !important;
+     overflow: hidden !important; /* Без скролбари */
      resize: none !important;
      display: block !important;
    }
@@ -418,7 +418,7 @@
    #barcodeSvg {
      width: 46mm !important;
      height: auto !important;
-     max-height: 24mm !important;
+     max-height: 22mm !important;
      display: block !important;
      margin: 0 auto !important;
    }
