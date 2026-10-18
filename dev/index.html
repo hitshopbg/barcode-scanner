@@ -372,7 +372,7 @@
      margin: 0 !important;
      padding: 0 !important;
      background: white !important;
-     align-items: flex-start !important; /* Подравняване от горния ръб */
+     align-items: flex-start !important;
      justify-content: center !important;
      box-shadow: none !important;
    }
@@ -387,40 +387,41 @@
      display: flex !important;
      flex-direction: column !important;
      align-items: center !important;
-     justify-content: flex-start !important;
+     justify-content: space-between !important; /* Разпределя текста отгоре и баркода отдолу */
      text-align: center !important;
      background: white !important;
    }
 
-   /* ТЕКСТЪТ ЗАПОЧВА ТОЧНО НА 3MM ОТ ГОРНИЯ РЪБ */
+   /* ТЕКСТОВО ПОЛЕ – МАКСИМАЛНО ПРОСТРАНСТВО ОТГОРЕ */
    .modal-name-input {
      border: none !important;
      background: transparent !important;
      box-shadow: none !important;
      outline: none !important;
-     font-size: 9.5pt !important;
+     font-size: 9pt !important;
      font-weight: 700 !important;
      color: #000 !important;
-     margin: 3mm auto 1mm auto !important; /* 3mm отгоре */
+     margin: 2.5mm auto 0 auto !important; /* 2.5mm от горния ръб */
      padding: 0 !important;
-     width: 46mm !important; /* Използва пълната ширина */
+     width: 46mm !important;
      height: auto !important;
-     max-height: 14mm !important;
+     max-height: 18mm !important;
      text-align: center !important;
      white-space: normal !important;
      word-break: break-word !important;
-     line-height: 1.1 !important;
-     overflow: hidden !important; /* Без скролбари */
+     line-height: 1.15 !important;
+     overflow: hidden !important;
      resize: none !important;
      display: block !important;
    }
 
+   /* БАРКОД – ТОЧНО НА 3MM ОТ ДОЛНИЯ РЪБ */
    #barcodeSvg {
      width: 46mm !important;
      height: auto !important;
-     max-height: 22mm !important;
+     max-height: 16mm !important;
      display: block !important;
-     margin: 0 auto !important;
+     margin: 0 auto 3mm auto !important; /* 3mm от долния ръб */
    }
 
    #qrModal button, #qrcode, .qr-card > div:first-of-type { 
