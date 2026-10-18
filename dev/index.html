@@ -363,8 +363,8 @@
    }
    
    #qrModal {
-     display: flex !important;
-     position: fixed !important;
+     display: block !important;
+     position: absolute !important;
      top: 0 !important;
      left: 0 !important;
      width: 50mm !important;
@@ -372,8 +372,6 @@
      margin: 0 !important;
      padding: 0 !important;
      background: white !important;
-     align-items: flex-start !important;
-     justify-content: center !important;
      box-shadow: none !important;
    }
 
@@ -382,18 +380,21 @@
      border: none !important;
      width: 50mm !important;
      height: 40mm !important;
-     padding: 0 1mm !important;
+     padding: 0 !important;
      margin: 0 !important;
-     display: flex !important;
-     flex-direction: column !important;
-     align-items: center !important;
-     justify-content: space-between !important; /* Разпределя текста отгоре и баркода отдолу */
-     text-align: center !important;
+     position: relative !important;
      background: white !important;
+     display: block !important;
    }
 
-   /* ТЕКСТОВО ПОЛЕ – МАКСИМАЛНО ПРОСТРАНСТВО ОТГОРЕ */
+   /* ТЕКСТОВО ПОЛЕ – ПОЗИЦИОНИРАНО ТОЧНО ОТГОРЕ */
    .modal-name-input {
+     position: absolute !important;
+     top: 2mm !important;
+     left: 2mm !important;
+     width: 46mm !important;
+     height: 18mm !important;
+     max-height: 18mm !important;
      border: none !important;
      background: transparent !important;
      box-shadow: none !important;
@@ -401,11 +402,8 @@
      font-size: 9pt !important;
      font-weight: 700 !important;
      color: #000 !important;
-     margin: 2.5mm auto 0 auto !important; /* 2.5mm от горния ръб */
+     margin: 0 !important;
      padding: 0 !important;
-     width: 46mm !important;
-     height: auto !important;
-     max-height: 18mm !important;
      text-align: center !important;
      white-space: normal !important;
      word-break: break-word !important;
@@ -415,23 +413,32 @@
      display: block !important;
    }
 
-   /* БАРКОД – ТОЧНО НА 3MM ОТ ДОЛНИЯ РЪБ */
-   #barcodeSvg {
+   /* БАРКОД – ПОЗИЦИОНИРАН ТОЧНО НА 2MM ОТ ДОЛНИЯ РЪБ НА ЕТИКЕТА */
+   .qr-card > div:first-of-type {
+     position: absolute !important;
+     bottom: 2mm !important;
+     left: 2mm !important;
      width: 46mm !important;
-     height: auto !important;
-     max-height: 16mm !important;
-     display: block !important;
-     margin: 0 auto 3mm auto !important; /* 3mm от долния ръб */
-   }
-
-   #qrModal button, #qrcode, .qr-card > div:first-of-type { 
-     border: none !important;
+     height: 17mm !important;
      padding: 0 !important;
      margin: 0 !important;
      background: transparent !important;
+     display: flex !important;
+     justify-content: center !important;
+     align-items: center !important;
    }
 
-   #qrModal button {
+   #barcodeSvg {
+     width: 46mm !important;
+     height: 17mm !important;
+     max-height: 17mm !important;
+     display: block !important;
+     margin: 0 auto !important;
+   }
+
+   /* СКРИВАНЕ НА ВСИЧКИ БУТОНИ ПРИ ПЕЧАТ */
+   #qrModal .modal-btn-group,
+   #qrModal button { 
      display: none !important;
    }
  }
@@ -466,7 +473,7 @@
              <div id="qrcode"></div>
          </div>
 
-         <div style="display: flex; gap: 8px; margin-top: 12px; width: 100%;">
+         <div class="modal-btn-group" style="display: flex; gap: 8px; margin-top: 12px; width: 100%;">
              <button type="button" id="btnPrintModal" class="btn btn-primary" onclick="printBarcode()" style="flex: 1;">
                  <i class="fa-solid fa-print"></i> Печат
              </button>
