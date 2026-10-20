@@ -1,6 +1,6 @@
 {
   "keys": [
-    { "code": "101824", "client": "Pavel", "active": true, "valid_until": "2027-12-31" },
+    { "code": "101824", "client": "Pavel-ELICOM", "active": true, "valid_until": "2027-12-31" },
     { "code": "102947", "client": "Свободен 2", "active": false, "valid_until": "2026-12-31" },
     { "code": "103815", "client": "ADMIN", "active": true, "valid_until": "" },
     { "code": "104729", "client": "Свободен 4", "active": false, "valid_until": "2026-12-31" },
