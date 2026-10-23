@@ -11,7 +11,7 @@
  <meta name="theme-color" content="#4f46e5">  
   
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
- <title>БАРКОД-СКЕНЕР | hitshopbg.github.io</title>  
+ <title>БАРКОД-СКЕНЕР | HITSHOP BG LTD</title>  
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">  
  <style>  
  :root {  
@@ -28,426 +28,113 @@
  --border: #e5e7eb;  
  }  
   
- * { 
- box-sizing: border-box; 
- margin: 0; 
- padding: 0; 
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
- }  
+ * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }  
+ html, body { width: 100%; overflow-x: hidden; background-color: var(--bg); color: var(--text); padding: 8px; max-width: 100vw; margin: 0 auto; }  
 
- html, body { 
- width: 100%; 
- overflow-x: hidden; 
- -webkit-text-size-adjust: 100%;
- -moz-text-size-adjust: 100%;
- -ms-text-size-adjust: 100%;
- text-size-adjust: 100%;
- background-color: var(--bg); 
- color: var(--text); 
- padding: 8px; 
- max-width: 100vw; 
- margin: 0 auto; 
- }  
-
- /* ЕКРАН ЗА ВХОД C PIN И GMAIL */
  #authModal {
- position: fixed;
- top: 0; left: 0; width: 100vw; height: 100vh;
- background: rgba(15, 23, 42, 0.85);
- backdrop-filter: blur(5px);
- z-index: 9999;
- display: flex;
- align-items: center;
- justify-content: center;
- padding: 15px;
+ position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+ background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(5px);
+ z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 15px;
  }
- .auth-card {
- background: #ffffff;
- border-radius: 16px;
- padding: 25px 20px;
- width: 100%;
- max-width: 380px;
- box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
- text-align: center;
- }
+ .auth-card { background: #ffffff; border-radius: 16px; padding: 25px 20px; width: 100%; max-width: 380px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); text-align: center; }
  .auth-card h2 { font-size: 20px; color: var(--primary); margin-bottom: 8px; }
  .auth-card p { font-size: 13px; color: var(--text-light); margin-bottom: 15px; }
- .auth-input {
- width: 100%;
- padding: 12px;
- font-size: 15px;
- border: 2px solid var(--border);
- border-radius: 10px;
- margin-bottom: 12px;
- outline: none;
- text-align: center;
- }
- .auth-input.pin-field {
- font-size: 18px;
- letter-spacing: 2px;
- }
+ .auth-input { width: 100%; padding: 12px; font-size: 15px; border: 2px solid var(--border); border-radius: 10px; margin-bottom: 12px; outline: none; text-align: center; }
+ .auth-input.pin-field { font-size: 18px; letter-spacing: 2px; }
  .auth-input:focus { border-color: var(--primary); }
  .auth-error { font-size: 13px; color: var(--danger); margin-top: 10px; display: none; font-weight: 600; }
 
- header {  
- background: linear-gradient(135deg, #4f46e5, #3b82f6);  
- color: white;  
- padding: 12px;  
- border-radius: 12px;  
- box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);  
- margin-bottom: 12px;  
- display: flex;  
- align-items: center;  
- justify-content: space-between;  
- flex-wrap: wrap;  
- gap: 8px;  
- width: 100%;  
- }  
-  
+ header { background: linear-gradient(135deg, #4f46e5, #3b82f6); color: white; padding: 12px; border-radius: 12px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; width: 100%; }  
  .brand { display: flex; align-items: center; gap: 10px; }  
  .brand img { width: 32px; height: 32px; border-radius: 8px; }  
  .brand h1 { font-size: 18px; font-weight: 700; }  
 
- .btn-help {  
- background: rgba(255, 255, 255, 0.2);  
- color: white;  
- padding: 6px 10px;  
- border-radius: 8px;  
- text-decoration: none;  
- font-weight: 600;  
- font-size: 12px;  
- display: inline-flex;  
- align-items: center;  
- gap: 5px;  
- transition: all 0.2s;  
- border: 1px solid rgba(255, 255, 255, 0.3);  
- }  
- .btn-help:hover { background: rgba(255, 255, 255, 0.35); }  
-  
+ .btn-help { background: rgba(255, 255, 255, 0.2); color: white; padding: 6px 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 12px; display: inline-flex; align-items: center; gap: 5px; border: 1px solid rgba(255, 255, 255, 0.3); }  
  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%; }  
  @media (min-width: 850px) { .grid { grid-template-columns: 360px 1fr; } }  
   
- .card {  
- background: var(--card-bg);  
- padding: 12px;  
- border-radius: 12px;  
- box-shadow: 0 1px 3px rgba(0,0,0,0.1);  
- border: 1px solid var(--border);  
- margin-bottom: 12px;  
- width: 100%;  
- }  
-  
- .card-title {  
- font-size: 14px;  
- font-weight: 600;  
- margin-bottom: 10px;  
- display: flex;  
- align-items: center;  
- gap: 8px;  
- color: var(--text);  
- border-bottom: 1px solid var(--border);  
- padding-bottom: 6px;  
- }  
+ .card { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; width: 100%; }  
+ .card-title { font-size: 14px; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 6px; }  
   
  .form-group { margin-bottom: 10px; }  
  .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--text-light); }  
-  
- .input-control {  
- width: 100%;  
- padding: 8px 10px;  
- border: 1px solid var(--border);  
- border-radius: 8px;  
- font-size: 15px;  
- outline: none;  
- transition: all 0.2s;  
- }  
-  
- .input-control:focus {  
- border-color: var(--primary);  
- box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);  
- }  
-  
+.input-control { 
+    width: 100%; 
+    padding: 8px 10px; 
+    border: 1px solid #000000; /* Черен цвят и 2px дебелина за максимална видимост */
+    border-radius: 8px; 
+    font-size: 15px; 
+    outline: none; 
+    background-color: #ffffff; /* Чисто бял фон */
+    box-shadow: none; /* Премахва размитото замъгляване */
+}
+
+.input-control:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 1px #4f46e5; /* Остър синьо-лилав контур при писане */
+}
  .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }  
   
- .btn {  
- padding: 10px 12px;  
- border: none;  
- border-radius: 8px;  
- font-size: 13px;  
- font-weight: 600;  
- cursor: pointer;  
- display: inline-flex;  
- align-items: center;  
- justify-content: center;  
- gap: 6px;  
- transition: all 0.2s;  
- opacity: 0.55;  
- word-break: break-all;
- }  
-  
- .btn.active-mode {  
- opacity: 1;  
- box-shadow: 0 0 0 3px rgba(0,0,0,0.2), inset 0 0 0 2px #fff;  
- transform: scale(1.02);  
- }  
-  
+ .btn { padding: 10px 12px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; opacity: 0.55; }  
+ .btn.active-mode { opacity: 1; box-shadow: 0 0 0 3px rgba(0,0,0,0.2), inset 0 0 0 2px #fff; transform: scale(1.02); }  
  .btn-primary { background: var(--primary); color: white; opacity: 1; }  
- .btn-primary:hover { background: var(--primary-hover); }  
-  
  .btn-success { background: var(--success); color: white; }  
- .btn-success:hover { background: var(--success-hover); }  
-  
  .btn-danger { background: var(--danger); color: white; }  
- .btn-danger:hover { background: var(--danger-hover); }  
-  
  .btn-outline { background: white; border: 1px solid var(--border); color: var(--text); opacity: 1; }  
- .btn-outline:hover { background: #f9fafb; }  
-  
+
  .quick-qty { display: flex; gap: 4px; margin-top: 6px; }  
- .btn-sm-qty {  
- flex: 1;  
- padding: 6px;  
- font-size: 12px;  
- background: #f3f4f6;  
- border: 1px solid var(--border);  
- border-radius: 6px;  
- cursor: pointer;  
- font-weight: 600;  
- }  
- .btn-sm-qty:hover { background: #e5e7eb; }  
-  
+ .btn-sm-qty { flex: 1; padding: 6px; font-size: 12px; background: #f3f4f6; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-weight: 600; }  
  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }  
  .stat-card { background: white; padding: 8px; border-radius: 8px; border: 1px solid var(--border); text-align: center; }  
  .stat-value { font-size: 16px; font-weight: 700; color: var(--primary); }  
  .stat-label { font-size: 10px; color: var(--text-light); margin-top: 2px; }  
   
  .table-wrapper { width: 100%; overflow-x: auto; max-height: 350px; overflow-y: auto; }  
- 
- /* АДАПТИВНИ СТИЛОВЕ ЗА ТАБЛИЦИ */
- table { 
- width: 100%; 
- border-collapse: collapse; 
- text-align: left; 
- font-size: 12px; 
- table-layout: auto !important; 
- }  
- th { 
- background: #f9fafb; 
- padding: 8px 6px !important; 
- font-weight: 600; 
- font-size: 12px !important; 
- color: var(--text-light); 
- border-bottom: 2px solid var(--border); 
- position: sticky; 
- top: 0; 
- z-index: 5; 
- white-space: nowrap !important;
- }  
- td { 
- padding: 8px 6px !important; 
- font-size: 12px !important; 
- border-bottom: 1px solid var(--border); 
- word-break: break-word; 
- vertical-align: middle;
- }  
- tr:hover { background: #f9fafb; }  
-  
+ table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }  
+ th { background: #f9fafb; padding: 8px 6px; font-weight: 600; font-size: 12px; color: var(--text-light); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 5; white-space: nowrap; }  
+ td { padding: 8px 6px; font-size: 12px; border-bottom: 1px solid var(--border); word-break: break-word; vertical-align: middle; }  
+
  .badge { padding: 2px 5px; border-radius: 8px; font-size: 10px; font-weight: 600; }  
  .badge-add { background: #d1fae5; color: #065f46; }  
  .badge-sub { background: #fee2e2; color: #991b1b; }  
   
  .action-icon { cursor: pointer; padding: 4px 5px; color: var(--text-light); border: none; background: none; font-size: 15px; display: inline-block; }  
- .action-icon:hover { color: var(--primary); }  
- .action-icon.delete:hover { color: var(--danger); }  
-
- .actions-cell { white-space: nowrap !important; text-align: right; width: 1%; }
+ .actions-cell { white-space: nowrap; text-align: right; width: 1%; }
 
  .col-date { display: none; }
- @media (min-width: 600px) {
-   .col-date { display: table-cell; }
- }
+ @media (min-width: 600px) { .col-date { display: table-cell; } }  
   
- #cameraContainer {  
- display: none;  
- position: relative;  
- width: 100%;  
- border-radius: 10px;  
- overflow: hidden;  
- margin-bottom: 12px;  
- background: #000;  
- }  
- #webcamVideo {  
- width: 100%;  
- height: 260px;  
- object-fit: cover;  
- }  
- .scan-overlay {  
- position: absolute;  
- top: 50%;  
- left: 50%;  
- transform: translate(-50%, -50%);  
- width: 75%;  
- height: 60%;  
- border: 2px dashed #10b981;  
- box-shadow: 0 0 0 1000px rgba(0,0,0,0.4);  
- border-radius: 8px;  
- pointer-events: none;  
- transition: border-color 0.1s;  
- }  
- .scan-overlay.success {  
- border-color: #3b82f6;  
- border-style: solid;  
- }  
+ #cameraContainer { display: none; position: relative; width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: #000; }  
+ #webcamVideo { width: 100%; height: 260px; object-fit: cover; }  
+ .scan-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 75%; height: 60%; border: 2px dashed #10b981; box-shadow: 0 0 0 1000px rgba(0,0,0,0.4); border-radius: 8px; pointer-events: none; }  
 
- /* МОДАЛЕН ЕКРАН ЗА БАРКОД */
- #qrModal {
- display: none;
- position: fixed;
- top: 0; left: 0; width: 100vw; height: 100vh;
- background: rgba(0, 0, 0, 0.7);
- z-index: 10000;
- align-items: center;
- justify-content: center;
- padding: 15px;
- }
- .qr-card {
- background: #fff;
- padding: 20px;
- border-radius: 12px;
- text-align: center;
- max-width: 320px;
- width: 100%;
- }
- #qrcode { margin: 15px auto; display: flex; justify-content: center; }
+ #qrModal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); z-index: 10000; align-items: center; justify-content: center; padding: 15px; }
+ .qr-card { background: #fff; padding: 20px; border-radius: 12px; text-align: center; max-width: 320px; width: 100%; }
+ .modal-name-input { width: 100%; font-size: 13px; font-weight: 700; color: var(--text); text-align: center; border: 1px dashed var(--primary); border-radius: 6px; padding: 6px; margin-bottom: 8px; outline: none; background: #f9fafb; font-family: inherit; }
 
- /* СТИЛ ЗА РЕДАКТИРУЕМОТО ЗАГЛАВИЕ В МОДАЛА */
- .modal-name-input {
- width: 100%;
- font-size: 13px;
- font-weight: 700;
- color: var(--text);
- text-align: center;
- border: 1px dashed var(--primary);
- border-radius: 6px;
- padding: 6px;
- margin-bottom: 8px;
- outline: none;
- resize: vertical;
- background: #f9fafb;
- font-family: inherit;
- }
- .modal-name-input:focus {
- border-style: solid;
- background: #ffffff;
- box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+ #toastNotification {
+   position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #fff;
+   padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+   box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10001; display: none;
+   align-items: center; gap: 8px; transition: all 0.3s ease;
  }
 
- /* СТИЛОВЕ ЗА ПЕЧАТ НА БАРКОД ЕТИКЕТ 50x40 MM */
  @media print {
-   @page {
-     size: 50mm 40mm;
-     margin: 0;
-   }
-   
-   html, body {
-     width: 50mm !important;
-     height: 40mm !important;
-     margin: 0 !important;
-     padding: 0 !important;
-     background: white !important;
-     overflow: hidden !important;
-   }
-
-   body > * { 
-     display: none !important; 
-   }
-   
-   #qrModal {
-     display: block !important;
-     position: absolute !important;
-     top: 0 !important;
-     left: 0 !important;
-     width: 50mm !important;
-     height: 40mm !important;
-     margin: 0 !important;
-     padding: 0 !important;
-     background: white !important;
-     box-shadow: none !important;
-   }
-
-   .qr-card {
-     box-shadow: none !important;
-     border: none !important;
-     width: 50mm !important;
-     height: 40mm !important;
-     padding: 0 !important;
-     margin: 0 !important;
-     position: relative !important;
-     background: white !important;
-     display: block !important;
-   }
-
-   /* ТЕКСТОВО ПОЛЕ – ПОЗИЦИОНИРАНО ТОЧНО ОТГОРЕ */
-   .modal-name-input {
-     position: absolute !important;
-     top: 2mm !important;
-     left: 2mm !important;
-     width: 46mm !important;
-     height: 18mm !important;
-     max-height: 18mm !important;
-     border: none !important;
-     background: transparent !important;
-     box-shadow: none !important;
-     outline: none !important;
-     font-size: 9pt !important;
-     font-weight: 700 !important;
-     color: #000 !important;
-     margin: 0 !important;
-     padding: 0 !important;
-     text-align: center !important;
-     white-space: normal !important;
-     word-break: break-word !important;
-     line-height: 1.15 !important;
-     overflow: hidden !important;
-     resize: none !important;
-     display: block !important;
-   }
-
-   /* БАРКОД – ПОЗИЦИОНИРАН ТОЧНО НА 2MM ОТ ДОЛНИЯ РЪБ НА ЕТИКЕТА */
-   .qr-card > div:first-of-type {
-     position: absolute !important;
-     bottom: 2mm !important;
-     left: 2mm !important;
-     width: 46mm !important;
-     height: 17mm !important;
-     padding: 0 !important;
-     margin: 0 !important;
-     background: transparent !important;
-     display: flex !important;
-     justify-content: center !important;
-     align-items: center !important;
-   }
-
-   #barcodeSvg {
-     width: 46mm !important;
-     height: 17mm !important;
-     max-height: 17mm !important;
-     display: block !important;
-     margin: 0 auto !important;
-   }
-
-   /* СКРИВАНЕ НА ВСИЧКИ БУТОНИ ПРИ ПЕЧАТ */
-   #qrModal .modal-btn-group,
-   #qrModal button { 
-     display: none !important;
-   }
+   @page { size: 50mm 40mm; margin: 0; }
+   html, body { width: 50mm !important; height: 40mm !important; margin: 0 !important; padding: 0 !important; background: white !important; overflow: hidden !important; }
+   body > * { display: none !important; }
+   #qrModal { display: block !important; position: absolute !important; top: 0 !important; left: 0 !important; width: 50mm !important; height: 40mm !important; margin: 0 !important; padding: 0 !important; background: white !important; }
+   .qr-card { width: 50mm !important; height: 40mm !important; padding: 0 !important; margin: 0 !important; position: relative !important; background: white !important; display: block !important; }
+   .modal-name-input { position: absolute !important; top: 2mm !important; left: 2mm !important; width: 46mm !important; height: 18mm !important; border: none !important; background: transparent !important; font-size: 9pt !important; font-weight: 700 !important; color: #000 !important; text-align: center !important; line-height: 1.15 !important; overflow: hidden !important; resize: none !important; display: block !important; }
+   .qr-card > div:first-of-type { position: absolute !important; bottom: 2mm !important; left: 2mm !important; width: 46mm !important; height: 17mm !important; padding: 0 !important; margin: 0 !important; background: transparent !important; display: flex !important; justify-content: center !important; align-items: center !important; }
+   #barcodeSvg { width: 46mm !important; height: 17mm !important; display: block !important; margin: 0 auto !important; }
+   #qrModal .modal-btn-group, #qrModal button { display: none !important; }
+   .footer-text { text-align: center; font-size: 8px; color: var(--text-light); margin-top: 30px; padding-bottom: 20px; }  
  }
  </style>  
-
 </head>  
 <body>  
 
- <!-- МОДАЛЕН ЕКРАН ЗА ВХОД C PIN И GMAIL -->
  <div id="authModal">
      <div class="auth-card">
          <h2><i class="fa-solid fa-lock"></i> Лицензен Вход</h2>
@@ -463,10 +150,9 @@
      </div>
  </div>  
 
- <!-- МОДАЛЕН ЕКРАН ЗА БАРКОД И ПЕЧАТ (С РЕДАКТИРУЕМО ИМЕ) -->
  <div id="qrModal" onclick="closeQrModal(event)">
      <div class="qr-card" onclick="event.stopPropagation()">
-         <textarea id="qrModalName" class="modal-name-input" rows="2" title="Щракнете тук, за да редактирате текста за етикета"></textarea>
+         <textarea id="qrModalName" class="modal-name-input" rows="2" title="Редактирайте текста"></textarea>
          
          <div style="background: white; padding: 5px; border-radius: 6px; display: flex; justify-content: center; align-items: center;">
              <svg id="barcodeSvg"></svg>
@@ -477,39 +163,36 @@
              <button type="button" id="btnPrintModal" class="btn btn-primary" onclick="printBarcode()" style="flex: 1;">
                  <i class="fa-solid fa-print"></i> Печат
              </button>
-             <button type="button" class="btn btn-outline" onclick="closeQrModal()" style="flex: 1;">
-                 Затвори
-             </button>
+             <button type="button" class="btn btn-outline" onclick="closeQrModal()" style="flex: 1;">Затвори</button>
          </div>
      </div>
+ </div>
+
+ <div id="toastNotification">
+   <i class="fa-solid fa-circle-info" id="toastIcon" style="color: #10b981;"></i>
+   <span id="toastText">Съобщение...</span>
  </div>
 
  <header>  
  <div class="brand">  
  <img src="favicon.png" alt="Иконка">  
  <div>  
- <h1>БАРКОД-СКЕНЕР</h1>  
- <p style="font-size: 11px; opacity: 0.9;">&copy;Всички права запазени</p>  
+ <h1>INVENTORY-SCAN</h1>  
+ <p style="font-size: 11px; opacity: 0.9;">inventory-scan.hitshop.bg</p>  
  </div>  
  </div>  
  <div style="display: flex; gap: 6px;">
-     <button class="btn-help" onclick="showAppQrCode()" title="Покажи QR за бърз достъп">
-         <i class="fa-solid fa-qrcode"></i> QR Приложение
-     </button>
-     <a href="instructions.html" class="btn-help" title="Виж ръководството">  
-         <i class="fa-solid fa-book"></i> Инструкции  
-     </a>  
+     <button class="btn-help" onclick="showAppQrCode()"><i class="fa-solid fa-qrcode"></i> QR Приложение</button>
+     <a href="instructions.html" class="btn-help"><i class="fa-solid fa-book"></i> Инструкции</a>  
  </div>
  </header>  
   
  <div class="grid">  
  <div>  
  <div class="card">  
- <div class="card-title">  
- <i class="fa-solid fa-cart-plus"></i> Избор на режим & Сканиране  
- </div>  
+ <div class="card-title"><i class="fa-solid fa-cart-plus"></i> Избор на режим & Сканиране</div>  
    
- <button type="button" class="btn btn-outline" id="cameraBtn" onclick="toggleCamera()" style="width: 100%; margin-bottom: 12px; border-color: var(--primary); color: var(--primary);">  
+ <button type="button" class="btn btn-outline" id="cameraBtn" onclick="toggleCamera()" style="width: 100%; margin-bottom: 12px; color: var(--primary); border-color: var(--primary);">  
  <i class="fa-solid fa-camera"></i> Пусни Камерата  
  </button>  
   
@@ -519,12 +202,8 @@
  </div>  
   
  <div class="btn-group" style="margin-bottom: 12px; margin-top: 0;">  
- <button type="button" id="btnAddMode" class="btn btn-success active-mode" onclick="setMode('ADD')">  
- <i class="fa-solid fa-plus"></i> ПРИБАВИ <span id="checkAdd">✓</span>  
- </button>  
- <button type="button" id="btnSubMode" class="btn btn-danger" onclick="setMode('SUB')">  
- <i class="fa-solid fa-minus"></i> ИЗВАДИ <span id="checkSub" style="display:none;">✓</span>  
- </button>  
+ <button type="button" id="btnAddMode" class="btn btn-success active-mode" onclick="setMode('ADD')"><i class="fa-solid fa-plus"></i> ПРИБАВИ <span id="checkAdd">✓</span></button>  
+ <button type="button" id="btnSubMode" class="btn btn-danger" onclick="setMode('SUB')"><i class="fa-solid fa-minus"></i> ИЗВАДИ <span id="checkSub" style="display:none;">✓</span></button>  
  </div>  
   
  <form id="scanForm" onsubmit="handleFormSubmit(event)">  
@@ -549,52 +228,36 @@
  </div>  
  </div>  
   
- <button type="submit" class="btn btn-primary" style="width: 100%;">  
- <i class="fa-solid fa-check"></i> Потвърди операцията  
- </button>  
+ <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-check"></i> Потвърди операцията</button>  
  </form>  
  </div>  
   
  <div class="card">  
- <div class="card-title">  
- <i class="fa-solid fa-box-archive"></i> Архивиране и облак  
- </div>  
+ <div class="card-title"><i class="fa-solid fa-box-archive"></i> Архивиране и облак</div>  
   
  <button type="button" id="driveConnectBtn" class="btn btn-primary" onclick="handleDriveButtonClick()" style="width: 100%; margin-bottom: 6px;">  
  <i class="fa-brands fa-google-drive"></i> Свържи с Google Drive  
  </button>  
- <p id="driveStatusText" style="font-size: 11px; color: var(--text-light); text-align: center; margin-bottom: 10px;">  
- Автоматичен бекъп: изключен  
- </p>  
+ <p id="driveStatusText" style="font-size: 11px; color: var(--text-light); text-align: center; margin-bottom: 10px;">Автоматичен бекъп: изключен</p>  
 
- <button type="button" id="downloadDriveBtn" class="btn btn-outline" onclick="downloadFromDriveManual()" style="width: 100%; margin-bottom: 12px; border-color: var(--primary); color: var(--primary); display: none;">  
+ <button type="button" id="downloadDriveBtn" class="btn btn-outline" onclick="downloadFromDriveManual()" style="width: 100%; margin-bottom: 12px; color: var(--primary); border-color: var(--primary); display: none;">  
  <i class="fa-solid fa-cloud-arrow-down"></i> Зареди от Облака  
  </button>  
   
- <button type="button" class="btn btn-primary" onclick="exportToExcel()" style="width: 100%; margin-bottom: 10px;">  
- <i class="fa-solid fa-file-excel"></i> Експорт в Excel (.csv)  
- </button>  
+ <button type="button" class="btn btn-primary" onclick="exportToExcel()" style="width: 100%; margin-bottom: 10px;"><i class="fa-solid fa-file-excel"></i> Експорт в Excel (.csv)</button>  
   
- <button type="button" class="btn btn-outline" onclick="importFromCSV()" style="width: 100%; margin-bottom: 10px; border-color: var(--success); color: var(--success);">  
+ <button type="button" class="btn btn-outline" onclick="importFromCSV()" style="width: 100%; margin-bottom: 10px; color: var(--success); border-color: var(--success);">  
  <i class="fa-solid fa-file-csv"></i> Импорт от CSV  
  </button>  
  <input type="file" id="csvFileInput" accept=".csv, .txt" style="display:none;" onchange="handleCSVFileSelect(event)">  
 
  <div class="btn-group" style="margin-top:0;">  
- <button type="button" class="btn btn-outline" onclick="exportBackupJSON()">  
- <i class="fa-solid fa-download"></i> Ръчен Архив  
- </button>  
- <button type="button" class="btn btn-outline" onclick="importBackupJSON()">  
- <i class="fa-solid fa-upload"></i> Възстанови  
- </button>  
+ <button type="button" class="btn btn-outline" onclick="exportBackupJSON()"><i class="fa-solid fa-download"></i> Ръчен Архив</button>  
+ <button type="button" class="btn btn-outline" onclick="importBackupJSON()"><i class="fa-solid fa-upload"></i> Възстанови</button>  
  </div>  
  <input type="file" id="jsonFileInput" accept=".json" style="display:none;" onchange="handleFileSelect(event)">  
-  
- <button type="button" class="btn btn-outline" onclick="switchGoogleAccount()" style="width: 100%; margin-top: 12px; color: var(--primary); border-color: var(--primary);">  
- <i class="fa-solid fa-user-gear"></i> Смяна на Google Акаунт  
- </button>
 
- <button type="button" class="btn btn-outline" onclick="logoutPin()" style="width: 100%; margin-top: 8px; color: var(--text-light); border-color: var(--border);">  
+ <button type="button" class="btn btn-outline" onclick="logoutPin()" style="width: 100%; margin-top: 12px; color: var(--text-light); border-color: var(--border);">  
  <i class="fa-solid fa-arrow-right-from-bracket"></i> Изход / Смяна на PIN  
  </button>
 
@@ -606,37 +269,20 @@
   
  <div>  
  <div class="stats-grid">  
- <div class="stat-card">  
- <div class="stat-value" id="statUnique">0</div>  
- <div class="stat-label">Уникални кода</div>  
- </div>  
- <div class="stat-card">  
- <div class="stat-value" id="statTotalQty">0</div>  
- <div class="stat-label">Общо количество</div>  
- </div>  
- <div class="stat-card">  
- <div class="stat-value" id="statLogs">0</div>  
- <div class="stat-label">Движения</div>  
- </div>  
+ <div class="stat-card"><div class="stat-value" id="statUnique">0</div><div class="stat-label">Уникални кода</div></div>  
+ <div class="stat-card"><div class="stat-value" id="statTotalQty">0</div><div class="stat-label">Общо количество</div></div>  
+ <div class="stat-card"><div class="stat-value" id="statLogs">0</div><div class="stat-label">Движения</div></div>  
  </div>  
   
  <div class="card">  
- <div class="card-title">  
- <i class="fa-solid fa-list-check"></i> Текущ инвентар  
- </div>  
+ <div class="card-title"><i class="fa-solid fa-list-check"></i> Текущ инвентар</div>  
  <div class="form-group" style="margin-bottom: 8px;">  
  <input type="text" id="searchInput" class="input-control" placeholder="Търсене по код или име..." onkeyup="renderProducts()">  
  </div>  
  <div class="table-wrapper">  
  <table>  
  <thead>  
- <tr>  
- <th>Код</th>  
- <th>Име</th>  
- <th>Бр.</th>  
- <th class="col-date">Промяна</th>  
- <th style="text-align: right;">Действия</th>  
- </tr>  
+ <tr><th>Код</th><th>Име</th><th>Бр.</th><th class="col-date">Промяна</th><th style="text-align: right;">Действия</th></tr>  
  </thead>  
  <tbody id="productsTable"></tbody>  
  </table>  
@@ -644,27 +290,25 @@
  </div>  
   
  <div class="card">  
- <div class="card-title">  
- <i class="fa-solid fa-clock-rotate-left"></i> Последна история  
- </div>  
+ <div class="card-title"><i class="fa-solid fa-clock-rotate-left"></i> Последна история</div>  
  <div class="table-wrapper">  
  <table>  
  <thead>  
- <tr>  
- <th>Дата и Час</th>  
- <th>Код</th>  
- <th>Действие</th>  
- <th style="text-align: right;">Количество</th>  
- </tr>  
+ <tr><th>Дата и Час</th><th>Код</th><th>Действие</th><th style="text-align: right;">Количество</th></tr>  
  </thead>  
  <tbody id="historyTable"></tbody>  
  </table>  
  </div>  
- </div>  
- </div>  
- </div>  
   
- <!-- Библиотеки за Камера, QR Код, Баркод и Google Drive -->  
+ </div> 
+  <div class="footer-text">  
+ &copy; HITSHOP BG LTD — Всички права запазени.  
+ </div>  
+ </div>  
+ 
+ </div>  
+
+  
  <script src="https://unpkg.com/@zxing/library@latest"></script>  
  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
@@ -672,778 +316,8 @@
  <script src="https://apis.google.com/js/api.js" async defer></script>  
   
  <script>  
- const APP_DOMAIN = 'https://hitshopbg.github.io/barcode-scanner/';
- const CLIENT_ID = '461455643326-n6p2g7vj0rpe7ega8v2kjgq1gkld1r57.apps.googleusercontent.com';  
- const SCOPES = 'https://www.googleapis.com/auth/drive.file';  
- const BACKUP_FILE_NAME = 'barcode_backup_TEST.json';  
-  
- let tokenClient;  
- let gapiInited = false;  
- let gsisInited = false;  
- let driveConnected = false;  
- let qrCodeObj = null;
-  
- let currentMode = 'ADD';  
- let products = JSON.parse(localStorage.getItem('barcode_products')) || [];  
- let historyLogs = JSON.parse(localStorage.getItem('barcode_history')) || [];  
- let audioCtx = null;  
-
- function getFormattedDateTime() {
-     const now = new Date();
-     const date = now.toLocaleDateString('bg-BG');
-     const time = now.toLocaleTimeString('bg-BG', { hour: '2-digit', minute: '2-digit' });
-     return `${date} г., ${time} ч.`;
- }
-
- async function validatePin() {
-     const pin = document.getElementById('pinInput').value.trim();
-     const email = document.getElementById('emailInput').value.trim().toLowerCase();
-     const errorDiv = document.getElementById('authError');
-     errorDiv.style.display = 'none';
-
-     if (!pin) {
-         errorDiv.innerText = 'Моля, въведете PIN код!';
-         errorDiv.style.display = 'block';
-         return;
-     }
-
-     if (!email || !email.endsWith('@gmail.com')) {
-         errorDiv.innerText = 'Въведете валиден Gmail адрес (трябва да завършва на @gmail.com)!';
-         errorDiv.style.display = 'block';
-         return;
-     }
-
-     try {
-         const response = await fetch('keys.json?v=' + new Date().getTime());
-         if (!response.ok) throw new Error("Не може да се зареди keys.json");
-         const data = await response.json();
-         
-         const keyObj = data.keys.find(k => String(k.code) === String(pin));
-
-         if (!keyObj) {
-             errorDiv.innerText = 'Невалиден PIN код!';
-             errorDiv.style.display = 'block';
-             return;
-         }
-
-         if (!keyObj.active) {
-             errorDiv.innerText = 'Този лиценз е деактивиран!';
-             errorDiv.style.display = 'block';
-             return;
-         }
-
-         const today = new Date().toISOString().slice(0, 10);
-         if (keyObj.valid_until && keyObj.valid_until < today) {
-             errorDiv.innerText = `Абонаментът е изтекъл на ${keyObj.valid_until}!`;
-             errorDiv.style.display = 'block';
-             return;
-         }
-
-         localStorage.setItem('saved_pin', pin);
-         localStorage.setItem('saved_email', email);
-         document.getElementById('authModal').style.display = 'none';
-
-     } catch (err) {
-         console.error("Грешка при проверка на лиценза:", err);
-         errorDiv.innerText = 'Грешка при проверка на абонамента! Проверете интернет връзката.';
-         errorDiv.style.display = 'block';
-     }
- }
-
- function checkSavedPin() {
-     const savedPin = localStorage.getItem('saved_pin');
-     const savedEmail = localStorage.getItem('saved_email');
-     if (savedPin && savedEmail) {
-         document.getElementById('pinInput').value = savedPin;
-         document.getElementById('emailInput').value = savedEmail;
-         validatePin();
-     } else {
-         document.getElementById('authModal').style.display = 'flex';
-     }
- }
-
- function logoutPin() {
-     if (confirm('Желаете ли да излезете от текущия лиценз?')) {
-         localStorage.removeItem('saved_pin');
-         localStorage.removeItem('saved_email');
-         location.reload();
-     }
- }
-
- function showAppQrCode() {
-     document.getElementById('qrModalName').value = 'Сканирайте за бърз достъп';
-     document.getElementById('barcodeSvg').style.display = 'none';
-     document.getElementById('btnPrintModal').style.display = 'none';
-     
-     const qrContainer = document.getElementById('qrcode');
-     qrContainer.style.display = 'flex';
-     qrContainer.innerHTML = '';
-     
-     qrCodeObj = new QRCode(qrContainer, {
-         text: APP_DOMAIN,
-         width: 180,
-         height: 180,
-         colorDark : "#000000",
-         colorLight : "#ffffff",
-         correctLevel : QRCode.CorrectLevel.H
-     });
-     document.getElementById('qrModal').style.display = 'flex';
- }
-
- function showBarcodeModal(code, name) {
-     document.getElementById('qrModalName').value = name || `Артикул ${code}`;
-     document.getElementById('qrcode').style.display = 'none';
-     document.getElementById('btnPrintModal').style.display = 'inline-flex';
-     
-     const svgElem = document.getElementById('barcodeSvg');
-     svgElem.style.display = 'block';
-
-     try {
-         JsBarcode("#barcodeSvg", code, {
-             format: "EAN13",
-             lineColor: "#000",
-             width: 2,
-             height: 45,
-             displayValue: true,
-             fontSize: 12,
-             margin: 0
-         });
-     } catch (e) {
-         JsBarcode("#barcodeSvg", code, {
-             format: "CODE128",
-             lineColor: "#000",
-             width: 2,
-             height: 45,
-             displayValue: true,
-             fontSize: 12,
-             margin: 0
-         });
-     }
-     
-     document.getElementById('qrModal').style.display = 'flex';
- }
-
- function printBarcode() {
-     setTimeout(() => {
-         window.print();
-     }, 150);
- }
-
- function closeQrModal() {
-     document.getElementById('qrModal').style.display = 'none';
- }
-
- function gapiLoaded() {  
-     if (typeof gapi !== 'undefined') {  
-         gapi.load('client', async () => {  
-             try {  
-                 await gapi.client.init({});  
-                 await gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest');  
-                 gapiInited = true;  
-             } catch(e) { console.error("GAPI Init error:", e); }  
-         });  
-     }  
- }  
-  
- function gsiLoaded() {  
-     if (typeof google !== 'undefined' && google.accounts) {  
-         tokenClient = google.accounts.oauth2.initTokenClient({  
-             client_id: CLIENT_ID,  
-             scope: SCOPES,  
-             callback: async (resp) => {  
-                 if (resp.error !== undefined) {  
-                     driveConnected = false;  
-                     updateDriveUI('Сесията изтече! Натиснете за вход', '#ef4444');  
-                     throw (resp);  
-                 }  
-                 
-                 driveConnected = true;  
-                 await fetchGoogleUserInfo();
-             }  
-         });  
-         gsisInited = true;  
-     }  
- }  
-
- async function fetchGoogleUserInfo() {
-     try {
-         const res = await gapi.client.drive.about.get({ fields: 'user' });
-         if (res.result && res.result.user) {
-             const loggedEmail = res.result.user.emailAddress.toLowerCase();
-             const savedEmail = (localStorage.getItem('saved_email') || '').toLowerCase();
-
-             if (savedEmail && loggedEmail !== savedEmail) {
-                 alert(`ГРЕШКА В ЛИЦЕНЗА:\nВлезли сте в Google с "${loggedEmail}", но лицензът е регистриран за "${savedEmail}".\n\nМоля, влезте със съответния Google акаунт!`);
-                 driveConnected = false;
-                 updateDriveUI(`Грешен акаунт! Очаква се: ${savedEmail}`, '#ef4444');
-                 return;
-             }
-
-             updateDriveUI(`Свързано: ${loggedEmail}`, '#10b981');
-             await syncOnAccountSwitch();
-         } else {
-             updateDriveUI('Свързано с Google Drive', '#10b981');
-         }
-     } catch (e) {
-         console.error("Грешка при вземане на информация за потребителя:", e);
-         updateDriveUI('Свързано с Google Drive', '#10b981');
-     }
- }
-
- async function syncOnAccountSwitch() {
-     try {
-         const fileId = await findBackupFileId();
-         if (fileId) {
-             const res = await gapi.client.drive.files.get({ fileId: fileId, alt: 'media' });
-             let cloudData = res.result;
-             if (typeof cloudData === 'string') cloudData = JSON.parse(cloudData);
-             
-             if (cloudData && Array.isArray(cloudData.products)) {
-                 products = cloudData.products;
-                 historyLogs = cloudData.history || [];
-                 localStorage.setItem('barcode_products', JSON.stringify(products));
-                 localStorage.setItem('barcode_history', JSON.stringify(historyLogs));
-                 renderProducts();
-                 renderHistory();
-                 updateStats();
-             }
-         } else {
-             if (confirm("В този Google акаунт няма намерен бекъп файл. Желаете ли да започнете с празен инвентар за този акаунт?")) {
-                 products = [];
-                 historyLogs = [];
-                 localStorage.setItem('barcode_products', JSON.stringify(products));
-                 localStorage.setItem('barcode_history', JSON.stringify(historyLogs));
-                 renderProducts();
-                 renderHistory();
-                 updateStats();
-             }
-         }
-     } catch (err) {
-         console.error("Грешка при синхронизация на акаунта:", err);
-     }
- }
-  
- window.onload = () => {  
-     checkSavedPin();
-     gapiLoaded();  
-     gsiLoaded();  
-     renderProducts();  
-     renderHistory();  
-     updateStats();  
- };  
-  
- function handleDriveButtonClick() {  
-     if (!tokenClient) {  
-         alert('Google API библиотеките все още зареждат. Моля, опитайте след секунда.');  
-         return;  
-     }  
-     tokenClient.requestAccessToken({ prompt: 'select_account' });  
- }  
-
- function switchGoogleAccount() {
-     if (confirm("Искате ли да излезете от текущия Google профил и да изберете друг?")) {
-         const token = gapi.client.getToken();
-         if (token && token.access_token) {
-             google.accounts.oauth2.revoke(token.access_token, () => {
-                 gapi.client.setToken('');
-                 driveConnected = false;
-                 updateDriveUI('Излязохте от акаунта. Свържете нов.', 'var(--primary)');
-             });
-         } else {
-             driveConnected = false;
-             updateDriveUI('Няма активен Google акаунт.', 'var(--primary)');
-         }
-     }
- }
-  
- function updateDriveUI(statusText, color = '#10b981') {  
-     const btn = document.getElementById('driveConnectBtn');  
-     const status = document.getElementById('driveStatusText');  
-     const dlBtn = document.getElementById('downloadDriveBtn');  
-  
-     if (btn) {  
-         if (driveConnected) {  
-             btn.style.background = color;  
-             btn.innerHTML = `<i class="fa-solid fa-cloud-check"></i> ${statusText.startsWith('Свързано:') ? statusText : 'Google Drive е свързан'}`;  
-             if (dlBtn) dlBtn.style.display = 'block';  
-         } else {  
-             btn.style.background = color === '#ef4444' ? color : 'var(--primary)';  
-             btn.innerHTML = `<i class="fa-brands fa-google-drive"></i> Свържи с Google Drive`;  
-             if (dlBtn) dlBtn.style.display = 'none';  
-         }  
-     }  
-     if (status) status.innerText = statusText.startsWith('Свързано:') ? 'Автоматичен бекъп: активен' : statusText;  
- }  
-  
- async function findBackupFileId() {  
-     try {  
-         const response = await gapi.client.drive.files.list({  
-             q: `name='${BACKUP_FILE_NAME}' and trashed=false`,  
-             fields: 'files(id, name)',  
-             spaces: 'drive'  
-         });  
-         const files = response.result.files;  
-         if (files && files.length > 0) {  
-             return files[0].id;  
-         }  
-     } catch (e) {  
-         console.error("Грешка при търсене на файл:", e);  
-         if (e.status === 401 || e.status === 403) {  
-             driveConnected = false;  
-             updateDriveUI('Сесията изтече! Натиснете за вход', '#ef4444');  
-         }  
-     }  
-     return null;  
- }  
-  
- async function downloadFromDriveManual() {  
-     if (!driveConnected) return;  
-     if (confirm("ВНИМАНИЕ: Това ще зареди данните от облака и ще презапише текущите наличности на това устройство. Продължавате ли?")) {  
-         try {  
-             const fileId = await findBackupFileId();  
-             if (!fileId) {
-                 alert("Няма намерен бекъп файл в Google Drive!");
-                 return;
-             }
-
-             const res = await gapi.client.drive.files.get({ fileId: fileId, alt: 'media' });  
-             
-             let cloudData = res.result || res.body;  
-             if (typeof cloudData === 'string') {
-                 cloudData = JSON.parse(cloudData);
-             }
-
-             if (cloudData && Array.isArray(cloudData.products)) {  
-                 products = cloudData.products;  
-                 historyLogs = cloudData.history || [];  
-                 localStorage.setItem('barcode_products', JSON.stringify(products));  
-                 localStorage.setItem('barcode_history', JSON.stringify(historyLogs));  
-                 renderProducts();  
-                 renderHistory();  
-                 updateStats();  
-                 alert("Данните са заредени успешно!");  
-             } else {
-                 alert("Файлът в облака е празен или е с невалиден формат!");
-             }  
-         } catch (err) {  
-             console.error("Грешка при изтегляне от облака:", err);  
-             alert("Грешка при изтегляне на данните! Проверете дали имате интернет връзка и активна сесия.");  
-         }  
-     }  
- }
-  
- async function uploadToDrive() {  
-     if (!driveConnected) return;  
-     try {  
-         const fileId = await findBackupFileId();  
-         if (!driveConnected) return;  
-  
-         const backupData = { products: products, history: historyLogs };
-         const backupContent = JSON.stringify(backupData, null, 2);  
-  
-         if (fileId) {  
-             await gapi.client.request({  
-                 path: `/upload/drive/v3/files/${fileId}`,  
-                 method: 'PATCH',  
-                 params: { uploadType: 'media' },  
-                 headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-                 body: backupContent  
-             });  
-         } else {  
-             const metadata = {
-                 name: BACKUP_FILE_NAME,
-                 mimeType: 'application/json'
-             };
-             const boundary = '-------314159265358979323846';
-             const delimiter = "\r\n--" + boundary + "\r\n";
-             const close_delim = "\r\n--" + boundary + "--";
-
-             const multipartRequestBody =
-                 delimiter +
-                 'Content-Type: application/json; charset=UTF-8\r\n\r\n' +
-                 JSON.stringify(metadata) +
-                 delimiter +
-                 'Content-Type: application/json; charset=UTF-8\r\n\r\n' +
-                 backupContent +
-                 close_delim;
-
-             await gapi.client.request({
-                 path: '/upload/drive/v3/files',
-                 method: 'POST',
-                 params: { uploadType: 'multipart' },
-                 headers: {
-                     'Content-Type': 'multipart/related; boundary="' + boundary + '"'
-                 },
-                 body: multipartRequestBody
-             });
-         }  
-     } catch (err) {  
-         console.error("Грешка при качване в облака:", err);  
-         if (err.status === 401 || err.status === 403) {  
-             driveConnected = false;  
-             updateDriveUI('Сесията изтече! Натиснете за вход', '#ef4444');  
-         }  
-     }  
- }  
-  
- function setMode(mode) {  
-     currentMode = mode;  
-     const btnAdd = document.getElementById('btnAddMode');  
-     const btnSub = document.getElementById('btnSubMode');  
-     const chkAdd = document.getElementById('checkAdd');  
-     const chkSub = document.getElementById('checkSub');  
-  
-     if (mode === 'ADD') {  
-         btnAdd.classList.add('active-mode');  
-         btnSub.classList.remove('active-mode');  
-         chkAdd.style.display = 'inline';  
-         chkSub.style.display = 'none';  
-     } else {  
-         btnSub.classList.add('active-mode');  
-         btnAdd.classList.remove('active-mode');  
-         chkSub.style.display = 'inline';  
-         chkAdd.style.display = 'none';  
-     }  
- }  
-  
- function setQty(val) {  
-     document.getElementById('qtyInput').value = val;  
- }  
-  
- function handleFormSubmit(e) {  
-     e.preventDefault();  
-     const code = document.getElementById('barcodeInput').value.trim();  
-     const name = document.getElementById('itemNameInput').value.trim();  
-     const qty = parseInt(document.getElementById('qtyInput').value) || 1;  
-  
-     if (!code) return;  
-  
-     processScan(code, name, qty, currentMode);  
-  
-     document.getElementById('barcodeInput').value = '';  
-     document.getElementById('itemNameInput').value = '';  
-     document.getElementById('qtyInput').value = 1;  
-     document.getElementById('barcodeInput').focus();  
- }  
-  
- function processScan(code, name, qty, mode) {  
-     let prodIndex = products.findIndex(p => p.code === code);  
-     const nowStr = getFormattedDateTime();
-
-     if (mode === 'SUB') {  
-         if (prodIndex === -1 || products[prodIndex].qty <= 0) {  
-             alert('Грешка: Продуктът липсва или е с нулева наличност!');  
-             return;  
-         }  
-         const actualSub = Math.min(products[prodIndex].qty, qty);  
-         products[prodIndex].qty -= actualSub;  
-         products[prodIndex].lastUpdated = nowStr;
-         logAction(code, 'Извадено', actualSub, nowStr);  
-     } else {  
-         if (prodIndex > -1) {  
-             products[prodIndex].qty += qty;  
-             if (name) products[prodIndex].name = name;  
-             products[prodIndex].lastUpdated = nowStr;
-         } else {  
-             products.push({ code: code, name: name || `Артикул ${code}`, qty: qty, lastUpdated: nowStr });  
-         }  
-         logAction(code, 'Прибавено', qty, nowStr);  
-     }  
-  
-     saveAndRender();  
- }  
-  
- function logAction(code, action, qty, timeStr) {  
-     const timestamp = timeStr || getFormattedDateTime();  
-     historyLogs.unshift({ time: timestamp, code: code, action: action, qty: qty });  
-     if (historyLogs.length > 100) historyLogs.pop();  
- }  
-  
- function saveAndRender() {  
-     localStorage.setItem('barcode_products', JSON.stringify(products));  
-     localStorage.setItem('barcode_history', JSON.stringify(historyLogs));  
-     renderProducts();  
-     renderHistory();  
-     updateStats();  
-     uploadToDrive();  
- }  
-  
- function adjustQty(code, delta) {  
-     let prodIndex = products.findIndex(p => p.code === code);  
-     if (prodIndex > -1) {  
-         if (delta < 0 && products[prodIndex].qty <= 0) return;  
-         products[prodIndex].qty += delta;  
-         const nowStr = getFormattedDateTime();
-         products[prodIndex].lastUpdated = nowStr;
-         logAction(code, delta > 0 ? 'Прибавено' : 'Извадено', Math.abs(delta), nowStr);  
-         saveAndRender();  
-     }  
- }  
-  
- function deleteProduct(code) {  
-     if (confirm(`Сигурни ли сте, че искате да изтриете продукт с код ${code}?`)) {  
-         products = products.filter(p => p.code !== code);  
-         saveAndRender();  
-     }  
- }  
-  
- function renderProducts() {  
-     const filter = document.getElementById('searchInput').value.toLowerCase();  
-     const tbody = document.getElementById('productsTable');  
-     tbody.innerHTML = '';  
-  
-     const filtered = products.filter(p => p.code.toLowerCase().includes(filter) || p.name.toLowerCase().includes(filter));  
-  
-     filtered.forEach(p => {  
-         const tr = document.createElement('tr');  
-         tr.innerHTML = `  
-             <td><strong>${p.code}</strong></td>  
-             <td>${p.name}</td>  
-             <td><strong>${p.qty}</strong></td>  
-             <td class="col-date" style="font-size: 10px; color: var(--text-light);">${p.lastUpdated || '-'}</td>  
-             <td class="actions-cell">  
-                 <button class="action-icon" onclick="showBarcodeModal('${p.code}', '${p.name}')" title="Генерирай и принтирай Баркод"><i class="fa-solid fa-barcode" style="color: var(--primary);"></i></button>
-                 <button class="action-icon" onclick="adjustQty('${p.code}', 1)"><i class="fa-solid fa-circle-plus" style="color: var(--success);"></i></button>  
-                 <button class="action-icon" onclick="adjustQty('${p.code}', -1)"><i class="fa-solid fa-circle-minus" style="color: var(--danger);"></i></button>  
-                 <button class="action-icon delete" onclick="deleteProduct('${p.code}')"><i class="fa-solid fa-trash"></i></button>  
-             </td>  
-         `;  
-         tbody.appendChild(tr);  
-     });  
- }  
-  
- function renderHistory() {  
-     const tbody = document.getElementById('historyTable');  
-     tbody.innerHTML = '';  
-  
-     historyLogs.forEach(h => {  
-         const tr = document.createElement('tr');  
-         const isAdd = h.action.includes('Прибавено') || h.action.includes('Импортирано');  
-         tr.innerHTML = `  
-             <td style="font-size: 10px; color: var(--text-light);">${h.time}</td>  
-             <td><strong>${h.code}</strong></td>  
-             <td><span class="badge ${isAdd ? 'badge-add' : 'badge-sub'}">${h.action}</span></td>  
-             <td style="text-align: right;"><strong>${h.qty} бр.</strong></td>  
-         `;  
-         tbody.appendChild(tr);  
-     });  
- }  
-  
- function updateStats() {  
-     document.getElementById('statUnique').innerText = products.length;  
-     const totalQty = products.reduce((acc, p) => acc + p.qty, 0);  
-     document.getElementById('statTotalQty').innerText = totalQty;  
-     document.getElementById('statLogs').innerText = historyLogs.length;  
- }  
-  
- function exportToExcel() {  
-     if (products.length === 0) { alert('Няма данни за експорт!'); return; }  
-     let csv = '\uFEFFКод;Наименование;Наличност;Последна промяна\n';  
-     products.forEach(p => { csv += `"${p.code}";"${p.name}";"${p.qty}";"${p.lastUpdated || ''}"\n`; });  
-     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });  
-     const link = document.createElement('a');  
-     link.href = URL.createObjectURL(blob);  
-     link.download = `inventory_${new Date().toISOString().slice(0,10)}.csv`;  
-     link.click();  
- }  
-
- function importFromCSV() {
-     document.getElementById('csvFileInput').click();
- }
-
- function handleCSVFileSelect(evt) {
-     const file = evt.target.files[0];
-     if (!file) return;
-
-     const reader = new FileReader();
-     reader.onload = function(e) {
-         try {
-             const text = e.target.result;
-             const lines = text.split(/\r\n|\n/);
-             let importedCount = 0;
-             const nowStr = getFormattedDateTime();
-
-             for (let i = 0; i < lines.length; i++) {
-                 let line = lines[i].trim();
-                 if (!line) continue;
-
-                 let cols = line.includes(';') ? line.split(';') : line.split(',');
-                 cols = cols.map(c => c.replace(/^"|"$/g, '').trim());
-
-                 if (i === 0 && (cols[0].toLowerCase().includes('код') || cols[0].toLowerCase().includes('code'))) {
-                     continue;
-                 }
-
-                 const code = cols[0];
-                 const name = cols[1] || `Артикул ${code}`;
-                 const qty = parseInt(cols[2]) || 1;
-
-                 if (code) {
-                     let prodIndex = products.findIndex(p => p.code === code);
-                     if (prodIndex > -1) {
-                         products[prodIndex].qty += qty;
-                         if (cols[1]) products[prodIndex].name = name;
-                         products[prodIndex].lastUpdated = nowStr;
-                     } else {
-                         products.push({ code: code, name: name, qty: qty, lastUpdated: nowStr });
-                     }
-                     logAction(code, 'Импортирано (CSV)', qty, nowStr);
-                     importedCount++;
-                 }
-             }
-
-             if (importedCount > 0) {
-                 saveAndRender();
-                 alert(`Успешно импортирани/обновени ${importedCount} артикула от CSV файла!`);
-             } else {
-                 alert('Не бяха намерени валидни данни в CSV файла.');
-             }
-         } catch (err) {
-             console.error(err);
-             alert('Грешка при обработка на CSV файла!');
-         }
-         evt.target.value = '';
-     };
-     reader.readAsText(file, 'UTF-8');
- }
-  
- function exportBackupJSON() {  
-     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ products: products, history: historyLogs }));  
-     const dlAnchor = document.createElement('a');  
-     dlAnchor.setAttribute("href", dataStr);  
-     dlAnchor.setAttribute("download", `barcode_backup_${new Date().toISOString().slice(0,10)}.json`);  
-     dlAnchor.click();  
- }  
-  
- function importBackupJSON() { document.getElementById('jsonFileInput').click(); }  
-  
- function handleFileSelect(evt) {  
-     const file = evt.target.files[0];  
-     if (!file) return;  
-     const reader = new FileReader();  
-     reader.onload = (e) => {  
-         try {  
-             const imported = JSON.parse(e.target.result);  
-             if (imported.products) {  
-                 products = imported.products;  
-                 historyLogs = imported.history || [];  
-                 saveAndRender();  
-                 alert('Данните са успешно възстановени!');  
-             }  
-         } catch (err) { alert('Грешка при четене на JSON файла!'); }  
-     };  
-     reader.readAsText(file);  
- }  
-  
- function clearAllData() {  
-     if (confirm('ВНИМАНИЕ: Това ще изтрие всички локални данни! Сигурни ли сте?')) {  
-         products = [];  
-         historyLogs = [];  
-         saveAndRender();  
-     }  
- }  
-  
- let codeReader;  
- let cameraActive = false;  
- let isScanning = false;  
-  
- function initAudio() {  
-     if (!audioCtx) {  
-         audioCtx = new (window.AudioContext || window.webkitAudioContext)();  
-     }  
-     if (audioCtx.state === 'suspended') {  
-         audioCtx.resume();  
-     }  
- }  
-  
- function playBeep() {  
-     try {  
-         initAudio();  
-         const osc = audioCtx.createOscillator();  
-         const gain = audioCtx.createGain();  
-         osc.connect(gain);  
-         gain.connect(audioCtx.destination);  
-         osc.type = "sine";  
-         osc.frequency.value = 1200;  
-         gain.gain.value = 0.2;  
-         osc.start();  
-         setTimeout(() => { osc.stop(); }, 90);  
-     } catch (e) { console.error("Audio error:", e); }  
- }  
-  
- function toggleCamera() {  
-     initAudio();  
-     if (cameraActive) { stopCamera(); } else { startCamera(); }  
- }  
-  
- async function startCamera() {  
-     const hints = new Map();  
-     const formats = [  
-         ZXing.BarcodeFormat.EAN_13,  
-         ZXing.BarcodeFormat.EAN_8,  
-         ZXing.BarcodeFormat.CODE_128,  
-         ZXing.BarcodeFormat.CODE_39,
-         ZXing.BarcodeFormat.QR_CODE
-     ];  
-     hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, formats);  
-  
-     codeReader = new ZXing.BrowserMultiFormatReader(hints);  
-     const container = document.getElementById('cameraContainer');  
-     container.style.display = 'block';  
-     document.getElementById('cameraBtn').innerHTML = `<i class="fa-solid fa-stop"></i> Спри Камерата`;  
-     cameraActive = true;  
-  
-     try {  
-         const videoInputDevices = await codeReader.listVideoInputDevices();  
-         let selectedDeviceId = videoInputDevices[0]?.deviceId;  
-  
-         for (const device of videoInputDevices) {  
-             const label = device.label.toLowerCase();  
-             if (label.includes('back') || label.includes('rear') || label.includes('environment')) {  
-                 selectedDeviceId = device.deviceId;  
-                 break;  
-             }  
-         }  
-         if (!selectedDeviceId && videoInputDevices.length > 1) {  
-             selectedDeviceId = videoInputDevices[videoInputDevices.length - 1].deviceId;  
-         }  
-  
-         codeReader.decodeFromVideoDevice(selectedDeviceId, 'webcamVideo', (result, err) => {  
-             if (result && !isScanning) {  
-                 isScanning = true;  
-                 playBeep();  
-                   
-                 const overlay = document.getElementById('scanOverlay');  
-                 if (overlay) overlay.classList.add('success');  
-  
-                 const qty = parseInt(document.getElementById('qtyInput').value) || 1;  
-                 const name = document.getElementById('itemNameInput').value.trim();  
-  
-                 processScan(result.text, name, qty, currentMode);  
-                   
-                 document.getElementById('barcodeInput').value = '';  
-                 document.getElementById('itemNameInput').value = '';  
-                   
-                 setTimeout(() => {  
-                     if (overlay) overlay.classList.remove('success');  
-                     isScanning = false;  
-                 }, 1000);  
-             }  
-         });  
-     } catch (err) {  
-         console.error("Грешка при пускане на камерата:", err);  
-         alert("Грешка при пускане на камерата! Уверете се, че сте дали разрешение в браузъра.");  
-         stopCamera();  
-     }  
- }  
-  
- function stopCamera() {  
-     if (codeReader) codeReader.reset();  
-     document.getElementById('cameraContainer').style.display = 'none';  
-     document.getElementById('cameraBtn').innerHTML = `<i class="fa-solid fa-camera"></i> Пусни Камерата`;  
-     cameraActive = false;  
-     isScanning = false;  
- }  
+let vmV=typeof globalThis!=='undefined'?globalThis:typeof global!=='undefined'?global:typeof window!=='undefined'?window:typeof self!=='undefined'?self:void 0x0,vmi_adc91c=vmV['vmi_adc91c']||(vmV['vmi_adc91c']={}),_$rqg5Lk=vmi_adc91c['_$GjnLqg']||(vmi_adc91c['_$GjnLqg']={['_$TwV8iJ']:undefined,['_$GT0SNo']:undefined,['_$tDfv7D']:undefined,['_$MJuTiV']:undefined,['_$84cnUz']:undefined,['_$NOk2Vl']:undefined,['_$OhAFll']:undefined,['_$ood4om']:undefined}),_$4KUIKW=this===vmV?vmV:vmi_adc91c;const vmy_f9758d=(function(){var G=Object['getOwnPropertyNames'],A=Object['defineProperty'],B=Object['getOwnPropertySymbols'],T=WeakSet['prototype']['has'],y=Object['setPrototypeOf'],i=WeakSet['prototype']['add'],j=WeakMap['prototype']['get'],O=Function['prototype']['apply'],V=Object['create'],I=Function['prototype']['call'],q=WeakMap['prototype']['set'],X=Object['getPrototypeOf'],k=Reflect['apply'],l=WeakMap['prototype']['has'],g=Object['getOwnPropertyDescriptor'];let J=['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'];var b=Uint8Array,E=DataView,o=String['fromCharCode'];let w=['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xmhyQQr1xh61xzhEGOhevxr57nQeQQkC9xrA7DhevxrUxjPEACUeNxsAxjhESQw1xixE9xrA7Dhe3eXmxtWe52ejx05e1QlvxaQ7TQluxnxeJxAxxQ==','61jJNavPx7QXx7W8ClQ6UY5MCrUxyB4faYSinB5x32ohDy4Sny5zCQPxxxSgXrT2xxS90Yd2xxqSU+di0Yzx7BEgD5P7xxq1nrMBGAQenxxAaAJhx7W8ClQTUrVSC973xQev7xPx4QvsxxPxvxkPkxP74xu175PyQQkPkxQaeOhee5zxxQe575Py9xkexPUExQK1xhPxQQke7XhyxQAe75PAFxCexjPExQD1xhPP9xkexw5PpxPWehxexWxExQ2kxQmC75N5pxxxqQPPbxkWehxexWxEeExeeT5exzhExQ7geOhe77xXVv5=','61iJNavxx7zQx7S10YVS0EVg0+WSnYkxyBV2G32gnrgxPAWSaNVbnA48alWbnl49GlCxe3ittgzx3BVgaN2fnY2ND5xKw/7zCtPqCya/xQ3exQxDUNE6UYJvn4JjXwVg0+WMx7W8ClQ6UY5MCrUx32ohDyPYVAd9VxPxx7W8ClQqn9SSUNUx32ohDAP/Ut5qCxxKw/7zny5zCtxMx7W8ClQqUN4NCyWUix5exEUexWzexQ75eE5exnQexQIDxQPykxSkxQK575vIxxPx9xke7B5exUhExQGgxQs1xQuDxQPxkxSkxQAUxQPPBQPexTxP4xP3vxkWehxexPhExQngxQAC75PlGxPepxPPvxkWAhxexPhExQfA75PxpxPPvxkWlxxexPhExQfA75PxpxPPvxkWl5xexPhExQfA75PxpxPPvxkWEhxexPhExQfA75PxpxPP','61iTuavexx5xeAVbnAkx32ohDyV2U/3YV5jexxPxe5xxx5xWNDhxxxue74K57aUesQ==','61PJNav37exePQxKw/7zCY49CtUTx7W8ClQqC93hV/Cx3Nni0NdW0Nd2DxPGxQ3exxxAawdMx7W8ClQTUr5gOyPxENqSa+d4aAdSGA4vx7W8ClQTUrVSC9xxWVe8gUy5fVeqgsy51ReTgs+5bQxQgW95RJe6gsy5RVeTgs+5bQxPtrEgXxxAUrW/xQ5x32ohDyEunrUhCQxKw/7zCNE2ny5h2x3exI53xQErxQee75PxbQkWeQxexWxEeExex25exzhEePxExQKC75P7GxPemxPexQhe7PhEeOU3eny1xxyAxQuo75P7QQke7UhEenb1xxyAxQS5eshEeOhee5jxxQe575Peyx9Yx5PA4xPE9xkWBfhxxCUeeshEeyQPsQvIxxPxvxkexQhPJQ3PkxPA4xP7QQkWBDhxxCUexQXzxh91xQvOxxPxvxke7UhExQeA75PymxPWeQxexWxExQPCeHU7xQCCxQuzxh91xQvnxxPxvxkexWxExQAe75PE9xkWvOhxxCUeeshExQmUxQug75PsNxPeyWzeeExey45exUPExQKC75P7GxPyyxPO9xke7PUEeOheedjxxQe575PE9xkexPUEeOheeuekxKjcOv7hGBdz','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','61iJNavxxxhOx77v0YVT0r4fGxxanY4gdrq20r4fG3WMKr5xANi/0YMAXrq2KrMhGw5ex5xIUYqiUY1exxxKw/7zC94NVrU/EQPxexP7xQPexhP7exP3xQkexxuDx27kNxIC7wd54PhEGOhe','61jEuavexuPxe3ittgzxeB7SaBV2xxqgUwWBnw5xylW2a+41GxP7x77haNJvGrVgahxKw/7zCtPqCya/xxMjXwVg0+WMx7W8ClQ6UY5MCrUx32ohDyEunrUhCQPxx7W8ClQ/C/vgOy5xQxl5jJA7gsZ5RGAPgs+5buy51RAIgs8dQGAegsy5bGeLgssd9Je6gsy5bGeTPVeJgsxQgst51VeJgs+5fVAegskSx7W8ClQ/UtSNV95xkVetgUy5RGAPgsF51ey5bJAxgsQQK2VHtuydSVeLgUy5bVehgUs51e3xeN46aNJ6xQWDix5exEUexCz3eWzexQ75eE5exUPExQ7kxQWkxQOC75P3GxP7mxPex5hex45e70hEexhex45e7GjEe5jx7xxCxQEkxQG5e7hPpxPPVQ9X75vsxx5xvxkWAQx3xPhExQmA75PxpxPPvxkWy5x3xWQexQ6C75P3SQkexDheeeUPRxkPix5exEUex4PexWxEe5gx75eUxQPONxPeyzhExSeA75PepxPPZxCexs5EexQadejhd2MawQP3KQ7Q','61jJNave77xKxxqgUwWBnw5xeNni0A4/xQxxE3ni0A4KnrEvnwPeC5xC0YM10YEvx7d6nrEv5wVknwSgxQ3x32ohDyC+VYWNC9jexI53xQ7rxQee75Px4xP74xPe9xkPJQ3exXQexQ3CeIP3eshEeyQPsQPyBQPexjhExQeexQPemxPexQhe7PhEePxExQrzxh91xQPeyxS5xQnkxQ3CxQDC75P7Gx91xQPkAQ==','61jJNavxx7PkxxM90YMNXwWRxlp5NVe+gUsdQVezgss51VeJgskQgs+51ey51RA7gs9dSJecgsQQgsb5bRecgsy5fJeJgsQQgst51VeJgs+5fyoex5xKw/7zCtPqCya/x7W8ClQ6UY5MCrUx32ohDyEunrUhCQPxx7W8ClQ/C/vgOy5xUReKgUl5fVAlgsF5fey5RVehgs+5bGezPVeqgUZdSGehPVe+gsy5bGAygsb5RGeJgsQx32ohDyCTnt5YVKQexxPxxQxex5PexQ3PexvIxxPxexvsxxPxedjxxQxe7QPxexvVxxPxxQQexQP7eI534izeNxIC7UUEbxkYYQkYYQr57UhESQw1xixENxIC7UUEpxPeyeQ=','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'],M={'0':0x105,'1':0x15a,'2':0x1ab,'3':0x96,'4':0x1a8,'5':0x156,'6':0x10a,'7':0x15d,'8':0x94,'9':0x178,'10':0x6c,'11':0x83,'12':0x1a,'13':0x26,'14':0xa8,'15':0x1d0,'16':0x1b,'17':0x14a,'18':0x92,'19':0x1db,'20':0xc0,'21':0x1ed,'22':0x91,'23':0x164,'24':0x159,'25':0x9,'26':0x15b,'27':0xa9,'28':0x163,'29':0x1a0,'32':0x1bb,'40':0x1d9,'41':0x111,'42':0x1e0,'43':0x149,'44':0x1c2,'45':0x33,'46':0x18a,'47':0x121,'50':0x122,'51':0x1b6,'52':0x93,'53':0x19,'54':0x1e,'55':0x130,'56':0x4b,'57':0x14,'58':0x2d,'59':0x16a,'60':0x19c,'61':0x1ef,'62':0x1a7,'63':0xa3,'64':0x62,'70':0x7d,'71':0x79,'72':0x172,'73':0x101,'74':0x12e,'75':0xc5,'76':0x61,'77':0x179,'79':0x1fd,'81':0xd9,'83':0x16b,'84':0x8a,'90':0xa4,'91':0x48,'93':0x189,'94':0xb3,'95':0x1d2,'100':0x115,'104':0x45,'105':0xd5,'106':0x131,'107':0x1b8,'110':0x14d,'111':0x7a,'112':0x1ce,'120':0x55,'121':0xaa,'122':0x71,'123':0x1d6,'124':0x68,'127':0x15,'128':0x2e,'129':0x10e,'130':0xb4,'131':0xe7,'132':0x46,'140':0xca,'141':0x27,'142':0xad,'143':0x8b,'144':0x52,'145':0x15c,'146':0x1aa,'147':0x28,'148':0x3a,'149':0x153,'160':0x7c,'161':0x66,'162':0xe9,'163':0x39,'164':0x1d5,'165':0x4f,'166':0x16c,'167':0x2c,'168':0x1c,'169':0x63,'170':0xe0,'180':0x188,'181':0x3,'182':0xdd,'183':0x29,'184':0xe8,'185':0xfa,'200':0x9f,'201':0xc1,'210':0x13a,'213':0xc2,'214':0x185,'220':0xf0,'250':0x5e,'251':0xec,'252':0x1b0,'253':0x6e,'254':0x13e,'255':0xd0,'256':0x89,'262':0x3d,'263':0x1de,'264':0xbd,'265':0x17,'266':0x19e,'267':0x1c5,'268':0x18b,'269':0x136,'270':0xaf,'272':0x145,'273':0x8c,'274':0x84,'275':0xc7,'276':0x134,'277':0x18d,'278':0x85,'279':0x1a2,'280':0xf9,'281':0xe4,'282':0x41,'283':0x1ea,'284':0x1d,'285':0x183,'286':0x9c,'287':0x0,'288':0x197,'293':0xb0,'294':0x9a,'295':0x57,'296':0xa1,'297':0x139,'298':0x6b,'299':0x98,'300':0x1e3,'301':0x2a,'302':0x8,'303':0x1f4,'304':0x36,'305':0x12b,'306':0x1cd,'307':0x19b,'308':0xa6,'309':0x15e,'310':0x160,'311':0xd2,'312':0x132,'320':0x124,'321':0xb,'322':0x1c8,'323':0x59,'325':0x22,'326':0x116,'327':0x67,'328':0x53,'329':0x1b3,'330':0x3f,'332':0x123,'333':0x193,'334':0xdf,'339':0x1b4,'340':0xe,'341':0x1c4,'342':0xc9,'343':0x119,'344':0x54,'345':0x1e6,'346':0xed,'347':0x106,'348':0x1dd,'349':0x12d,'350':0x1f8,'351':0x1e9,'352':0xe6,'353':0x167,'354':0x88,'355':0x142,'356':0x1e2,'357':0x191,'358':0x11d,'359':0x128,'360':0x2f,'361':0x10,'362':0x1d7,'363':0x74,'364':0x1e8,'365':0x31,'366':0x17f,'367':0x194,'368':0x143,'369':0x82,'370':0xe1,'371':0xd7,'372':0x1c3,'373':0x13b,'374':0xeb,'375':0x5d,'376':0x1c7,'377':0x49,'378':0x4a,'379':0x108,'380':0xb8,'381':0xd6,'382':0xbf,'383':0x81,'384':0x40,'385':0xb2};const z=0x1,Q=0x2,t=0x3,r=0x4,N=0x145,H=0x48,W=0x162,d=typeof 0x0n,D=[];let F=0x0;const p=function(){'use strict';return arguments;},s=function(At){if(typeof At!=='string')return NaN;let Ar=+At;return Ar>=0x0&&Ar%0x1===0x0&&String(Ar)===At?Ar:NaN;},U=function(At){return!isNaN(At)&&At>=0x0;},L=function(At,Ar){if(Ar in At['deletedArgs'])return undefined;if(Ar in At['extraArgs'])return At['extraArgs'][Ar];if(Ar>=At['entryArgCount'])return undefined;let AN=At['paramSlotOf']!==null?At['paramSlotOf'][Ar]:undefined;return AN>=0x0?At['paramEnv']['_$yJsxEr'][AN]:At['args'][Ar];},Y=function(At,Ar){if(Ar in At['deletedArgs'])return![];if(Ar in At['extraArgs'])return!![];return Ar<At['entryArgCount']?Ar in At['args']:![];},f=function(At,Ar,AN){if(Ar==='length')return this['argsLength'];if(Ar==='callee')return this['calleeDeleted']?undefined:this['calleeValue'];if(Ar===Symbol['toStringTag'])return'Arguments';let AH=s(Ar);if(U(AH)){if(AH in this['unmappedIndices'])return Reflect['get'](At,Ar,AN);return L(this,AH);}return Reflect['get'](At,Ar,AN);},u=function(At,Ar,AN){if(Ar==='length'){if(!this['lengthWritable'])return![];return this['argsLength']=AN,At['length']=AN,!![];}if(Ar==='callee')return this['calleeValue']=AN,this['calleeDeleted']=![],At['callee']=AN,!![];let AH=s(Ar);if(U(AH)){if(AH in this['unmappedIndices'])return Reflect['set'](At,Ar,AN);let AW=g(At,String(AH));if(AW&&!AW['writable'])return![];if(AH in this['deletedArgs'])delete this['deletedArgs'][AH],this['extraArgs'][AH]=AN;else{if(AH<this['entryArgCount']){let Ad=this['paramSlotOf']!==null?this['paramSlotOf'][AH]:undefined;Ad>=0x0?this['paramEnv']['_$yJsxEr'][Ad]=AN:this['args'][AH]=AN;}else this['extraArgs'][AH]=AN;}return!![];}return At[Ar]=AN,!![];},c=function(At,Ar){if(Ar==='length')return!![];if(Ar==='callee')return!this['calleeDeleted'];if(Ar===Symbol['toStringTag'])return![];let AN=s(Ar);if(U(AN)){if(String(AN)in At)return!![];return Y(this,AN);}return Ar in At;},R=function(At,Ar,AN){if(Ar==='length')return'value'in AN&&(this['argsLength']=AN['value']),'writable'in AN&&(this['lengthWritable']=AN['writable']),A(At,Ar,AN),!![];if(Ar==='callee')return'value'in AN&&(this['calleeValue']=AN['value']),this['calleeDeleted']=![],A(At,Ar,AN),!![];let AH=s(Ar);if(U(AH)){let AW='get'in AN||'set'in AN,Ad=g(At,String(AH)),AD=AH in this['unmappedIndices']?Ad?Ad['value']:undefined:L(this,AH),AF=Ad?Ad['writable']!==![]:!![],Ap=Ad?Ad['enumerable']!==![]:!![],As=Ad?Ad['configurable']!==![]:!![],AU;if(AW)AU=AN,this['unmappedIndices'][AH]=0x1,AH in this['extraArgs']&&delete this['extraArgs'][AH],AH in this['deletedArgs']&&delete this['deletedArgs'][AH];else{let AL='value'in AN?AN['value']:AD,AY='writable'in AN?AN['writable']:AF,Af='enumerable'in AN?AN['enumerable']:Ap,Au='configurable'in AN?AN['configurable']:As;AU={'value':AL,'writable':AY,'enumerable':Af,'configurable':Au};if('value'in AN){if(!(AH in this['unmappedIndices'])){if(AH<this['entryArgCount']&&!(AH in this['deletedArgs'])){let Ac=this['paramSlotOf']!==null?this['paramSlotOf'][AH]:undefined;Ac>=0x0?this['paramEnv']['_$yJsxEr'][Ac]=AN['value']:this['args'][AH]=AN['value'];}else this['extraArgs'][AH]=AN['value'],AH in this['deletedArgs']&&delete this['deletedArgs'][AH];}}'writable'in AN&&AN['writable']===![]&&(this['unmappedIndices'][AH]=0x1,AH in this['extraArgs']&&delete this['extraArgs'][AH],AH in this['deletedArgs']&&delete this['deletedArgs'][AH]);}return A(At,String(AH),AU),!![];}return A(At,Ar,AN),!![];},P=function(At,Ar){if(Ar==='callee')return this['calleeDeleted']=!![],delete At['callee'],!![];let AN=s(Ar);if(U(AN)){let AW=g(At,String(AN));if(AW&&AW['configurable']===![])return![];return AN in this['unmappedIndices']&&delete this['unmappedIndices'][AN],AN<this['entryArgCount']?this['deletedArgs'][AN]=0x1:delete this['extraArgs'][AN],delete At[Ar],!![];}let AH=g(At,Ar);if(AH&&AH['configurable']===![])return![];return delete At[Ar],!![];},v=function(At){let Ar=this['entryArgCount'];for(let AN=0x0;AN<Ar;AN++){!(AN in this['deletedArgs'])&&!g(At,String(AN))&&A(At,String(AN),{'value':L(this,AN),'writable':!![],'enumerable':!![],'configurable':!![]});}for(let AH in this['extraArgs']){!g(At,AH)&&A(At,AH,{'value':this['extraArgs'][AH],'writable':!![],'enumerable':!![],'configurable':!![]});}return Object['preventExtensions'](At),!![];},n=function(At,Ar){if(Ar==='callee'){if(this['calleeDeleted'])return undefined;return g(At,'callee');}if(Ar==='length')return g(At,'length');let AN=s(Ar);if(U(AN)){if(AN in this['unmappedIndices'])return g(At,Ar);if(Y(this,AN)){let AW=g(At,String(AN));return{'value':L(this,AN),'writable':AW?AW['writable']:!![],'enumerable':AW?AW['enumerable']:!![],'configurable':AW?AW['configurable']:!![]};}return g(At,Ar);}let AH=g(At,Ar);if(AH)return AH;return undefined;},C=function(At){let Ar=[],AN=this['entryArgCount'];for(let AW=0x0;AW<AN;AW++){!(AW in this['deletedArgs'])&&Ar['push'](String(AW));}for(let Ad in this['extraArgs']){Ar['indexOf'](Ad)===-0x1&&Ar['push'](Ad);}Ar['push']('length');!this['calleeDeleted']&&Ar['push']('callee');let AH=Reflect['ownKeys'](At);for(let AD=0x0;AD<AH['length'];AD++){Ar['indexOf'](AH[AD])===-0x1&&Ar['push'](AH[AD]);}return Ar;},K=function(At){throw At;};var m=[0x0,0x0,0x18,0x0,0x0,0x0,0x16,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1f,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x3,0x28,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x6,0x7,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x22,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x15,0x0,0x2a,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1b,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xf,0x0,0x0,0x5,0x0,0x0,0x0,0x0,0x8,0xd,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x23,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x10,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x14,0x0,0x0,0x0,0x0,0x0,0x2,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x17,0x0,0x26,0x0,0x1c,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x12,0x1a,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x20,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xa,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xb,0x0,0x0,0x0,0x0,0x27,0x0,0x9,0x0,0x0,0x0,0x0,0x0,0xc,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xe,0x0,0x0,0x11,0x29,0x0,0x0,0x0,0x25,0x19,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1d,0x0,0x1e,0x0,0x0,0x0,0x0,0x0,0x0,0x21,0x0,0x0,0x4,0x24,0x0,0x0,0x0,0x0,0x0,0x13,0x0,0x0,0x0];let S=new WeakSet(),a=0x0,h=new WeakSet();const Z=new WeakMap();function x(At,Ar){q['call'](Z,At,Ar);}function G0(At,Ar){return At['_$D5XaXA']=Ar,Ar;}function G1(At){return j['call'](Z,At);}function G2(At){return l['call'](Z,At);}let G3=new WeakMap(),G4=[],G5=Array['prototype'][Symbol['iterator']],G6=Symbol['iterator'],G7=null,G8=null,G9=null,GG=null,GA=null,GB=null;try{let At=function*(){};G7=X(At),G8=G7&&G7['prototype'],GB=function*(Ar){return yield*Ar;};}catch(Ar){}try{let AN=async function*(){};G9=X(AN),GG=G9&&G9['prototype'];}catch(AH){}let GT=GG&&GG['next'],Gy=GG&&GG['return'],Gi=GG&&GG['throw'];function Gj(AW){return{[Symbol['asyncIterator']]:function(){return this;},'next':function(Ad){return k(GT,AW,[Ad]);},'return':function(Ad){return k(Gy,AW,[Ad]);},'throw':function(Ad){return k(Gi,AW,[Ad]);}};}try{let AW=async function(){};GA=X(AW);}catch(Ad){}function GO(AD,AF,Ap){try{A(AD,AF,Ap);}catch(As){}}function GV(AD,AF,Ap,As){let AU=new Array(Ap),AL=![];for(let Af=0x0;Af<Ap;Af++){let Au=As===undefined?AD[AF+Af]:As(AD[AF+Af]);a!==0x0&&Au&&typeof Au==='object'&&T['call'](S,Au)&&(AL=!![]),AU[Af]=Au;}if(!AL)return AU;let AY=[];for(let Ac=0x0;Ac<Ap;Ac++){let AR=AU[Ac];if(AR&&typeof AR==='object'&&T['call'](S,AR)){a--;let AP=AR['value'];if(Array['isArray'](AP)){for(let Av=0x0;Av<AP['length'];Av++)AY['push'](AP[Av]);}}else AY['push'](AR);}return AY;}function GI(AD){return typeof AD==='object'||typeof AD==='function';}function Gq(AD,AF){return AD&&GI(AD)?AD:AF;}function GX(AD,AF){try{y(AD,AF);}catch(Ap){}}function Gk(AD){if(AD===null||typeof AD!=='object'&&typeof AD!=='function')throw new TypeError('Iterator\x20result\x20'+AD+'\x20is\x20not\x20an\x20object');}function Gl(AD){let AF=AD['done'];return{'done':AF,'value':AF?AD['value']:undefined};}function Gg(AD){let AF=[];for(let Ap in AD){AF['push'](Ap);}return AF;}const GJ=Array['prototype']['slice'],Gb=Array['isArray'];function GE(AD){return k(GJ,AD,D);}function Go(AD,AF,Ap){'use strict';AD[AF]=Ap;}function Gw(AD){return typeof AD==='function'&&AD['prototype']?AD['prototype']:AD;}function GM(AD,AF,Ap,As,AU){if(!AD||AF[0x4*As+AU&0x1f]||AF[0x5*As+AU&0x1f]||AF[0xd*As+AU&0x1f])return;if(!G2(AD)){if(Ap&&Ap['_$5PkH01'])return;x(AD,{['_$dLc1p0']:AF,['_$4mYIXv']:Ap,['_$D5XaXA']:AF,['_$N1BKrc']:undefined});}}function Gz(AD,AF,Ap,As){if(Ap===''){if(AF)switch(As){case 0x1:return{'':function(AU){'use strict';return AD(this,arguments,new.target);}}[''];case 0x2:return{'':function(AU,AL){'use strict';return AD(this,arguments,new.target);}}[''];case 0x3:return{'':function(AU,AL,AY){'use strict';return AD(this,arguments,new.target);}}[''];default:return{'':function(){'use strict';return AD(this,arguments,new.target);}}[''];}switch(As){case 0x1:return{'':function(AU,AL=void 0x0){return AD(this,arguments,new.target);}}[''];case 0x2:return{'':function(AU,AL,AY=void 0x0){return AD(this,arguments,new.target);}}[''];case 0x3:return{'':function(AU,AL,AY,Af=void 0x0){return AD(this,arguments,new.target);}}[''];default:return{'':function(AU=void 0x0){return AD(this,arguments,new.target);}}[''];}}if(AF)switch(As){case 0x1:return{[Ap]:function(AU){'use strict';return AD(this,arguments,new.target);}}[Ap];case 0x2:return{[Ap]:function(AU,AL){'use strict';return AD(this,arguments,new.target);}}[Ap];case 0x3:return{[Ap]:function(AU,AL,AY){'use strict';return AD(this,arguments,new.target);}}[Ap];default:return{[Ap]:function(){'use strict';return AD(this,arguments,new.target);}}[Ap];}switch(As){case 0x1:return{[Ap]:function(AU,AL=void 0x0){return AD(this,arguments,new.target);}}[Ap];case 0x2:return{[Ap]:function(AU,AL,AY=void 0x0){return AD(this,arguments,new.target);}}[Ap];case 0x3:return{[Ap]:function(AU,AL,AY,Af=void 0x0){return AD(this,arguments,new.target);}}[Ap];default:return{[Ap]:function(AU=void 0x0){return AD(this,arguments,new.target);}}[Ap];}}function GQ(AD,AF,Ap,As){if(Ap===''){if(AF)switch(As){case 0x1:return{''(AU){'use strict';return AD(this,arguments);}}[''];case 0x2:return{''(AU,AL){'use strict';return AD(this,arguments);}}[''];case 0x3:return{''(AU,AL,AY){'use strict';return AD(this,arguments);}}[''];default:return{''(){'use strict';return AD(this,arguments);}}[''];}switch(As){case 0x1:return{''(AU,AL=void 0x0){return AD(this,arguments);}}[''];case 0x2:return{''(AU,AL,AY=void 0x0){return AD(this,arguments);}}[''];case 0x3:return{''(AU,AL,AY,Af=void 0x0){return AD(this,arguments);}}[''];default:return{''(AU=void 0x0){return AD(this,arguments);}}[''];}}if(AF)switch(As){case 0x1:return{[Ap](AU){'use strict';return AD(this,arguments);}}[Ap];case 0x2:return{[Ap](AU,AL){'use strict';return AD(this,arguments);}}[Ap];case 0x3:return{[Ap](AU,AL,AY){'use strict';return AD(this,arguments);}}[Ap];default:return{[Ap](){'use strict';return AD(this,arguments);}}[Ap];}switch(As){case 0x1:return{[Ap](AU,AL=void 0x0){return AD(this,arguments);}}[Ap];case 0x2:return{[Ap](AU,AL,AY=void 0x0){return AD(this,arguments);}}[Ap];case 0x3:return{[Ap](AU,AL,AY,Af=void 0x0){return AD(this,arguments);}}[Ap];default:return{[Ap](AU=void 0x0){return AD(this,arguments);}}[Ap];}}function Gt(AD,AF,Ap,As,AU,AL,AY,Af){let Au,Ac=function(AR,AP,Av){let An=Av!==undefined?Av:_$rqg5Lk['_$MJuTiV'];return Av===undefined&&_$rqg5Lk['_$MJuTiV']!==undefined&&_$rqg5Lk['_$84cnUz']===undefined&&(_$rqg5Lk['_$MJuTiV']=undefined),AD(Ap,Au,AP,AF,An,AR);};if(AL){Au=GQ(Ac,As,AY,Af);try{delete Au['prototype'];}catch(AR){}}else Au=Gz(Ac,As,AY,Af);return x(Au,{['_$dLc1p0']:AF,['_$4mYIXv']:Ap,['_$D5XaXA']:undefined,['_$N1BKrc']:undefined}),Au;}function Gr(AD,AF,Ap,As,AU,AL,AY){let Af,Au=function(Ac,AR,AP){let Av=AP!==undefined?AP:_$rqg5Lk['_$MJuTiV'];return AP===undefined&&_$rqg5Lk['_$MJuTiV']!==undefined&&_$rqg5Lk['_$84cnUz']===undefined&&(_$rqg5Lk['_$MJuTiV']=undefined),AD(Ap,undefined,Af,AR,AF,Av,Ac);};Af=GQ(Au,As,AL,AY);if(GA)GX(Af,GA);return Af;}function GN(AD,AF,Ap,As,AU,AL,AY,Af,Au){let Ac,AR=function(An,AC){return AD(Ap,_$rqg5Lk['_$TwV8iJ'],Ac,AC,AF,An);};Ac=GQ(AR,AU,Af,Au),i['call'](As,Ac);let AP=AY?G9:G7,Av=AY?GG:G8;if(AP)GX(Ac,AP);try{A(Ac,'prototype',{'value':Av?V(Av):V({}),'writable':!![],'enumerable':![],'configurable':![]});}catch(An){}return Ac;}function GH(AD,AF,Ap,As,AU,AL){let AY=_$rqg5Lk['_$TwV8iJ'],Af,Au=function(Ac,AR){if(AY===undefined)return AD(Ap,Af,AR,AF,undefined,As);let AP=_$rqg5Lk['_$TwV8iJ'];_$rqg5Lk['_$GT0SNo']=!![],_$rqg5Lk['_$TwV8iJ']=AY;try{return AD(Ap,Af,AR,AF,undefined,As);}finally{_$rqg5Lk['_$TwV8iJ']=AP;}};return Af=GQ(Au,!![],AU,AL),Af;}function GW(AD,AF,Ap,As,AU,AL){let AY,Af=function(Au,Ac){return AD(Ap,undefined,AY,Ac,AF,undefined,As);};AY=GQ(Af,!![],AU,AL);if(GA)GX(AY,GA);return AY;}function Gd(AD,AF,Ap,As,AU,AL,AY,Af,Au){var Ac=0x0,AR,AP,Av,An,AC,AK,Am,AS,Aa,Ah=0x0,AZ,Ae,Ax,B0,B1,B2,B3,B4,B5,B6,B7,B8,B9,BG,BA,BB,BT,By,Bi,Bj,BO,BV,BI,Bq,BX,Bk,Bl,Bg,BJ,Bb,BE,Bo;if(AY===undefined){Ac=0x0,AR=(As[0x20]||0x0)+(As[0x21]||0x0),AP=AR<=0x8?[undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined]:AR<=0x18?[undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined]:new Array(AR+0x8)['fill'](undefined),Ac=AR,Av=Ag(As[0x20],As[0x21]),An=AJ(As[0x20],As[0x21]);switch(An&0x3){case 0x0:AK=As[0x2*Av+An&0x1f],AC=As[0x6*Av+An&0x1f],Am=As[0xa*Av+An&0x1f]||D,AS=As[0xe*Av+An&0x1f]||D;break;case 0x1:AC=As[0x6*Av+An&0x1f],Am=As[0xa*Av+An&0x1f]||D,AS=As[0xe*Av+An&0x1f]||D,AK=As[0x2*Av+An&0x1f];break;case 0x2:Am=As[0xa*Av+An&0x1f]||D,AS=As[0xe*Av+An&0x1f]||D,AK=As[0x2*Av+An&0x1f],AC=As[0x6*Av+An&0x1f];break;default:AS=As[0xe*Av+An&0x1f]||D,AK=As[0x2*Av+An&0x1f],AC=As[0x6*Av+An&0x1f],Am=As[0xa*Av+An&0x1f]||D;break;}Aa=AP,Ah=0x0,AZ=AK['length']>>0x1,Ae=(As[0x20]*0xa0ff^As[0x21]*0xb6b7^AZ*0xa77f^AC['length']*0x5cb1)>>>0x0&0x3;switch(Ae){case 0x1:Ax=0x0,B0=AZ,B1=0x0;break;case 0x2:Ax=AZ,B0=0x0,B1=0x0;break;case 0x3:Ax=0x1,B0=0x0,B1=0x1;break;default:Ax=0x0,B0=0x1,B1=0x1;break;}B2=null,B3=null,B4=![],B5=undefined,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined,BB=-0x1,BT=-0x1,By=!!As[0x18*Av+An&0x1f],Bi=!!As[0x10*Av+An&0x1f],Bj=!!As[0x16*Av+An&0x1f],BO=!!As[0x17*Av+An&0x1f],BV=AL,BI=!!As[0xd*Av+An&0x1f];!By&&!BI&&(AL===undefined||AL===null)&&(AL=vmV);Bq=As[0xf*Av+An&0x1f]||0x0,BX={'_$yJsxEr':Bq?new Array(Bq)['fill'](undefined):D,'_$Jxh6s3':null,'_$XPiw8a':-0x1,'_$njRCyX':AD};if(Ap){let BD=As[0x20]||0x0;for(let BF=0x0,Bp=Ap['length']<BD?Ap['length']:BD;BF<Bp;BF++){Aa[BF]=Ap[BF];}}Bk=Ap?Ap['length']:0x0,Bl=null,Bg=null,BJ=![],Bb=(As[0x20]||0x0)+(As[0x21]||0x0),BE=null,Bo=0x0;}else AR=AY[0x1c],Av=AY[0x1d]>>>0x0,An=AY[0x1e]>>>0x0,AC=AY[0x1f],AK=AY[0x20],Am=AY[0x21],AS=AY[0x22],AZ=AY[0x23]|0x0,Ae=AY[0x24]|0x0,Ax=AY[0x25]|0x0,B0=AY[0x26]|0x0,B1=AY[0x27]|0x0,By=!!AY[0x28],Bi=!!AY[0x29],Bj=!!AY[0x2a],BO=!!AY[0x2b],BI=!!AY[0x2c],Bq=AY[0x2d]|0x0,Bb=AY[0x2e]|0x0;if(AY!==undefined){Ap=AY[0x0],AL=AY[0x1],BV=AY[0x2],AP=AY[0x3],Ac=AY[0x4],Aa=AY[0x5],Ah=AY[0x6],B2=AY[0x7],BX=AY[0x8],Bk=AY[0x9],Bl=AY[0xa],Bg=AY[0xb],BJ=AY[0xc],BE=AY[0xd],Bo=AY[0xe];AY[0x10]?(B3=AY[0x11],B4=AY[0x12],B5=AY[0x13],B6=AY[0x14],B7=AY[0x15],B8=AY[0x16],B9=AY[0x17],BG=AY[0x18],BA=AY[0x19],BB=AY[0x1a],BT=AY[0x1b]):(B3=null,B4=![],B5=undefined,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined,BB=-0x1,BT=-0x1);if(Af===0x1)AP[Ac++]=Au;else{if(Af===0x2){if(B2&&B2['length']>0x0){let Bs=B2[B2['length']-0x1];Ac=Bs['_$yf7B0z'];Bs['_$ymXMaE']!==undefined&&(BX=Bs['_$ymXMaE']);if(Bs['_$cYiPfY']!==undefined)AP[Ac++]=Au,Ah=Bs['_$cYiPfY'],Bs['_$cYiPfY']=undefined,Bs['_$KWqdGi']===undefined&&B2['pop']();else Bs['_$KWqdGi']!==undefined?(Ah=Bs['_$KWqdGi'],Bs['_$ROYzDB']=Au):(Ah=Bs['_$1WEbvU'],B2['pop']());}else throw K(Au);}else{if(Af===0x3){let BU=Au;while(B2&&B2['length']>0x0){let BL=B2[B2['length']-0x1];if(BL['_$KWqdGi']!==undefined)break;B2['pop']();}if(B2&&B2['length']>0x0){let BY=B2[B2['length']-0x1];if(BY['_$KWqdGi']!==undefined)B3=null,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined,B4=!![],B5=BU,BB=BY['_$jGcTeP'],BT=BY['_$1WEbvU'],Ah=BY['_$KWqdGi'];else return BU;}else return BU;}}}}var Bw,BM,Bz,BQ,Bt,Br,BN,BH,BW;BW=AP,Br=m,BM=function(Bf,Bu){let Bc=BN,BR=BH,BP=BW;try{switch(Bf){case 0xb:{let Bv=BP[--BR],Bn=BP[BR-0x1];Bn['push'](Bv),Bc++;break;}case 0x4d:{let BC=BP[--BR];BP[BR++]=!!BC['done'],Bc++;break;}case 0xe:{BP[--BR]?Bc=Am[Bc]:Bc++;break;}case 0x2b:{let BK=BP[--BR],Bm={'_$yJsxEr':new Array(Bu),'_$Jxh6s3':null,'_$XPiw8a':-0x1,'_$njRCyX':BK};BX=Bm,Bc++;break;}case 0x4a:{let BS=BP[--BR],Ba=BS&&BS['i']?BS['i']:BS;if(Ba!=null){if(B3!==null)try{let Bh=Ba['return'];typeof Bh==='function'&&Bh['call'](Ba);}catch(BZ){}else{let Be=Ba['return'];if(Be!=null){if(typeof Be!=='function')throw new TypeError('iterator\x20\x27return\x27\x20is\x20not\x20callable');let Bx=Be['call'](Ba);Gk(Bx);}}}Bc++;break;}case 0x4:{let T0=BP[--BR],T1=BP[--BR];BP[BR++]=T1==null?T0===T1:T1===T0,Bc++;break;}case 0x3d:{let T2=BP[--BR],T3=BP[--BR];BP[BR++]=T3**T2,Bc++;break;}case 0x3e:{let T4=BP[--BR],T5=BP[--BR];BP[BR++]=T5|T4,Bc++;break;}case 0x29:{if(Bu===-0x2){}else Bu===-0x1?BP[--BR]:BX['_$yJsxEr'][Bu]=BP[--BR];Bc++;break;}case 0xc:{if(typeof BP[BR-0x1]==='symbol')throw new TypeError('Cannot\x20convert\x20a\x20Symbol\x20value\x20to\x20a\x20string');BP[BR-0x1]=String(BP[BR-0x1]),Bc++;break;}case 0x12:{let T6=BX['_$yJsxEr'];T6[Bu]=T6,BX['_$XPiw8a']=Bu,Bc++;break;}case 0x28:{let T7=BP[BR-0x1];BP[BR++]=T7,Bc++;break;}case 0x6:{BP[BR++]=Aa[Bu],Bc++;break;}case 0x3f:{let T8=BP[--BR],T9=BP[--BR];BP[BR++]=T9!=T8,Bc++;break;}case 0x1c:{BP[BR++]=undefined,Bc++;break;}case 0x1b:{BP[BR++]=[],Bc++;break;}case 0x2f:{let TG=AC[Bu],TA=!![];TG in vmV&&(TA=delete vmV[TG]);TA&&TG in vmi_adc91c&&(TA=delete vmi_adc91c[TG]);BP[BR++]=TA,Bc++;break;}case 0x3b:{let TB=Bu&0xffff,TT=Bu>>>0x10,Ty=AC[TB],Ti=AC[TT];BP[BR++]=new RegExp(Ty,Ti),Bc++;break;}case 0x17:{G:{while(B2&&B2['length']>0x0){let TO=B2[B2['length']-0x1];if(TO['_$KWqdGi']!==undefined)break;B2['pop']();}if(B2&&B2['length']>0x0){let TV=B2[B2['length']-0x1];if(TV['_$KWqdGi']!==undefined){B3=null,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined,B4=!![],B5=BP[--BR],BB=TV['_$jGcTeP'],BT=TV['_$1WEbvU'],Bc=TV['_$KWqdGi'];break G;}}(B4||B6||B9)&&(B4=![],B5=undefined,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined);B3=null;let Tj=BP[--BR];if(Bj&&Tj===undefined&&!BJ)throw new ReferenceError('Must\x20call\x20super\x20constructor\x20in\x20derived\x20class\x20before\x20accessing\x20\x27this\x27\x20or\x20returning\x20from\x20derived\x20constructor');return Bw=Tj,0x1;}break;}case 0x3a:{let TI=BP[--BR],Tq;if(TI===0x0)Tq=D;else{if(TI===0x1){let TE=BP[--BR];Tq=a!==0x0&&TE&&typeof TE==='object'&&T['call'](S,TE)?(a--,TE['value']):[TE];}else Tq=GV(BP,BR-=TI,TI);}let TX=BP[--BR],Tk=BP[--BR];if(typeof TX!=='function')throw new TypeError(TX+'\x20is\x20not\x20a\x20function');let Tl=_$rqg5Lk['_$tDfv7D'],Tg=Tl&&j['call'](Tl,TX);!Tg&&Tl&&(TX===I||TX===O)&&(Tg=j['call'](Tl,Tk));let TJ=_$rqg5Lk['_$TwV8iJ'];Tg&&(_$rqg5Lk['_$GT0SNo']=!![],_$rqg5Lk['_$TwV8iJ']=Tg);let Tb;try{Tb=k(TX,Tk,Tq),BP[BR++]=Tb;}finally{Tg&&(_$rqg5Lk['_$GT0SNo']=![]),_$rqg5Lk['_$TwV8iJ']=TJ;}Bc++;break;}case 0x0:{let To=Aa[Bu],Tw=To&&To['_$iA1YEG'];if(Tw!==undefined){let TM=To['_$xKpNlF'];TM>=Tw['length']?Bc=Am[Bc]:(To['_$xKpNlF']=TM+0x1,BP[BR++]=Tw[TM],Bc++);}else{let Tz=To['i'],TQ=k(To['n'],Tz,[]);Gk(TQ),TQ['done']?Bc=Am[Bc]:(BP[BR++]=TQ['value'],Bc++);}break;}case 0x11:{let Tt=BP[--BR],Tr=BP[--BR];BP[BR++]=Tr instanceof Tt,Bc++;break;}case 0x49:{let TN=BP[--BR],TH=BP[BR-0x1];if(Array['isArray'](TN)&&TN[G6]===G5){let TW=TH['length'],Td=TN['length'];for(let TD=0x0;TD<Td;TD++){TH[TW+TD]=TN[TD];}}else for(let TF of TN){TH['push'](TF);}Bc++;break;}case 0x34:{let Tp=AC[Bu];Tp in vmi_adc91c?BP[BR++]=typeof vmi_adc91c[Tp]:BP[BR++]=typeof vmV[Tp];Bc++;break;}case 0x40:{let Ts=BP[--BR],TU=BP[--BR];BP[BR++]=TU-Ts,Bc++;break;}case 0x2a:{let TL=BP[--BR],TY=AC[Bu];if(TL===null||TL===undefined)throw new TypeError('Cannot\x20read\x20properties\x20of\x20'+TL+'\x20(reading\x20'+'\x27'+String(TY)+'\x27'+')');BP[BR++]=TL[TY],Bc++;break;}case 0x13:{B2['pop'](),Bc++;break;}case 0x7:{let Tf=BP[--BR],Tu=BP[BR-0x1],Tc=AC[Bu],TR=Gw(Tu);A(TR,Tc,{'set':Tf,'enumerable':TR===Tu,'configurable':!![]}),Bc++;break;}case 0x2:{let TP=BP[--BR];if((typeof TP==='object'||typeof TP==='function')&&TP!==null){const Tv=TP[Symbol['toPrimitive']];if(Tv!=null){TP=Tv['call'](TP,'number');if(TP!==null&&(typeof TP==='object'||typeof TP==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}else{const Tn=TP['valueOf'];let TC=typeof Tn==='function'?Tn['call'](TP):TP;if(TC!==null&&(typeof TC==='object'||typeof TC==='function')){const TK=TP['toString'];TC=typeof TK==='function'?TK['call'](TP):TC;if(TC!==null&&(typeof TC==='object'||typeof TC==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}TP=TC;}}BP[BR++]=typeof TP===d?TP+0x1n:+TP+0x1,Bc++;break;}case 0x9:{if(Bg===null){if(By||!Bi){let Tm=Bl||Ap||D;if(Tm['length']<=0x2000)Bg=k(p,undefined,Tm);else{Bg=p();for(let TS=0x0;TS<Tm['length'];TS++){Bg[TS]=Tm[TS];}Bg['length']=Tm['length'];}}else{Ap&&!Gb(Ap)&&(Ap=GE(Ap));let Ta=null,Th=null;if(Bu!==0x0){Ta=BX;for(let y0=Bu&0xff;y0>0x0;y0--){Ta=Ta['_$njRCyX'];}let Te=(Bu>>>0x8)-0x1,Tx=AC[Te];Th=[];for(let y1=0x0;y1<Tx;y1++){Th[y1]=AC[Te+0x1+y1];}}let TZ={};A(TZ,'length',{'value':Bk,'writable':!![],'enumerable':![],'configurable':!![]}),A(TZ,'callee',{'value':AF,'writable':!![],'enumerable':![],'configurable':!![]}),A(TZ,Symbol['iterator'],{'value':Array['prototype'][Symbol['iterator']],'writable':!![],'enumerable':![],'configurable':!![]}),Bg=new Proxy(TZ,{'get':f,'set':u,'has':c,'defineProperty':R,'deleteProperty':P,'preventExtensions':v,'getOwnPropertyDescriptor':n,'ownKeys':C,'argsLength':Bk,'entryArgCount':Bk,'args':Ap,'extraArgs':{},'deletedArgs':{},'unmappedIndices':{},'calleeValue':AF,'calleeDeleted':![],'lengthWritable':!![],'paramEnv':Ta,'paramSlotOf':Th});}}BP[BR++]=Bg,Bc++;break;}}}finally{BN=Bc,BH=BR;}},Bz=function(Bf,Bu){let Bc=BN,BR=BH,BP=BW;try{switch(Bf){case 0x68:{BP[BR-0x1]=+BP[BR-0x1],Bc++;break;}case 0xb6:{BP[--BR],Bc++;break;}case 0xa3:{let Bv=BP[--BR],Bn=BP[--BR],BC=(Bu^0xec92)>>>0x0,BK;BC<0x10?BC<0x8?BC<0x4?BC<0x2?BK=BC<0x1?Bn-Bv:Bn^Bv:BK=BC<0x3?Bn>Bv:Bn==null?Bv!==Bn:Bn!==Bv:BC<0x6?BK=BC<0x5?Bn<<Bv:Bn&Bv:BK=BC<0x7?Bn*Bv:Bn**Bv:BC<0xc?BC<0xa?BK=BC<0x9?Bn>>Bv:Bn<Bv:BK=BC<0xb?Bn>>>Bv:Bn==null?Bv===Bn:Bn===Bv:BC<0xe?BK=BC<0xd?Bn<=Bv:Bn|Bv:BK=BC<0xf?Bn/Bv:Bn+Bv:BC<0x14?BC<0x12?BK=BC<0x11?Bn==Bv:Bn>=Bv:BK=BC<0x13?Bn%Bv:Bn!=Bv:BC<0x18?BK=BC<0x16?Bn|Bv:Bn&Bv:BK=BC<0x1c?Bn^Bv:Bv-Bn;BP[BR++]=BK,Bc++;break;}case 0xa0:{let Bm=BP[--BR],BS=BP[--BR];BP[BR++]=BS>=Bm,Bc++;break;}case 0x5f:{let Ba=BP[--BR],Bh=BP[--BR];BP[BR++]=Bh<=Ba,Bc++;break;}case 0x7b:{let BZ=BP[--BR],Be=BP[--BR];if(Be===null||Be===undefined){if(BZ===Symbol['iterator'])throw new TypeError((Be===null?'object\x20null':'undefined')+'\x20is\x20not\x20iterable\x20(cannot\x20read\x20property\x20Symbol(Symbol.iterator))');throw new TypeError('Cannot\x20read\x20properties\x20of\x20'+Be+'\x20(reading\x20'+(typeof BZ==='symbol'?'\x27'+BZ['toString']()+'\x27':typeof BZ==='string'?'\x27'+BZ+'\x27':typeof BZ==='object'||typeof BZ==='function'?'\x27<computed\x20key>\x27':'\x27'+String(BZ)+'\x27')+')');}BP[BR++]=Be[BZ],Bc++;break;}case 0x95:{let Bx=Bu&0xffff,T0=BX['_$yJsxEr'];T0[Bx]=T0;let T1=Bu>>>0x10;T1&&((BX['_$QJ1PNs']||(BX['_$QJ1PNs']={}))[Bx]=AC[T1-0x1]);Bc++;break;}case 0x6b:{throw K(BP[--BR]);break;}case 0x8c:{BP[BR++]=AC[Bu],Bc++;break;}case 0x84:{let T2=BP[--BR],T3=BP[BR-0x1];(T2===null||GI(T2))&&y(T3,T2);Bc++;break;}case 0x5a:{G:{let T4=Am[Bc];if(T4===BT){if(B3!==null){B4=![],B6=![],B9=![];let T5=B3;B3=null;throw K(T5);}if(B4){while(B2&&B2['length']>0x0){let T7=B2[B2['length']-0x1];if(T7['_$KWqdGi']!==undefined)break;B2['pop']();}if(B2&&B2['length']>0x0){let T8=B2[B2['length']-0x1];if(T8['_$KWqdGi']!==undefined){BB=T8['_$jGcTeP'],BT=T8['_$1WEbvU'],Bc=T8['_$KWqdGi'];break G;}}let T6=B5;return B4=![],B5=undefined,Bw=T6,0x1;}if(B6){while(B2&&B2['length']>0x0){let TG=B2[B2['length']-0x1];if(TG['_$KWqdGi']!==undefined||!(B7>=TG['_$1WEbvU']||B7<=TG['_$jGcTeP']))break;B2['pop']();}if(B2&&B2['length']>0x0){let TA=B2[B2['length']-0x1];if(TA['_$KWqdGi']!==undefined&&(B7>=TA['_$1WEbvU']||B7<=TA['_$jGcTeP'])){BB=TA['_$jGcTeP'],BT=TA['_$1WEbvU'],Bc=TA['_$KWqdGi'];break G;}}let T9=B7;B6=![],B7=0x0;B8!==undefined&&(BX=B8,B8=undefined);Bc=T9;break G;}if(B9){while(B2&&B2['length']>0x0){let TT=B2[B2['length']-0x1];if(TT['_$KWqdGi']!==undefined||!(BG>=TT['_$1WEbvU']||BG<=TT['_$jGcTeP']))break;B2['pop']();}if(B2&&B2['length']>0x0){let Ty=B2[B2['length']-0x1];if(Ty['_$KWqdGi']!==undefined&&(BG>=Ty['_$1WEbvU']||BG<=Ty['_$jGcTeP'])){BB=Ty['_$jGcTeP'],BT=Ty['_$1WEbvU'],Bc=Ty['_$KWqdGi'];break G;}}let TB=BG;B9=![],BG=0x0;BA!==undefined&&(BX=BA,BA=undefined);Bc=TB;break G;}}Bc++;}break;}case 0x7c:{let Ti=BP[--BR],Tj=BP[--BR],TO=AC[Bu&0xffffff];A(Tj,TO,{'value':Ti,'writable':!![],'enumerable':!![],'configurable':!![]});Bu&0x1000000&&(!_$rqg5Lk['_$tDfv7D']&&(_$rqg5Lk['_$tDfv7D']=new WeakMap()),q['call'](_$rqg5Lk['_$tDfv7D'],Ti,Tj));Bc++;break;}case 0x4f:{let TV=BP[--BR],TI=BP[--BR];BP[BR++]=TI%TV,Bc++;break;}case 0x81:{let Tq=BP[--BR],TX=GV(BP,BR-=Tq,Tq),Tk=BP[--BR];if(typeof Tk!=='function')throw new TypeError(Tk+'\x20is\x20not\x20a\x20constructor');if(T['call'](h,Tk))throw new TypeError(Tk['name']+'\x20is\x20not\x20a\x20constructor');let Tl=_$rqg5Lk['_$TwV8iJ'];_$rqg5Lk['_$TwV8iJ']=undefined;let Tg;try{Tg=Reflect['construct'](Tk,TX);}finally{_$rqg5Lk['_$TwV8iJ']=Tl;}BP[BR++]=Tg,Bc++;break;}case 0xa4:{Bc++;break;}case 0x8f:{let TJ=AC[Bu],Tb;if(_$rqg5Lk['_$ood4om']&&TJ in _$rqg5Lk['_$ood4om'])throw new ReferenceError('Cannot\x20access\x20\x27'+TJ+'\x27\x20before\x20initialization');if(TJ in vmi_adc91c)Tb=vmi_adc91c[TJ];else{if(TJ in vmV)Tb=vmV[TJ];else throw new ReferenceError(TJ+'\x20is\x20not\x20defined');}BP[BR++]=Tb,Bc++;break;}case 0x6e:{A:{let TE=Am[Bc];while(B2&&B2['length']>0x0){let To=B2[B2['length']-0x1];if(To['_$KWqdGi']!==undefined||!(TE>=To['_$1WEbvU']||TE<=To['_$jGcTeP']))break;B2['pop']();}if(B2&&B2['length']>0x0){let Tw=B2[B2['length']-0x1];if(Tw['_$KWqdGi']!==undefined&&(TE>=Tw['_$1WEbvU']||TE<=Tw['_$jGcTeP'])){B3=null,B4=![],B5=undefined,B6=![],B7=0x0,B8=undefined,B9=!![],BG=TE,BA=BX,BB=Tw['_$jGcTeP'],BT=Tw['_$1WEbvU'],Bc=Tw['_$KWqdGi'];break A;}}(B4||B6||B9||B3!==null)&&(TE>=BT||TE<=BB)&&(B4=![],B5=undefined,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined,B3=null),Bc=TE;}break;}case 0x5e:{let TM=BP[--BR],Tz=BP[BR-0x1];if(Bu===0x2)BP[BR-0x1]={...TM};else{if(Bu===0x1)BP[BR-0x1]={...Tz,...TM};else{if(TM!==null&&TM!==undefined){let TQ=Object(TM),Tt=Reflect['ownKeys'](TQ);for(let Tr=0x0;Tr<Tt['length'];Tr++){let TN=Tt[Tr],TH=g(TQ,TN);TH!==undefined&&TH['enumerable']&&A(Tz,TN,{'value':TQ[TN],'writable':!![],'enumerable':!![],'configurable':!![]});}}}}Bc++;break;}case 0x54:{let TW=BP[--BR],Td=BP[--BR];BP[BR++]=Td/TW,Bc++;break;}case 0x94:{Aa[Bu]=BP[--BR],Bc++;break;}case 0x69:{let TD=BP[BR-0x3],TF=BP[BR-0x2],Tp=BP[BR-0x1];BP[BR-0x3]=TF,BP[BR-0x2]=Tp,BP[BR-0x1]=TD,Bc++;break;}case 0x5d:{BP[BR-0x1]=typeof BP[BR-0x1],Bc++;break;}case 0x90:{let Ts=BP[--BR],TU=AC[Bu];if(By&&!(TU in vmV)&&!(TU in vmi_adc91c))throw new ReferenceError(TU+'\x20is\x20not\x20defined');vmi_adc91c[TU]=Ts,vmV[TU]=Ts,BP[BR++]=Ts,Bc++;break;}case 0x92:{let TL,TY;Bu>=0x0?(TY=BP[--BR],TL=AC[Bu]):(TL=BP[--BR],TY=BP[--BR]);let Tf=delete TY[TL];if(By&&!Tf)throw new TypeError('Cannot\x20delete\x20property\x20\x27'+String(TL)+'\x27\x20of\x20object');BP[BR++]=Tf,Bc++;break;}case 0xb5:{let Tu=BP[--BR],Tc=BP[--BR];BP[BR++]=Tu==null||typeof Tu!=='object'&&typeof Tu!=='function'?!![]:Tc in Tu,Bc++;break;}case 0xa2:{let TR=BP[--BR];BP[BR++]=TR['next'](),Bc++;break;}}}finally{BN=Bc,BH=BR;}},BQ=function(Bf,Bu){let Bc=BN,BR=BH,BP=BW;try{switch(Bf){case 0x127:{let Bv=AS[Bc];if(!B2)B2=[];B2['push']({'_$cYiPfY':Bv[0x0]>=0x0?Bv[0x0]:undefined,'_$KWqdGi':Bv[0x1]>=0x0?Bv[0x1]:undefined,'_$1WEbvU':Bv[0x2]>=0x0?Bv[0x2]:undefined,'_$yf7B0z':BR,'_$jGcTeP':Bc,'_$ymXMaE':BX}),Bc++;break;}case 0x12e:{let Bn=BP[--BR],BC=BP[--BR];BP[BR++]=BC+Bn,Bc++;break;}case 0x137:{let BK=BP[--BR],Bm=BP[--BR];BP[BR++]=Bm>>>BK,Bc++;break;}case 0x129:{let BS=BP[BR-0x1];BS['length']++,Bc++;break;}case 0xc9:{let Ba=BP[--BR],Bh=typeof Ba;if(Ba!==null&&(Bh==='object'||Bh==='function')){let BZ=V(null);BZ[Ba]=0x0,Ba=Reflect['ownKeys'](BZ)[0x0];}else Bh!=='symbol'&&(Ba=String(Ba));BP[BR++]=Ba,Bc++;break;}case 0x128:{G:{let Be=Am[Bc];while(B2&&B2['length']>0x0){let Bx=B2[B2['length']-0x1];if(Bx['_$KWqdGi']!==undefined||!(Be>=Bx['_$1WEbvU']||Be<=Bx['_$jGcTeP']))break;B2['pop']();}if(B2&&B2['length']>0x0){let T0=B2[B2['length']-0x1];if(T0['_$KWqdGi']!==undefined&&(Be>=T0['_$1WEbvU']||Be<=T0['_$jGcTeP'])){B3=null,B4=![],B5=undefined,B9=![],BG=0x0,BA=undefined,B6=!![],B7=Be,B8=BX,BB=T0['_$jGcTeP'],BT=T0['_$1WEbvU'],Bc=T0['_$KWqdGi'];break G;}}(B4||B6||B9||B3!==null)&&(Be>=BT||Be<=BB)&&(B4=![],B5=undefined,B6=![],B7=0x0,B8=undefined,B9=![],BG=0x0,BA=undefined,B3=null),Bc=Be;}break;}case 0x10c:{let T1=BP[--BR],T2=T1&&T1['i']?T1['i']:T1;if(B3!==null)try{T2&&typeof T2['return']==='function'?BP[BR++]=Promise['resolve'](T2['return']())['catch'](function(){return undefined;}):BP[BR++]=Promise['resolve']();}catch(T3){BP[BR++]=Promise['resolve']();}else{let T4=T2!=null?T2['return']:undefined;if(T4==null)BP[BR++]=Promise['resolve']();else typeof T4!=='function'?BP[BR++]=Promise['reject'](new TypeError('iterator\x20\x27return\x27\x20is\x20not\x20callable')):BP[BR++]=Promise['resolve'](T4['call'](T2));}Bc++;break;}case 0x146:{BP[BR++]=AC[Bu],Bc++;break;}case 0xdc:{let T5=BP[--BR],T6=BP[--BR],T7=AC[Bu];if(T6===null||T6===undefined)throw new TypeError('Cannot\x20set\x20properties\x20of\x20'+T6+'\x20(setting\x20'+'\x27'+String(T7)+'\x27'+')');By?Go(T6,T7,T5):T6[T7]=T5;BP[BR++]=T5,Bc++;break;}case 0x133:{BP[BR-0x1]=-BP[BR-0x1],Bc++;break;}case 0x11c:{if(B2&&B2['length']>0x0){let T8=B2[B2['length']-0x1];T8['_$KWqdGi']===Bc&&(T8['_$ROYzDB']!==undefined&&(B3=T8['_$ROYzDB'],BB=T8['_$jGcTeP'],BT=T8['_$1WEbvU']),T8['_$ymXMaE']!==undefined&&(BX=T8['_$ymXMaE']),B2['pop']());}Bc++;break;}case 0xfe:{BX=BX['_$njRCyX'],Bc++;break;}case 0x132:{let T9=BP[--BR],TG=BP[--BR],TA=BP[BR-0x1],TB=Gw(TA);!(Bu===0x1)&&GO(T9,'name',{'value':'get\x20'+(typeof TG==='symbol'?TG['description']===undefined?'':'['+TG['description']+']':''+TG),'writable':![],'enumerable':![],'configurable':!![]});A(TB,TG,{'get':T9,'enumerable':TB===TA,'configurable':!![]}),Bc++;break;}case 0x120:{let TT=BP[--BR],Ty=BP[--BR];BP[BR++]=Ty==TT,Bc++;break;}case 0x108:{let Ti=BP[--BR],Tj;if(Ti===null||Ti===undefined)throw new TypeError(Ti+'\x20is\x20not\x20iterable');let TO=Ti[G6];if(Array['isArray'](Ti)&&TO===G5){let TI=Ti['length'];Tj=new Array(TI);for(let Tq=0x0;Tq<TI;Tq++){Tj[Tq]=Ti[Tq];}}else{if(TO===null||TO===undefined||typeof TO!=='function')throw new TypeError(Ti+'\x20is\x20not\x20iterable');let TX=k(TO,Ti,[]);if(TX===null||typeof TX!=='object')throw new TypeError('Iterator\x20method\x20returned\x20a\x20non-object\x20value');Tj=[];while(!![]){let Tk=TX['next']();Gk(Tk);if(Tk['done'])break;Tj['push'](Tk['value']);}}let TV={'value':Tj};i['call'](S,TV),a++,BP[BR++]=TV,Bc++;break;}case 0xfd:{let Tl=BP[--BR],Tg=BP[--BR];BP[BR++]=Tg<<Tl,Bc++;break;}case 0x111:{BP[BR-0x1]=!BP[BR-0x1],Bc++;break;}case 0xb9:{let TJ=Bl||Ap,Tb=TJ?TJ['length']:0x0,TE=[];for(let To=Bu;To<Tb;To++){TE[To-Bu]=TJ[To];}BP[BR++]=TE,Bc++;break;}case 0x10e:{let Tw=BP[--BR],TM=BP[--BR];BP[BR++]=TM>>Tw,Bc++;break;}case 0xff:{let Tz=BP[--BR],TQ=BP[--BR];BP[BR++]=TQ>Tz,Bc++;break;}case 0xfa:{let Tt=BP[--BR];if((typeof Tt==='object'||typeof Tt==='function')&&Tt!==null){const Tr=Tt[Symbol['toPrimitive']];if(Tr!=null){Tt=Tr['call'](Tt,'number');if(Tt!==null&&(typeof Tt==='object'||typeof Tt==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}else{const TN=Tt['valueOf'];let TH=typeof TN==='function'?TN['call'](Tt):Tt;if(TH!==null&&(typeof TH==='object'||typeof TH==='function')){const TW=Tt['toString'];TH=typeof TW==='function'?TW['call'](Tt):TH;if(TH!==null&&(typeof TH==='object'||typeof TH==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}Tt=TH;}}BP[BR++]=typeof Tt===d?Tt:+Tt,Bc++;break;}case 0x112:{BP[BR++]=BX,Bc++;break;}case 0xd5:{let Td=BP[--BR],TD=BP[--BR],TF=BP[BR-0x1],Tp=Gw(TF);!(Bu===0x1)&&GO(Td,'name',{'value':'set\x20'+(typeof TD==='symbol'?TD['description']===undefined?'':'['+TD['description']+']':''+TD),'writable':![],'enumerable':![],'configurable':!![]});A(Tp,TD,{'set':Td,'enumerable':Tp===TF,'configurable':!![]}),Bc++;break;}case 0xd6:{let Ts=BP[--BR],TU=BP[BR-0x1],TL=AC[Bu&0xffffff];TL in TU?A(TU,TL,{'value':Ts,'writable':!![],'enumerable':!![],'configurable':!![]}):TU[TL]=Ts;Bu&0x1000000&&(!_$rqg5Lk['_$tDfv7D']&&(_$rqg5Lk['_$tDfv7D']=new WeakMap()),q['call'](_$rqg5Lk['_$tDfv7D'],Ts,TU));Bc++;break;}case 0xd2:{BP[BR++]=vmI[Bu],Bc++;break;}case 0x147:{let TY=BP[--BR],Tf=BP[BR-0x1],Tu=AC[Bu],Tc=Gw(Tf);A(Tc,Tu,{'get':TY,'enumerable':Tc===Tf,'configurable':!![]}),Bc++;break;}case 0x125:{let TR=BP[--BR],TP=BP[--BR];BP[BR++]=TP&TR,Bc++;break;}case 0x143:{A:{let Tv=BP[--BR],Tn,TC;if(Tv===0x1)Tn=BP[--BR];else Tv>0x1&&(TC=GV(BP,BR-=Tv,Tv));let TK=BP[--BR];if(typeof TK!=='function')throw new TypeError(TK+'\x20is\x20not\x20a\x20function');if(TK===AF&&Bo<0x100&&As[0x7*Av+An&0x1f]&&(BI||BV===(By?undefined:vmV))&&!_$rqg5Lk['_$TwV8iJ']&&!_$rqg5Lk['_$MJuTiV']&&!(_$rqg5Lk['_$tDfv7D']&&j['call'](_$rqg5Lk['_$tDfv7D'],TK))){let Tx=Tv===0x0?[]:Tv===0x1?a!==0x0&&Tn&&typeof Tn==='object'&&T['call'](S,Tn)?(a--,Tn['value']):[Tn]:TC;!BE&&(BE=[]);BE[Bo++]=Bc,BE[Bo++]=BX,BE[Bo++]=Bg,BE[Bo++]=Ap,BE[Bo++]=Bl,BE[Bo++]=BR;for(let y0=0x0;y0<Bb;y0++){BE[Bo++]=Aa[y0];}Ap=Tx,Bg=null,Bl=null,BX={'_$yJsxEr':Bq?new Array(Bq)['fill'](undefined):D,'_$Jxh6s3':null,'_$XPiw8a':-0x1,'_$njRCyX':AD};for(let y1=0x0,y2=As[0x20]||0x0;y1<Bb;y1++){Aa[y1]=y1<y2&&y1<Tx['length']?Tx[y1]:undefined;}Bc=0x0;break A;}let Tm=_$rqg5Lk['_$tDfv7D'],TS=!_$rqg5Lk['_$TwV8iJ']&&!_$rqg5Lk['_$MJuTiV']&&!(Tm&&j['call'](Tm,TK))&&G1(TK);if(TS&&TS['_$N1BKrc']!==![]){let y3=TS['_$D5XaXA']||G0(TS,typeof TS['_$dLc1p0']==='object'?TS['_$dLc1p0']['n']!==undefined?0x0?Aw(TS['_$dLc1p0']['n']):TS['_$dLc1p0']['d']||(TS['_$dLc1p0']['d']=Aw(TS['_$dLc1p0']['n'])):TS['_$dLc1p0']:Ao(TS['_$dLc1p0']));if(y3){let y4;if(Tv===0x0)y4=[];else Tv===0x1?y4=a!==0x0&&Tn&&typeof Tn==='object'&&T['call'](S,Tn)?(a--,Tn['value']):[Tn]:y4=TC;let y5=y3===As?Av:Ag(y3[0x20],y3[0x21]),y6=y3===As?An:AJ(y3[0x20],y3[0x21]);_$rqg5Lk['_$GT0SNo']?_$rqg5Lk['_$GT0SNo']=![]:_$rqg5Lk['_$TwV8iJ']=undefined;BP[BR++]=Gd(TS['_$4mYIXv'],TK,y4,y3,undefined,y3[0x18*y5+y6&0x1f]?undefined:vmV),Bc++;break A;}}let Ta=_$rqg5Lk['_$TwV8iJ'],Th=_$rqg5Lk['_$tDfv7D'],TZ=Th&&j['call'](Th,TK);TZ?(_$rqg5Lk['_$GT0SNo']=!![],_$rqg5Lk['_$TwV8iJ']=TZ):_$rqg5Lk['_$TwV8iJ']=undefined;let Te;try{if(Tv===0x0)Te=TK();else Tv===0x1?Te=a!==0x0&&Tn&&typeof Tn==='object'&&T['call'](S,Tn)?(a--,k(TK,undefined,Tn['value'])):TK(Tn):Te=k(TK,undefined,TC);BP[BR++]=Te;}finally{TZ&&(_$rqg5Lk['_$GT0SNo']=![]),_$rqg5Lk['_$TwV8iJ']=Ta;}Bc++;}break;}case 0x12a:{BP[BR++]=null,Bc++;break;}case 0x130:{BP[BR++]=BV,Bc++;break;}case 0x141:{BP[BR++]=Ap[Bu],Bc++;break;}case 0xfc:{BP[BR-0x1]=~BP[BR-0x1],Bc++;break;}case 0xb7:{let y7=BP[--BR],y8=y7&&y7['_$iA1YEG'];if(y8!==undefined){let y9=y7['_$xKpNlF'],yG;y9>=y8['length']?yG={'value':undefined,'done':!![]}:(y7['_$xKpNlF']=y9+0x1,yG={'value':y8[y9],'done':![]}),BP[BR++]=yG,Bc++;}else{let yA=y7&&y7['i']?y7['i']:y7,yB=y7&&y7['n']?y7['n']:yA&&yA['next'];if(typeof yB!=='function')throw new TypeError('iterator.next\x20is\x20not\x20a\x20function');let yT=k(yB,yA,[]);Gk(yT),BP[BR++]=yT,Bc++;}break;}case 0x140:{let yy=BP[--BR],yi=yy,yj=0x0&&typeof yy!=='object'?Aw(yy,0x1):undefined,yO,yV,yI,yq,yX,yk,yl,yg;if(yj)yV=yj[0x0]&0x1,yI=yj[0x0]&0x2,yq=yj[0x0]&0x4,yX=yj[0x0]&0x8,yl=yj[0x0]&0x10,yk=yj[0x1]||0x0,yg=yj[0x2]||undefined,yO={'n':yy};else{yO=typeof yy==='object'?yy:Aw(yy);let yw=yO?Ag(yO[0x20],yO[0x21]):undefined,yM=yO?AJ(yO[0x20],yO[0x21]):undefined;yV=yO&&yO[0xd*yw+yM&0x1f],yI=yO&&yO[0x4*yw+yM&0x1f],yq=yO&&yO[0x5*yw+yM&0x1f],yX=yO&&yO[0x3*yw+yM&0x1f],yk=yO&&yO[0x20]||0x0,yl=yO&&yO[0x18*yw+yM&0x1f];let yz=yO&&yO[0x12*yw+yM&0x1f];yg=yz!==undefined?yO[0x6*yw+yM&0x1f][yz]:undefined;}yy=0x0&&typeof yi!=='object'?{'n':yi}:yO;let yJ=yV?BV:undefined,yb=BX,yE=yg===undefined?'':yg,yo;if(yq)yo=GN(Az,yy,yb,h,yl,vmV,yI,yE,yk);else{if(yI)yV?yo=GW(AM,yy,yb,yJ,yE,yk):yo=Gr(AM,yy,yb,yl,vmV,yE,yk);else{if(yV){yo=GH(Gp,yy,yb,yJ,yE,yk);let yQ=_$rqg5Lk['_$84cnUz'];yQ===undefined&&AF&&G3['has'](AF)&&(yQ=G3['get'](AF)),yQ!==undefined&&G3['set'](yo,yQ);}else yo=Gt(Gp,yy,yb,yl,vmV,yX,yE,yk);}}yk>0x3&&GO(yo,'length',{'value':yk,'writable':![],'enumerable':![],'configurable':!![]});BP[BR++]=yo,Bc++;break;}case 0xc8:{let yt=BP[--BR],yr=BP[--BR];BP[BR++]=yr^yt,Bc++;break;}}}finally{BN=Bc,BH=BR;}},Bt=function(Bf,Bu){let Bc=BN,BR=BH,BP=BW;try{switch(Bf){case 0x176:{let Bv=BP[--BR],Bn=AC[Bu];if(_$rqg5Lk['_$ood4om']&&Bn in _$rqg5Lk['_$ood4om'])throw new ReferenceError('Cannot\x20access\x20\x27'+Bn+'\x27\x20before\x20initialization');let BC=!(Bn in vmi_adc91c)&&!(Bn in vmV);vmi_adc91c[Bn]=Bv;Bn in vmV&&(_$4KUIKW[Bn]=Bv);BC&&(_$4KUIKW[Bn]=Bv);BP[BR++]=Bv,Bc++;break;}case 0x163:{let BK=BP[--BR];if(BK==null)throw new TypeError(BK+'\x20is\x20not\x20iterable');let Bm=BK[G6];if(Array['isArray'](BK)&&Bm===G5)BP[BR++]={'_$iA1YEG':BK,'_$xKpNlF':0x0},Bc++;else{if(typeof Bm!=='function')throw new TypeError(BK+'\x20is\x20not\x20iterable');let BS=k(Bm,BK,[]);Gk(BS);let Ba=BS['next'];BP[BR++]={'i':BS,'n':Ba},Bc++;}break;}case 0x156:{BP[BR++]={},Bc++;break;}case 0x17a:{let Bh=BP[--BR],BZ=BP[--BR];BP[BR++]=BZ*Bh,Bc++;break;}case 0x175:{let Be=BP[--BR];BP[BR++]=Gg(Be),Bc++;break;}case 0x177:{let Bx=BP[--BR],T0=BP[--BR],T1=BP[--BR];if(T1===null||T1===undefined)throw new TypeError('Cannot\x20set\x20properties\x20of\x20'+T1+'\x20(setting\x20'+(typeof T0==='symbol'?'\x27'+T0['toString']()+'\x27':typeof T0==='string'?'\x27'+T0+'\x27':typeof T0==='object'||typeof T0==='function'?'\x27<computed\x20key>\x27':'\x27'+String(T0)+'\x27')+')');By?Go(T1,T0,Bx):T1[T0]=Bx;BP[BR++]=Bx,Bc++;break;}case 0x17e:{let T2=BP[--BR];if((typeof T2==='object'||typeof T2==='function')&&T2!==null){const T3=T2[Symbol['toPrimitive']];if(T3!=null){T2=T3['call'](T2,'number');if(T2!==null&&(typeof T2==='object'||typeof T2==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}else{const T4=T2['valueOf'];let T5=typeof T4==='function'?T4['call'](T2):T2;if(T5!==null&&(typeof T5==='object'||typeof T5==='function')){const T6=T2['toString'];T5=typeof T6==='function'?T6['call'](T2):T5;if(T5!==null&&(typeof T5==='object'||typeof T5==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}T2=T5;}}BP[BR++]=typeof T2===d?T2-0x1n:+T2-0x1,Bc++;break;}case 0x169:{let T7=BP[--BR],T8=BP[--BR],T9=BP[--BR];if(Bu&0x1&&typeof T7==='function'){let TG=typeof T8==='symbol'?T8['description']===undefined?'':'['+T8['description']+']':''+T8;GO(T7,'name',{'value':TG,'writable':![],'enumerable':![],'configurable':!![]});}A(T9,T8,{'value':T7,'writable':!![],'enumerable':!![],'configurable':!![]});Bu&0x2&&(!_$rqg5Lk['_$tDfv7D']&&(_$rqg5Lk['_$tDfv7D']=new WeakMap()),q['call'](_$rqg5Lk['_$tDfv7D'],T7,T9));Bc++;break;}case 0x15a:{Bc=Am[Bc];break;}case 0x16b:{Bl===null&&(By||!Bi)&&Ap&&(Bl=GE(Ap));Ap&&Bu>=Ap['length']&&!Gb(Ap)&&(Ap=GE(Ap));Ap[Bu]=BP[--BR],Bc++;break;}case 0x178:{BP[--BR],BP[BR++]=undefined,Bc++;break;}case 0x17b:{let TA=AC[Bu],TB=_$4KUIKW===vmV;TB&&(TA in vmV&&(TB=delete vmV[TA]),TB&&TA in vmi_adc91c&&(TB=delete vmi_adc91c[TA]));BP[BR++]=TB,Bc++;break;}case 0x14e:{let TT=BP[BR-0x1];BP[BR-0x1]=BP[BR-0x2],BP[BR-0x2]=TT,Bc++;break;}case 0x16e:{let Ty=BP[--BR],Ti=Ty&&Ty['i']?Ty['i']:Ty;try{if(Ti!=null){let Tj=Ti['return'];typeof Tj==='function'&&Tj['call'](Ti);}}catch(TO){}Bc++;break;}case 0x166:{let TV=BP[--BR],TI=BP[--BR];BP[BR++]=TI==null?TV!==TI:TI!==TV,Bc++;break;}case 0x170:{let Tq=BP[--BR];if(Tq==null)throw new TypeError(Tq+'\x20is\x20not\x20iterable');let TX=Tq[Symbol['asyncIterator']];if(typeof TX==='function')BP[BR++]=TX['call'](Tq);else{let Tk=Tq[Symbol['iterator']];if(typeof Tk!=='function')throw new TypeError(Tq+'\x20is\x20not\x20iterable');let Tl=Tk['call'](Tq);if(Tl===null||typeof Tl!=='object')throw new TypeError('Iterator\x20method\x20returned\x20a\x20non-object\x20value');let Tg=async function(Tb){if(Tb===null||typeof Tb!=='object')throw new TypeError('Iterator\x20result\x20is\x20not\x20an\x20object');let TE=await Tb['value'];return{'value':TE,'done':!!Tb['done']};},TJ={'next':function(Tb){let TE;try{TE=Tl['next'](Tb);}catch(To){return Promise['reject'](To);}return Tg(TE);},'return':function(Tb){if(typeof Tl['return']!=='function')return Promise['resolve']({'value':Tb,'done':!![]});let TE;try{TE=Tl['return'](Tb);}catch(To){return Promise['reject'](To);}return Tg(TE);},'throw':function(Tb){if(typeof Tl['throw']!=='function')return Promise['reject'](Tb);let TE;try{TE=Tl['throw'](Tb);}catch(To){return Promise['reject'](To);}return Tg(TE);},[Symbol['asyncIterator']]:function(){return this;}};BP[BR++]=TJ;}Bc++;break;}case 0x15f:{let Tb=Bu,TE=BP[--BR];BX['_$yJsxEr'][Tb]=TE,Bc++;break;}case 0x164:{let To=Bu,Tw=BP[--BR];BX['_$yJsxEr'][To]=Tw;let TM=BX['_$Jxh6s3'];!TM&&(TM=V(null),BX['_$Jxh6s3']=TM);TM[To]=0x1,Bc++;break;}case 0x14d:{BP[BR++]=vmq[Bu],Bc++;break;}case 0x161:{let Tz=BP[--BR],TQ=BP[--BR];BP[BR++]=TQ in Tz,Bc++;break;}case 0x174:{let Tt=BP[--BR];Tt!==null&&Tt!==undefined?Bc=Am[Bc]:Bc++;break;}case 0x168:{let Tr=BP[--BR],TN=BP[--BR];BP[BR++]=TN<Tr,Bc++;break;}case 0x148:{let TH=Bu&0xffff,TW=Bu>>>0x10,Td=BX;for(let Tp=0x0;Tp<TW;Tp++){Td=Td['_$njRCyX'];}let TD=Td['_$yJsxEr'],TF=TD[TH];if(TF===TD){let Ts=Td['_$QJ1PNs'];throw new ReferenceError('Cannot\x20access\x20\x27'+(Ts&&Ts[TH]||'variable')+'\x27\x20before\x20initialization');}BP[BR++]=TF,Bc++;break;}case 0x15e:{!BP[--BR]?Bc=Am[Bc]:Bc++;break;}case 0x159:{BP[BR++]=AL,Bc++;break;}case 0x16d:{let TU=Bu&0xffff,TL=Bu>>>0x10,TY=BP[--BR],Tf=BX;for(let TP=0x0;TP<TL;TP++){Tf=Tf['_$njRCyX'];}let Tu=Tf['_$yJsxEr'];if(Tu[TU]===Tu){let Tv=Tf['_$QJ1PNs'];throw new ReferenceError('Cannot\x20access\x20\x27'+(Tv&&Tv[TU]||'variable')+'\x27\x20before\x20initialization');}let Tc=Tf['_$Jxh6s3'],TR=Tc&&Tc[TU];if(TR){if(TR!==0x2||By)throw new TypeError('Assignment\x20to\x20constant\x20variable.');}else Tu[TU]=TY;Bc++;break;}case 0x181:{let Tn=Bu;BX['_$yJsxEr'][Tn]=AF;let TC=BX['_$Jxh6s3'];!TC&&(TC=V(null),BX['_$Jxh6s3']=TC);TC[Tn]=0x2,Bc++;break;}}}finally{BN=Bc,BH=BR;}};while(Ah<AZ){try{while(Ah<AZ){let Bf=Ah<<B1,Bu=AK[Ax+Bf],Bc=AK[B0+Bf];switch(Br[Bu]){case 0x1:{let BP=AP[Ac-0x1];AP[Ac++]=BP,Ah++;continue;}case 0x2:{let Bv=AP[--Ac],Bn=AP[--Ac],BC=AC[Bc];if(Bn===null||Bn===undefined)throw new TypeError('Cannot\x20set\x20properties\x20of\x20'+Bn+'\x20(setting\x20'+'\x27'+String(BC)+'\x27'+')');By?Go(Bn,BC,Bv):Bn[BC]=Bv;AP[Ac++]=Bv,Ah++;continue;}case 0x3:{AP[Ac++]=[],Ah++;continue;}case 0x4:{let BK=AP[--Ac],Bm=AP[--Ac],BS=AP[--Ac];if(BS===null||BS===undefined)throw new TypeError('Cannot\x20set\x20properties\x20of\x20'+BS+'\x20(setting\x20'+(typeof Bm==='symbol'?'\x27'+Bm['toString']()+'\x27':typeof Bm==='string'?'\x27'+Bm+'\x27':typeof Bm==='object'||typeof Bm==='function'?'\x27<computed\x20key>\x27':'\x27'+String(Bm)+'\x27')+')');By?Go(BS,Bm,BK):BS[Bm]=BK;AP[Ac++]=BK,Ah++;continue;}case 0x5:{let Ba=AC[Bc],Bh;if(_$rqg5Lk['_$ood4om']&&Ba in _$rqg5Lk['_$ood4om'])throw new ReferenceError('Cannot\x20access\x20\x27'+Ba+'\x27\x20before\x20initialization');if(Ba in vmi_adc91c)Bh=vmi_adc91c[Ba];else{if(Ba in vmV)Bh=vmV[Ba];else throw new ReferenceError(Ba+'\x20is\x20not\x20defined');}AP[Ac++]=Bh,Ah++;continue;}case 0x6:{let BZ=AP[--Ac],Be=AC[Bc];if(BZ===null||BZ===undefined)throw new TypeError('Cannot\x20read\x20properties\x20of\x20'+BZ+'\x20(reading\x20'+'\x27'+String(Be)+'\x27'+')');AP[Ac++]=BZ[Be],Ah++;continue;}case 0x7:{let Bx=AP[--Ac],T0={'_$yJsxEr':new Array(Bc),'_$Jxh6s3':null,'_$XPiw8a':-0x1,'_$njRCyX':Bx};BX=T0,Ah++;continue;}case 0x8:{Aa[Bc]=AP[--Ac],Ah++;continue;}case 0x9:{let T1=Bc&0xffff,T2=Bc>>>0x10,T3=BX;for(let T6=0x0;T6<T2;T6++){T3=T3['_$njRCyX'];}let T4=T3['_$yJsxEr'],T5=T4[T1];if(T5===T4){let T7=T3['_$QJ1PNs'];throw new ReferenceError('Cannot\x20access\x20\x27'+(T7&&T7[T1]||'variable')+'\x27\x20before\x20initialization');}AP[Ac++]=T5,Ah++;continue;}case 0xa:{AP[Ac-0x1]=-AP[Ac-0x1],Ah++;continue;}case 0xb:{AP[Ac++]=Ap[Bc],Ah++;continue;}case 0xc:{let T8=AP[Ac-0x1];AP[Ac-0x1]=AP[Ac-0x2],AP[Ac-0x2]=T8,Ah++;continue;}case 0xd:{let T9=Bc&0xffff,TG=BX['_$yJsxEr'];TG[T9]=TG;let TA=Bc>>>0x10;TA&&((BX['_$QJ1PNs']||(BX['_$QJ1PNs']={}))[T9]=AC[TA-0x1]);Ah++;continue;}case 0xe:{AP[Ac++]={},Ah++;continue;}case 0xf:{AP[Ac++]=AC[Bc],Ah++;continue;}case 0x10:{AP[--Ac],Ah++;continue;}case 0x11:{AP[Ac++]=AL,Ah++;continue;}case 0x12:{AP[Ac-0x1]=!AP[Ac-0x1],Ah++;continue;}case 0x13:{let TB=AP[--Ac];if((typeof TB==='object'||typeof TB==='function')&&TB!==null){const TT=TB[Symbol['toPrimitive']];if(TT!=null){TB=TT['call'](TB,'number');if(TB!==null&&(typeof TB==='object'||typeof TB==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}else{const Ty=TB['valueOf'];let Ti=typeof Ty==='function'?Ty['call'](TB):TB;if(Ti!==null&&(typeof Ti==='object'||typeof Ti==='function')){const Tj=TB['toString'];Ti=typeof Tj==='function'?Tj['call'](TB):Ti;if(Ti!==null&&(typeof Ti==='object'||typeof Ti==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}TB=Ti;}}AP[Ac++]=typeof TB===d?TB-0x1n:+TB-0x1,Ah++;continue;}case 0x14:{let TO=AP[--Ac],TV=AP[Ac-0x1],TI=AC[Bc&0xffffff];TI in TV?A(TV,TI,{'value':TO,'writable':!![],'enumerable':!![],'configurable':!![]}):TV[TI]=TO;Bc&0x1000000&&(!_$rqg5Lk['_$tDfv7D']&&(_$rqg5Lk['_$tDfv7D']=new WeakMap()),q['call'](_$rqg5Lk['_$tDfv7D'],TO,TV));Ah++;continue;}case 0x15:{let Tq=AP[Ac-0x3],TX=AP[Ac-0x2],Tk=AP[Ac-0x1];AP[Ac-0x3]=TX,AP[Ac-0x2]=Tk,AP[Ac-0x1]=Tq,Ah++;continue;}case 0x16:{AP[Ac++]=Aa[Bc],Ah++;continue;}case 0x17:{let Tl=AP[--Ac];if((typeof Tl==='object'||typeof Tl==='function')&&Tl!==null){const Tg=Tl[Symbol['toPrimitive']];if(Tg!=null){Tl=Tg['call'](Tl,'number');if(Tl!==null&&(typeof Tl==='object'||typeof Tl==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}else{const TJ=Tl['valueOf'];let Tb=typeof TJ==='function'?TJ['call'](Tl):Tl;if(Tb!==null&&(typeof Tb==='object'||typeof Tb==='function')){const TE=Tl['toString'];Tb=typeof TE==='function'?TE['call'](Tl):Tb;if(Tb!==null&&(typeof Tb==='object'||typeof Tb==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}Tl=Tb;}}AP[Ac++]=typeof Tl===d?Tl:+Tl,Ah++;continue;}case 0x18:{let To=AP[--Ac];if((typeof To==='object'||typeof To==='function')&&To!==null){const Tw=To[Symbol['toPrimitive']];if(Tw!=null){To=Tw['call'](To,'number');if(To!==null&&(typeof To==='object'||typeof To==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}else{const TM=To['valueOf'];let Tz=typeof TM==='function'?TM['call'](To):To;if(Tz!==null&&(typeof Tz==='object'||typeof Tz==='function')){const TQ=To['toString'];Tz=typeof TQ==='function'?TQ['call'](To):Tz;if(Tz!==null&&(typeof Tz==='object'||typeof Tz==='function'))throw new TypeError('Cannot\x20convert\x20object\x20to\x20primitive\x20value');}To=Tz;}}AP[Ac++]=typeof To===d?To+0x1n:+To+0x1,Ah++;continue;}case 0x19:{let Tt=Bc,Tr=AP[--Ac];BX['_$yJsxEr'][Tt]=Tr,Ah++;continue;}case 0x1a:{AP[Ac++]=BX,Ah++;continue;}case 0x1b:{let TN=AP[--Ac],TH=AP[--Ac];if(TH===null||TH===undefined){if(TN===Symbol['iterator'])throw new TypeError((TH===null?'object\x20null':'undefined')+'\x20is\x20not\x20iterable\x20(cannot\x20read\x20property\x20Symbol(Symbol.iterator))');throw new TypeError('Cannot\x20read\x20properties\x20of\x20'+TH+'\x20(reading\x20'+(typeof TN==='symbol'?'\x27'+TN['toString']()+'\x27':typeof TN==='string'?'\x27'+TN+'\x27':typeof TN==='object'||typeof TN==='function'?'\x27<computed\x20key>\x27':'\x27'+String(TN)+'\x27')+')');}AP[Ac++]=TH[TN],Ah++;continue;}case 0x1c:{BX=BX['_$njRCyX'],Ah++;continue;}case 0x1d:{Bl===null&&(By||!Bi)&&Ap&&(Bl=GE(Ap));Ap&&Bc>=Ap['length']&&!Gb(Ap)&&(Ap=GE(Ap));Ap[Bc]=AP[--Ac],Ah++;continue;}case 0x1e:{let TW=Bc&0xffff,Td=Bc>>>0x10,TD=AP[--Ac],TF=BX;for(let TL=0x0;TL<Td;TL++){TF=TF['_$njRCyX'];}let Tp=TF['_$yJsxEr'];if(Tp[TW]===Tp){let TY=TF['_$QJ1PNs'];throw new ReferenceError('Cannot\x20access\x20\x27'+(TY&&TY[TW]||'variable')+'\x27\x20before\x20initialization');}let Ts=TF['_$Jxh6s3'],TU=Ts&&Ts[TW];if(TU){if(TU!==0x2||By)throw new TypeError('Assignment\x20to\x20constant\x20variable.');}else Tp[TW]=TD;Ah++;continue;}case 0x1f:{AP[--Ac]?Ah=Am[Ah]:Ah++;continue;}case 0x20:{AP[Ac++]=null,Ah++;continue;}case 0x21:{let Tf=AP[--Ac];Tf!==null&&Tf!==undefined?Ah=Am[Ah]:Ah++;continue;}case 0x22:{AP[Ac-0x1]=typeof AP[Ac-0x1],Ah++;continue;}case 0x23:{let Tu=AP[--Ac],Tc=AP[--Ac],TR=(Bc^0xec92)>>>0x0,TP;TR<0x10?TR<0x8?TR<0x4?TR<0x2?TP=TR<0x1?Tc-Tu:Tc^Tu:TP=TR<0x3?Tc>Tu:Tc==null?Tu!==Tc:Tc!==Tu:TR<0x6?TP=TR<0x5?Tc<<Tu:Tc&Tu:TP=TR<0x7?Tc*Tu:Tc**Tu:TR<0xc?TR<0xa?TP=TR<0x9?Tc>>Tu:Tc<Tu:TP=TR<0xb?Tc>>>Tu:Tc==null?Tu===Tc:Tc===Tu:TR<0xe?TP=TR<0xd?Tc<=Tu:Tc|Tu:TP=TR<0xf?Tc/Tu:Tc+Tu:TR<0x14?TR<0x12?TP=TR<0x11?Tc==Tu:Tc>=Tu:TP=TR<0x13?Tc%Tu:Tc!=Tu:TR<0x18?TP=TR<0x16?Tc|Tu:Tc&Tu:TP=TR<0x1c?Tc^Tu:Tu-Tc;AP[Ac++]=TP,Ah++;continue;}case 0x24:{AP[--Ac],AP[Ac++]=undefined,Ah++;continue;}case 0x25:{!AP[--Ac]?Ah=Am[Ah]:Ah++;continue;}case 0x26:{AP[Ac-0x1]=~AP[Ac-0x1],Ah++;continue;}case 0x27:{AP[Ac++]=AC[Bc],Ah++;continue;}case 0x28:{AP[Ac++]=undefined,Ah++;continue;}case 0x29:{Ah=Am[Ah];continue;}case 0x2a:{throw K(AP[--Ac]);continue;}}if(Bu===W||Bu===N||Bu===H){let Tv=AP[--Ac];Ah++;AY===undefined&&(AY=[],AY[0xf]={'_$oi8dOt':AY},AY[0x1c]=AR,AY[0x1d]=Av,AY[0x1e]=An,AY[0x1f]=AC,AY[0x20]=AK,AY[0x21]=Am,AY[0x22]=AS,AY[0x23]=AZ,AY[0x24]=Ae,AY[0x25]=Ax,AY[0x26]=B0,AY[0x27]=B1,AY[0x28]=By,AY[0x29]=Bi,AY[0x2a]=Bj,AY[0x2b]=BO,AY[0x2c]=BI,AY[0x2d]=Bq,AY[0x2e]=Bb);AY[0x0]=Ap,AY[0x1]=AL,AY[0x2]=BV,AY[0x3]=AP,AY[0x4]=Ac,AY[0x5]=Aa,AY[0x6]=Ah,AY[0x7]=B2,AY[0x8]=BX,AY[0x9]=Bk,AY[0xa]=Bl,AY[0xb]=Bg,AY[0xc]=BJ,AY[0xd]=BE,AY[0xe]=Bo;B3!==null||B4||B6||B9?(AY[0x10]=!![],AY[0x11]=B3,AY[0x12]=B4,AY[0x13]=B5,AY[0x14]=B6,AY[0x15]=B7,AY[0x16]=B8,AY[0x17]=B9,AY[0x18]=BG,AY[0x19]=BA,AY[0x1a]=BB,AY[0x1b]=BT):AY[0x10]=![];let Tn=AY[0xf];return Tn['_$KjmPBk']=Bu===W?z:Bu===N?Q:t,Tn['_$Wjv6w8']=Tv,Tn;}BN=Ah,BH=Ac;let BR;if(Bu<0x4f)BR=BM(Bu,Bc);else{if(Bu<0xb7)BR=Bz(Bu,Bc);else Bu<0x148?BR=BQ(Bu,Bc):BR=Bt(Bu,Bc);}Ah=BN,Ac=BH;if(BR){if(Bo>0x0){for(let TC=Bb-0x1;TC>=0x0;TC--){Aa[TC]=BE[--Bo];}Ac=BE[--Bo],Bl=BE[--Bo],Ap=BE[--Bo],Bg=BE[--Bo],BX=BE[--Bo],Ah=BE[--Bo],AP[Ac++]=Bw,Ah++;continue;}return Bw;}}break;}catch(TK){F=0x0;if(B2&&B2['length']>0x0){let Tm=B2[B2['length']-0x1];Ac=Tm['_$yf7B0z'];Tm['_$ymXMaE']!==undefined&&(BX=Tm['_$ymXMaE']);if(Tm['_$cYiPfY']!==undefined)B3!==null&&(Tm['_$cYiPfY']>=BT||Tm['_$cYiPfY']<=BB)&&(B3=null),AP[Ac++]=TK,Ah=Tm['_$cYiPfY'],Tm['_$cYiPfY']=undefined,Tm['_$KWqdGi']===undefined&&B2['pop']();else Tm['_$KWqdGi']!==undefined?(Ah=Tm['_$KWqdGi'],Tm['_$ROYzDB']=TK):(Ah=Tm['_$1WEbvU'],B2['pop']());continue;}throw K(TK);}}let Bd=Ac>Bb?AP[--Ac]:BJ?AL:undefined;if(Bj&&!BJ&&(Bd===undefined||Bd===null||typeof Bd!=='object'&&typeof Bd!=='function'))throw new ReferenceError('Must\x20call\x20super\x20constructor\x20in\x20derived\x20class\x20before\x20accessing\x20\x27this\x27\x20or\x20returning\x20from\x20derived\x20constructor');return Bd;}function GD(AD,AF,Ap,As,AU,AL){let AY=0x0,Af,Au=function(Ac,AR){if(AY===0x2)throw new TypeError('Generator\x20is\x20already\x20running');if(AY===0x3||AY===0x0&&Ac!==0x1){AY=0x3;if(Ac===0x2)throw AR;return{'value':Ac===0x3?AR:undefined,'done':!![]};}let AP,Av=AY===0x1;AY=0x2,GF++;try{AP=Av?Gd(AD,AF,Ap,As,AU,AL,Af,Ac,AR):Gd(AD,AF,Ap,As,AU,AL);}catch(An){AY=0x3,Af=undefined;throw An;}finally{GF--;}if(AP&&typeof AP==='object'&&AP['_$KjmPBk']!==undefined)return Af=AP['_$oi8dOt'],AY=0x1,{'value':AP,'done':![]};return AY=0x3,Af=undefined,{'value':AP,'done':!![]};};return{'next':function(Ac){return Ac&&typeof Ac==='object'&&Ac['_$KjmPBk']===r?Au(0x3,Ac['_$Wjv6w8']):Au(0x1,Ac);},'throw':function(Ac){return Au(0x2,Ac);},'return':function(Ac){if(AY===0x2)throw new TypeError('Generator\x20is\x20already\x20running');return AY=0x3,Af=undefined,{'value':Ac,'done':!![]};}};}let GF=0x0,Gp=function(AD,AF,Ap,As,AU,AL){GF++;let AY=_$rqg5Lk['_$TwV8iJ'];try{_$rqg5Lk['_$GT0SNo']?_$rqg5Lk['_$GT0SNo']=![]:_$rqg5Lk['_$TwV8iJ']=undefined;let Af=typeof As==='object'?As['n']!==undefined?0x0?Aw(As['n']):As['d']||(As['d']=Aw(As['n'])):As:Ao(As),Au=Af?Ag(Af[0x20],Af[0x21]):undefined,Ac=Af?AJ(Af[0x20],Af[0x21]):undefined;return Gd(AD,AF,Ap,Af,AU,AL);}finally{_$rqg5Lk['_$TwV8iJ']=AY,GF--;}},Gs=0x8,GU=0xa,GL=0x3,GY=0x1,Gf=0x2,Gu=0x4,Gc=0x9,GR=0x7,GP=0x0,Gv=0xb,Gn=0x5,GC=0x6,GK=0x100000,Gm=0x400,GS=0x10000,Ga=0x800,Gh=0x100,GZ=0x2,Ge=0x4,Gx=0x20,A0=0x200,A1=0x8000,A2=0x80000,A3=0x4000,A4=0x2000,A5=0x40,A6=0x40000,A7=0x400000,A8=0x200000,A9=0x1,AG=0x20000,AA=0x1000,AB=0x8,AT=0x80;function Ay(AD){this['_$QWubOA']=AD,this['_$RjufL1']=new E(AD['buffer'],AD['byteOffset'],AD['byteLength']),this['_$x4sRqS']=0x0;}Ay['prototype']['_$ZNz5Fc']=function(){return this['_$QWubOA'][this['_$x4sRqS']++];},Ay['prototype']['_$aSZTKJ']=function(){let AD=this['_$RjufL1']['getUint16'](this['_$x4sRqS'],!![]);return this['_$x4sRqS']+=0x2,AD;},Ay['prototype']['_$dKRRtG']=function(){let AD=this['_$RjufL1']['getUint32'](this['_$x4sRqS'],!![]);return this['_$x4sRqS']+=0x4,AD;},Ay['prototype']['_$vx8Zi8']=function(){let AD=this['_$RjufL1']['getInt32'](this['_$x4sRqS'],!![]);return this['_$x4sRqS']+=0x4,AD;},Ay['prototype']['_$59iPhQ']=function(){let AD=this['_$RjufL1']['getFloat64'](this['_$x4sRqS'],!![]);return this['_$x4sRqS']+=0x8,AD;},Ay['prototype']['_$11mYXz']=function(){let AD=0x0,AF=0x0,Ap;do{Ap=this['_$ZNz5Fc'](),AD|=(Ap&0x7f)<<AF,AF+=0x7;}while(Ap>=0x80);return AD>>>0x1^-(AD&0x1);},Ay['prototype']['_$IKzSMB']=function(){let AD=this['_$11mYXz'](),AF=this['_$QWubOA'],Ap=this['_$x4sRqS'],As=Ap+AD;this['_$x4sRqS']=As;var AU='';while(Ap<As){var AL=AF[Ap++];if(AL<0x80)AU+=o(AL);else{if(AL<0xe0)AU+=o((AL&0x1f)<<0x6|AF[Ap++]&0x3f);else{if(AL<0xf0)AU+=o((AL&0xf)<<0xc|(AF[Ap++]&0x3f)<<0x6|AF[Ap++]&0x3f);else{var AY=(AL&0x7)<<0x12|(AF[Ap++]&0x3f)<<0xc|(AF[Ap++]&0x3f)<<0x6|AF[Ap++]&0x3f;AY-=0x10000,AU+=o((AY>>0xa)+0xd800,(AY&0x3ff)+0xdc00);}}}}return AU;};var Ai='x7ey3EAlPWIsCVOH5dKtk4rwUnX0aGD8QSu9v2NBjimF1Rfbhq6/gTY+zMcpoJLZ',Aj=new b(0x80);for(var AO=0x0;AO<Ai['length'];AO++){Aj[Ai['charCodeAt'](AO)]=AO;}function AV(AD){var AF=AD['charCodeAt'](AD['length']-0x1)===0x3d?AD['charCodeAt'](AD['length']-0x2)===0x3d?0x2:0x1:0x0,Ap=(AD['length']*0x3>>0x2)-AF,As=new b(Ap),AU=0x0;for(var AL=0x0;AL<AD['length'];AL+=0x4){var AY=Aj[AD['charCodeAt'](AL)],Af=Aj[AD['charCodeAt'](AL+0x1)],Au=Aj[AD['charCodeAt'](AL+0x2)],Ac=Aj[AD['charCodeAt'](AL+0x3)];As[AU++]=AY<<0x2|Af>>0x4,AU<Ap&&(As[AU++]=(Af&0xf)<<0x4|Au>>0x2),AU<Ap&&(As[AU++]=(Au&0x3)<<0x6|Ac);}return As;}Ay['prototype']['_$8JJAgu']=function(AD,AF){var Ap=this['_$11mYXz'](),As=this['_$QWubOA'],AU=this['_$x4sRqS'],AL=Ap,AY=(AF^AD*0x9e3779b1)>>>0x0||0x1,Af=0x0,Au='',Ac;while(Af<AL){Ac=(AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff);if(Ac<0x80)Au+=o(Ac);else{if(Ac<0xe0)Au+=o((Ac&0x1f)<<0x6|(AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff)&0x3f);else{if(Ac<0xf0)Au+=o((Ac&0xf)<<0xc|((AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff)&0x3f)<<0x6|(AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff)&0x3f);else{var AR=((Ac&0x7)<<0x12|((AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff)&0x3f)<<0xc|((AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff)&0x3f)<<0x6|(AY=(AY^AY<<0xd)>>>0x0,AY=(AY^AY>>>0x11)>>>0x0,AY=(AY^AY<<0x5)>>>0x0,Af++,As[AU++]^AY&0xff)&0x3f)-0x10000;Au+=o((AR>>0xa)+0xd800,(AR&0x3ff)+0xdc00);}}}}return this['_$x4sRqS']=AU,Au;};function AI(AD,AF,Ap){let As=AD['_$ZNz5Fc']();switch(As){case Gs:return null;case GU:return undefined;case GL:return![];case GY:return!![];case Gf:{let AU=AD['_$ZNz5Fc']();return AU>0x7f?AU-0x100:AU;}case Gu:{let AL=AD['_$aSZTKJ']();return AL>0x7fff?AL-0x10000:AL;}case Gc:return AD['_$vx8Zi8']();case GR:return AD['_$59iPhQ']();case GP:return Ap?AD['_$8JJAgu'](AF,Ap):AD['_$IKzSMB']();case Gv:return BigInt(AD['_$IKzSMB']());case Gn:{let AY=AD['_$IKzSMB'](),Af=AD['_$IKzSMB']();return new RegExp(AY,Af);}case GC:{let Au=AD['_$11mYXz'](),Ac=new b(Au);for(let AR=0x0;AR<Au;AR++){Ac[AR]=AD['_$ZNz5Fc']();}return Ab(Ac);}default:return null;}}let Aq=-0x1,AX=-0x1,Ak=0x0;function Al(AD,AF){if(AD===Aq&&AF===AX)return Ak;return Aq=AD,AX=AF,Ak=(Math['imul']((AD>>>0x0)+0x1,0x496d5841|0x1)^Math['imul']((AF>>>0x0)+0x1,0x496d5841>>>0x9|0x1)^0x496d5841)>>>0x0;}function Ag(AD,AF){return(Al(AD,AF)|0x1)>>>0x0;}function AJ(AD,AF){return Math['imul'](Al(AD,AF),0x36eccead)+0x31c0621b>>>0x0;}function Ab(AD){let AF;if(AD&&AD['_$x4sRqS']!==undefined)AF=AD;else{let Ah=typeof AD==='string'?AV(AD):AD;AF=new Ay(Ah);}let Ap=AF['_$ZNz5Fc'](),As=(AF['_$dKRRtG']()^0xc9b965ca)>>>0x0,AU=AF['_$11mYXz'](),AL=AF['_$11mYXz'](),AY=[undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined],Af=Ag(AU,AL),Au=AJ(AU,AL);AY[0x20]=AU,AY[0x21]=AL;if(As&Gh){let AZ=AF['_$11mYXz'](),Ae={};for(let Ax=0x0;Ax<AZ;Ax++){let B0=AF['_$11mYXz'](),B1=AF['_$11mYXz']();Ae[B0]=B1;}AY[0x1*Af+Au&0x1f]=Ae;}As&Gx&&(AY[0x8*Af+Au&0x1f]=AF['_$dKRRtG']());As&A1&&(AY[0x13*Af+Au&0x1f]=AF['_$11mYXz']());As&A2&&(AY[0xc*Af+Au&0x1f]=AF['_$dKRRtG']());As&Ge&&(AY[0x11*Af+Au&0x1f]=AF['_$dKRRtG']());As&Ga&&(AY[0x12*Af+Au&0x1f]=AF['_$11mYXz']());As&AB&&(AY[0xf*Af+Au&0x1f]=AF['_$11mYXz']());As&GZ&&(AY[0x9*Af+Au&0x1f]=AF['_$dKRRtG']());As&A0&&(AY[0x0*Af+Au&0x1f]=AF['_$dKRRtG']());As&GK&&(AY[0xd*Af+Au&0x1f]=0x1);As&Gm&&(AY[0x4*Af+Au&0x1f]=0x1);As&GS&&(AY[0x5*Af+Au&0x1f]=0x1);As&A6&&(AY[0x3*Af+Au&0x1f]=0x1);As&A7&&(AY[0x18*Af+Au&0x1f]=0x1);As&A8&&(AY[0x10*Af+Au&0x1f]=0x1);As&A9&&(AY[0x16*Af+Au&0x1f]=0x1);As&AG&&(AY[0x17*Af+Au&0x1f]=0x1);As&A5&&(AY[0x14*Af+Au&0x1f]=0x1);As&AA&&(AY[0x7*Af+Au&0x1f]=0x1);let Ac=AF['_$11mYXz'](),AR=[];GX(AR,null);let AP=AY[0x8*Af+Au&0x1f]||0x0;for(let B2=0x0;B2<Ac;B2++){AR[B2]=AI(AF,B2,AP);}AY[0x6*Af+Au&0x1f]=AR;function Av(B3){let B4=B3['_$ZNz5Fc']();switch(B4){case Gs:return-0x1;case Gf:{let B5=B3['_$ZNz5Fc']();return B5>0x7f?B5-0x100:B5;}case Gu:{let B6=B3['_$aSZTKJ']();return B6>0x7fff?B6-0x10000:B6;}case Gc:return B3['_$vx8Zi8']();case GR:return B3['_$59iPhQ']()|0x0;case GP:return B3['_$IKzSMB']()|0x0;default:return-0x1;}}let An=AF['_$11mYXz'](),AC=!!(As&AT),AK=AC?An*0x3:An<<0x1;if(An<0x0||AK<0x0)throw new RangeError('Invalid\x20array\x20length');let Am=null,AS={'__proto__':Am,'length':AK},Aa=0x0;if(AC){let B3=AY[0x15*Af+Au&0x1f]<=0x80;for(let B4=0x0;B4<An;B4++){AS[Aa++]=AF['_$11mYXz'](),AS[Aa++]=Av(AF);let B5=0x0,B6=0x0,B7;do{B7=AF['_$ZNz5Fc'](),B5|=(B7&0x7f)<<B6,B6+=0x7;}while(B7>=0x80);B5=B5>>>0x0,AS[Aa++]=B3?(B5&0x7f)<<0x14|(B5>>>0x7&0x7f)<<0xa|B5>>>0xe&0x7f:(B5&0xfff)<<0x14|(B5>>>0xc&0x3ff)<<0xa|B5>>>0x16&0x3ff;}}else{let B8=(AU*0xa0ff^AL*0xb6b7^An*0xa77f^Ac*0x5cb1)>>>0x0&0x3;switch(B8){case 0x1:for(let B9=0x0;B9<An;B9++){AS[Aa++]=AF['_$11mYXz']();}for(let BG=0x0;BG<An;BG++){AS[Aa++]=Av(AF);}break;case 0x2:for(let BA=0x0;BA<An;BA++){AS[Aa++]=Av(AF);}for(let BB=0x0;BB<An;BB++){AS[Aa++]=AF['_$11mYXz']();}break;case 0x3:for(let BT=0x0;BT<An;BT++){AS[Aa++]=Av(AF),AS[Aa++]=AF['_$11mYXz']();}break;default:for(let By=0x0;By<An;By++){AS[Aa++]=AF['_$11mYXz'](),AS[Aa++]=Av(AF);}break;}}AY[0x2*Af+Au&0x1f]=AS;if(As&A3){let Bi=AF['_$11mYXz'](),Bj={};for(let BO=0x0;BO<Bi;BO++){let BV=AF['_$11mYXz'](),BI=AF['_$11mYXz']();Bj[BV]=BI;}AY[0xa*Af+Au&0x1f]=Bj;}if(As&A4){let Bq=AF['_$11mYXz'](),BX={};for(let Bk=0x0;Bk<Bq;Bk++){let Bl=AF['_$11mYXz'](),Bg=AF['_$11mYXz']()-0x1,BJ=AF['_$11mYXz']()-0x1,Bb=AF['_$11mYXz']()-0x1;BX[Bl]=[Bg,BJ,Bb];}AY[0xe*Af+Au&0x1f]=BX;}return AY;}let AE=function(AD,AF){let Ap={};return function(As){if(AF!==undefined&&!(As>=0x0&&As<AF))throw 0x0;let AU=As;if(Ap[AU])return Ap[AU];let AL=AD[AU];return typeof AL==='string'?Ap[AU]=Ab(AL):Ap[AU]=AL,Ap[AU];};},Ao=AE(J);J=null;let Aw=AE(w,undefined,0x0);w=null;let AM=async function(AD,AF,Ap,As,AU,AL,AY){GF++;try{let Af=typeof AU==='object'?AU['n']!==undefined?0x0?Aw(AU['n']):AU['d']||(AU['d']=Aw(AU['n'])):AU:Ao(AU),Au=Af?Ag(Af[0x20],Af[0x21]):undefined,Ac=Af?AJ(Af[0x20],Af[0x21]):undefined,AR=Gd(AD,Ap,As,Af,AL,AY);while(AR&&typeof AR==='object'&&AR['_$KjmPBk']!==undefined){if(AR['_$KjmPBk']!==z)throw new Error('Unexpected\x20yield\x20in\x20async\x20context');let AP=AR['_$oi8dOt'],Av=0x1,An;try{An=await AR['_$Wjv6w8'];}catch(AC){Av=0x2,An=AC;}_$rqg5Lk['_$TwV8iJ']=AF,AR=Gd(AD,Ap,As,Af,AL,AY,AP,Av,An);}return AR;}finally{GF--;}},Az=function(AD,AF,Ap,As,AU,AL){let AY,Af,Au;GF++;try{AY=typeof AU==='object'?AU['n']!==undefined?0x0?Aw(AU['n']):AU['d']||(AU['d']=Aw(AU['n'])):AU:Ao(AU),Af=AY?Ag(AY[0x20],AY[0x21]):undefined,Au=AY?AJ(AY[0x20],AY[0x21]):undefined;}finally{GF--;}let Ac=GD(AD,Ap,As,AY,undefined,AL),AR=AY&&AY[0x5*Af+Au&0x1f]&&!AY[0x10*Af+Au&0x1f],AP=null;AR&&(AP=Ac['next']());let Av=![],An=![],AC=null,AK=undefined,Am=![];function AS(Ae,Ax){if(Av)return{'value':undefined,'done':!![]};An=!![],_$rqg5Lk['_$TwV8iJ']=AF;if(AC){let B1,B2,B3;try{if(Ax){if(typeof AC['throw']==='function')B1=AC['throw'](Ae);else{typeof AC['return']==='function'&&AC['return']();AC=null;throw new TypeError('The\x20iterator\x20does\x20not\x20provide\x20a\x20\x27throw\x27\x20method.');}}else B1=AC['next'](Ae);try{Gk(B1);}catch(B5){AC=null;throw B5;}let B4=Gl(B1);B2=B4['done'],B3=B4['value'];}catch(B6){AC=null;try{let B7=Ac['throw'](B6);return Aa(B7);}catch(B8){Av=!![];throw B8;}}if(!B2)return B1;AC=null,Ae=B3,Ax=![];}let B0;if(AP!==null)B0=AP,AP=null;else try{B0=Ax?Ac['throw'](Ae):Ac['next'](Ae);}catch(B9){Av=!![];throw B9;}return Aa(B0);}function Aa(Ae){if(Ae['done'])return Av=!![],Am=![],{'value':Ae['value'],'done':!![]};let Ax=Ae['value'];if(Ax['_$KjmPBk']===Q)return{'value':Ax['_$Wjv6w8'],'done':![]};if(Ax['_$KjmPBk']===t){let B0=Ax['_$Wjv6w8'],B1;try{if(B0==null)throw new TypeError(B0+'\x20is\x20not\x20iterable');let B5=B0[Symbol['iterator']];if(typeof B5!=='function')throw new TypeError(B0+'\x20is\x20not\x20iterable');B1=B5['call'](B0),Gk(B1);if(typeof B1['next']!=='function')throw new TypeError('Iterator\x20next\x20is\x20not\x20a\x20function');}catch(B6){try{let B7=Ac['throw'](B6);return Aa(B7);}catch(B8){Av=!![];throw B8;}}let B2,B3,B4;try{B2=B1['next'](undefined),Gk(B2);let B9=Gl(B2);B3=B9['done'],B4=B9['value'];}catch(BG){try{let BA=Ac['throw'](BG);return Aa(BA);}catch(BB){Av=!![];throw BB;}}if(!B3)return AC=B1,B2;return AS(B4,![]);}throw new Error('Unexpected\x20signal\x20in\x20generator');}let Ah=AY&&AY[0x4*Af+Au&0x1f],AZ=function(Ae){if(Av)return{'value':Ae,'done':!![]};if(!An)return Av=!![],{'value':Ae,'done':!![]};if(AC){let B0,B1=![];try{let B2=AC['return'];typeof B2==='function'&&(B1=!![],B0=B2['call'](AC,Ae),Gk(B0));}catch(B3){AC=null;let B4;try{B4=Ac['throw'](B3);}catch(B5){Av=!![];throw B5;}return Aa(B4);}if(B1){let B6;try{B6=B0['done'];}catch(B8){AC=null;let B9;try{B9=Ac['throw'](B8);}catch(BG){Av=!![];throw BG;}return Aa(B9);}if(!B6)return B0;let B7;try{B7=B0['value'];}catch(BA){AC=null;let BB;try{BB=Ac['throw'](BA);}catch(BT){Av=!![];throw BT;}return Aa(BB);}AC=null,Ae=B7;}}AK=Ae,Am=!![];let Ax;try{_$rqg5Lk['_$TwV8iJ']=AF,Ax=Ac['next']({'_$KjmPBk':r,'_$Wjv6w8':Ae});}catch(By){Av=!![],Am=![];throw By;}return Aa(Ax);};if(Ah){let Ae={},Ax=function(B2,B3){return _$rqg5Lk['_$TwV8iJ']=AF,B2?Ac['throw'](B3):Ac['next'](B3);},B0=async function*(B2){B2===null&&(B2=AP!==null?AP:Ax(![],undefined),AP=null);let B3=![];while(!B2['done']){let B4=B2['value'],B5=B4['_$KjmPBk'],B6=B4['_$Wjv6w8'];if(B5===z&&B6==='_$vQ8Pp4'){B3=!![],B2=Ax(![],undefined);continue;}if(B5===z&&B3){B3=![];let BG=![],BA;try{return B6;}catch(BB){BG=!![],BA=BB;}finally{if(!BG){let BT=Ax(![],{'_$KjmPBk':r,'_$Wjv6w8':Ae}),By=BT['done']?BT['value']:yield*Gj(B0(BT));if(By!==Ae)return By;}}B2=Ax(!![],BA);continue;}if(B5===z){let Bi;try{Bi=await B6;}catch(Bj){B2=Ax(!![],Bj);continue;}B2=Ax(![],Bi);continue;}if(B5!==Q&&B5!==t)throw new Error('Unexpected\x20signal\x20in\x20async\x20generator');let B7,B8=![],B9=![];try{B7=B5===Q?yield B6:yield*(0x0,B6),B9=!![];}catch(BO){B7=BO,B8=!![],B9=!![];}finally{if(!B9){let BV=Ax(![],{'_$KjmPBk':r,'_$Wjv6w8':Ae}),BI=BV['done']?BV['value']:yield*Gj(B0(BV));if(BI!==Ae)return BI;}}B2=Ax(B8,B7);}if(B2['value']===Ae)return Ae;return;},B1=B0(null);return y(B1,Gq(Ap&&Ap['prototype'],GG)),B1;}else{let B2=Gq(Ap&&Ap['prototype'],G8),B3={'next':function(B5){return AS(B5,![]);},'return':AZ,'throw':function(B5){if(Av)throw B5;return AS(B5,!![]);},[Symbol['iterator']]:function(){return this;}};if(!B2||!GB)return B3;let B4=GB(B3);return y(B4,B2),B4;}};var AQ=function(AD,AF,Ap,As,AU,AL){GF++;try{let AY=Ao(As),Af=AY?Ag(AY[0x20],AY[0x21]):undefined,Au=AY?AJ(AY[0x20],AY[0x21]):undefined,Ac=AD;if(AY&&AY[0x5*Af+Au&0x1f]){let AR=_$rqg5Lk['_$TwV8iJ'];return Az(AU,AR,AF,Ap,AY,Ac);}if(AY&&AY[0x4*Af+Au&0x1f]){let AP=_$rqg5Lk['_$TwV8iJ'];return AM(AU,AP,AF,Ap,AY,AL,Ac);}return AF&&AY&&GM(AF,AY,AU,Af,Au),Gp(AU,AF,Ap,AY,AL,Ac);}finally{GF--;}};return AQ['_$Snp295']=function(AD,AF){if(!AD)return;if(0x0||0x0){!G2(AD)&&x(AD,{['_$dLc1p0']:AF,['_$4mYIXv']:undefined,['_$D5XaXA']:undefined,['_$N1BKrc']:undefined});return;}var Ap;GF++;try{Ap=Ao(AF);}finally{GF--;}if(!Ap)return;var As=Ag(Ap[0x20],Ap[0x21]),AU=AJ(Ap[0x20],Ap[0x21]);if(Ap[0x4*As+AU&0x1f]||Ap[0x5*As+AU&0x1f]||Ap[0xd*As+AU&0x1f])return;!G2(AD)&&x(AD,{['_$dLc1p0']:AF,['_$4mYIXv']:undefined,['_$D5XaXA']:Ap,['_$N1BKrc']:undefined});},AQ;}());try{window,Object['defineProperty'](vmi_adc91c,'window',{'get':function(){return window;},'set':function(G){window=G;},'configurable':!![]});}catch(vmyN){}try{JSON,Object['defineProperty'](vmi_adc91c,'JSON',{'get':function(){return JSON;},'set':function(G){JSON=G;},'configurable':!![]});}catch(vmyH){}try{localStorage,Object['defineProperty'](vmi_adc91c,'localStorage',{'get':function(){return localStorage;},'set':function(G){localStorage=G;},'configurable':!![]});}catch(vmyW){}try{document,Object['defineProperty'](vmi_adc91c,'document',{'get':function(){return document;},'set':function(G){document=G;},'configurable':!![]});}catch(vmyd){}try{setTimeout,Object['defineProperty'](vmi_adc91c,'setTimeout',{'get':function(){return setTimeout;},'set':function(G){setTimeout=G;},'configurable':!![]});}catch(vmyD){}try{Date,Object['defineProperty'](vmi_adc91c,'Date',{'get':function(){return Date;},'set':function(G){Date=G;},'configurable':!![]});}catch(vmyF){}try{fetch,Object['defineProperty'](vmi_adc91c,'fetch',{'get':function(){return fetch;},'set':function(G){fetch=G;},'configurable':!![]});}catch(vmyp){}try{console,Object['defineProperty'](vmi_adc91c,'console',{'get':function(){return console;},'set':function(G){console=G;},'configurable':!![]});}catch(vmys){}try{confirm,Object['defineProperty'](vmi_adc91c,'confirm',{'get':function(){return confirm;},'set':function(G){confirm=G;},'configurable':!![]});}catch(vmyU){}try{location,Object['defineProperty'](vmi_adc91c,'location',{'get':function(){return location;},'set':function(G){location=G;},'configurable':!![]});}catch(vmyL){}try{QRCode,Object['defineProperty'](vmi_adc91c,'QRCode',{'get':function(){return QRCode;},'set':function(G){QRCode=G;},'configurable':!![]});}catch(vmyY){}try{JsBarcode,Object['defineProperty'](vmi_adc91c,'JsBarcode',{'get':function(){return JsBarcode;},'set':function(G){JsBarcode=G;},'configurable':!![]});}catch(vmyf){}try{gapi,Object['defineProperty'](vmi_adc91c,'gapi',{'get':function(){return gapi;},'set':function(G){gapi=G;},'configurable':!![]});}catch(vmyu){}try{google,Object['defineProperty'](vmi_adc91c,'google',{'get':function(){return google;},'set':function(G){google=G;},'configurable':!![]});}catch(vmyc){}try{undefined,Object['defineProperty'](vmi_adc91c,'undefined',{'get':function(){return undefined;},'set':function(G){undefined=G;},'configurable':!![]});}catch(vmyR){}try{Array,Object['defineProperty'](vmi_adc91c,'Array',{'get':function(){return Array;},'set':function(G){Array=G;},'configurable':!![]});}catch(vmyP){}try{parseInt,Object['defineProperty'](vmi_adc91c,'parseInt',{'get':function(){return parseInt;},'set':function(G){parseInt=G;},'configurable':!![]});}catch(vmyv){}try{Math,Object['defineProperty'](vmi_adc91c,'Math',{'get':function(){return Math;},'set':function(G){Math=G;},'configurable':!![]});}catch(vmyn){}try{URL,Object['defineProperty'](vmi_adc91c,'URL',{'get':function(){return URL;},'set':function(G){URL=G;},'configurable':!![]});}catch(vmyC){}try{Blob,Object['defineProperty'](vmi_adc91c,'Blob',{'get':function(){return Blob;},'set':function(G){Blob=G;},'configurable':!![]});}catch(vmyK){}try{FileReader,Object['defineProperty'](vmi_adc91c,'FileReader',{'get':function(){return FileReader;},'set':function(G){FileReader=G;},'configurable':!![]});}catch(vmym){}try{encodeURIComponent,Object['defineProperty'](vmi_adc91c,'encodeURIComponent',{'get':function(){return encodeURIComponent;},'set':function(G){encodeURIComponent=G;},'configurable':!![]});}catch(vmyS){}try{navigator,Object['defineProperty'](vmi_adc91c,'navigator',{'get':function(){return navigator;},'set':function(G){navigator=G;},'configurable':!![]});}catch(vmya){}try{Map,Object['defineProperty'](vmi_adc91c,'Map',{'get':function(){return Map;},'set':function(G){Map=G;},'configurable':!![]});}catch(vmyh){}try{ZXing,Object['defineProperty'](vmi_adc91c,'ZXing',{'get':function(){return ZXing;},'set':function(G){ZXing=G;},'configurable':!![]});}catch(vmyZ){}void'0';(function(){return vmy_f9758d(this,undefined,arguments,0x0,undefined,new.target,0xe9,0x4a,0xab);}());
  </script>  
+
 </body>  
 </html>
